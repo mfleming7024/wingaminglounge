@@ -1,0 +1,24 @@
+.off-canvas-wrap,.inner-wrap{
+    height:100%;
+}
+.desktop-logo{
+    height: 45px;
+    margin-left: 5px;
+}
+nav.tab-bar div .mobile-logo{
+    background: url(../img/logo.png) no-repeat center center;
+    width: 45px;
+    height: 45px;
+    background-size: contain;
+    margin: 0 auto;
+    margin-top: -45px;
+    display: block;
+}
+.mobile-bar{
+    font-size: 1.3em;
+    color: #000;
+    margin-left: -4px;
+}
+.exit-off-canvas{
+    border-radius: 7px 0 0 7px;
+}
