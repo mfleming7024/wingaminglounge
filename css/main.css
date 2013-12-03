@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 .off-canvas-wrap, .inner-wrap{
     height:100%!important;
@@ -27,6 +28,14 @@
 }
 .top-bar-section ul li{
     list-style: none;
+=======
+.off-canvas-wrap,.inner-wrap{
+    height:100%;
+}
+.desktop-logo{
+    height: 45px;
+    margin-left: 5px;
+>>>>>>> 11c3d7e6497c4bf0986261fea5cec1c97b74a970
 }
 nav.tab-bar div .mobile-logo{
     background: url(../img/logo.png) no-repeat center center;
@@ -42,6 +51,7 @@ nav.tab-bar div .mobile-logo{
     color: #000;
     margin-left: -4px;
 }
+<<<<<<< HEAD
 /* INDEX **************
 *****************************************/
 .top-content{
@@ -107,3 +117,8 @@ nav.tab-bar div .mobile-logo{
 .station-info i{
 
 }
+=======
+.exit-off-canvas{
+    border-radius: 7px 0 0 7px;
+}
+>>>>>>> 11c3d7e6497c4bf0986261fea5cec1c97b74a970
