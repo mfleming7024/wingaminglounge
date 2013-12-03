@@ -1,0 +1,109 @@
+
+.off-canvas-wrap, .inner-wrap{
+    height:100%!important;
+}
+.exit-off-canvas{
+    border-radius: 7px 0 0 7px;
+}
+
+/* NAVIGATION **************
+*****************************************/
+.top_bar{
+    background: #999;
+    height: 45px;
+}
+.desktop-logo{
+    height: 45px;
+}
+.main-nav{
+    width: 155px!important;
+    text-align: center;
+}
+.title-area{
+    list-style: none;
+}
+.top-bar-section{
+    margin-top: -65px;
+}
+.top-bar-section ul li{
+    list-style: none;
+}
+nav.tab-bar div .mobile-logo{
+    background: url(../img/logo.png) no-repeat center center;
+    width: 45px;
+    height: 45px;
+    background-size: contain;
+    margin: 0 auto;
+    margin-top: -45px;
+    display: block;
+}
+.mobile-bar{
+    font-size: 1.3em;
+    color: #000;
+    margin-left: -4px;
+}
+/* INDEX **************
+*****************************************/
+.top-content{
+    background: url(../img/header.jpg) no-repeat;
+    height: 550px;
+}
+
+/* GTS PANEL **************
+*****************************************/
+.panel{
+    height: 60px!important;
+    margin-top: 10px;
+    border-color: #17A9CC;
+    background-image: -o-linear-gradient(bottom, #17A9CC 0%, #0085A6 100%)!important;
+    background-image: -moz-linear-gradient(bottom, #17A9CC 0%, #0085A6 100%)!important;
+    background-image: -webkit-linear-gradient(bottom, #17A9CC 0%, #0085A6 100%)!important;
+    background-image: -ms-linear-gradient(bottom, #17A9CC 0%, #0085A6 100%)!important;
+    background-image: linear-gradient(to bottom, #17A9CC 0%, #0085A6 100%)!important;
+}
+.panel-button{
+    height: 60px!important;
+    width: 25px;
+    margin-left: -15px;
+    margin-top: 10px;
+    background-image: -o-linear-gradient(bottom, #17A9CC 0%, #0085A6 100%)!important;
+    background-image: -moz-linear-gradient(bottom, #17A9CC 0%, #0085A6 100%)!important;
+    background-image: -webkit-linear-gradient(bottom, #17A9CC 0%, #0085A6 100%)!important;
+    background-image: -ms-linear-gradient(bottom, #17A9CC 0%, #0085A6 100%)!important;
+    background-image: linear-gradient(to bottom, #17A9CC 0%, #0085A6 100%)!important;
+}
+.right-panel i{
+    margin-top: 20px!important;
+    font-size: 1.5em;
+    color: #fff;
+}
+.station-number h2{
+    margin-top: -4px;
+    margin-left: -15px;
+    color: #fff;
+    opacity: 0.7;
+}
+.station-time-remaining h2,h5{
+    color: #fff;
+    display: inline;
+}
+.station-time-remaining{
+    margin-top: -10px;
+    margin-left: 15px;
+}
+.station-game img{
+    height: 50px;
+    margin-top: -15px;
+    border: 1px solid #17A9CC;
+}
+.station-game a i{
+    color: #fff;
+    position: relative;
+    margin-left: -30px;
+    maring-top: -30px;
+    text-shadow: -1px 1px 2px #000;
+    opacity: 0.8;
+}
+.station-info i{
+
+}
