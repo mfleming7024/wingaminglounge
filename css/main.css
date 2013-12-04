@@ -9,6 +9,16 @@ h1,h2,h3,h4,h5,h6,p,a{
 }
 /* NAVIGATION **************
 *****************************************/
+html {
+	height: 100%;
+}
+
+body {
+	position: relative;
+	height: 100%;
+	overflow: hidden;
+}
+
 .top_bar{
     background: #999;
     height: 45px;
@@ -82,6 +92,8 @@ nav.tab-bar div .mobile-logo{
     margin-bottom: 75px;
 }
 footer{
+	position: absolute;
+	bottom: 0;
     background-color: #555;
     height: 45px;
     width: 100%;
