@@ -15,7 +15,7 @@ function gameCRUD($scope, angularFireCollection){
             if ($scope.game.gameSystem == "" || $scope.game.gameSystem == null) { //System
                 console.log("No game system given");
             } else if ($scope.game.gameTitle == "" || $scope.game.gameTitle == null) { //Game Title
-                console.log("No game name given");
+                console.log("No game title given");
             } else if ($scope.game.gameArtUrl == "" || $scope.game.gameArtUrl == null) { // Game Box Art
                 console.log("No game art url given");
             } else if ($scope.game.gameQuantity == "" || $scope.game.gameQuantity == null) { //Quantity
@@ -23,9 +23,9 @@ function gameCRUD($scope, angularFireCollection){
             } else {
                 $scope.games.add($scope.game); //Adds to Firebase
             }
-        }
-    }
-}
+        }//end if else
+    }//end addGame
+}//end gameCRUD
 
 function staffCRUD($scope, angularFireCollection){
 
@@ -49,7 +49,64 @@ function staffCRUD($scope, angularFireCollection){
             } else {
                 $scope.allStaff.add($scope.staff);
             }
-        } 
-    }
-}
+        }//end if else
+    }//end addStaff
+}//end staffCRUD
+
+function systemsCRUD($scope, angularFireCollection){
+
+	//url to the data needed
+    var urlSystem = new Firebase('https://wingaminglounge.firebaseio.com/wingaminglounge/systems');
+
+    //collects the info from the database for use.
+    $scope.systems = angularFireCollection(urlSystem);
+ 
+    //create a system and adds it to the database
+    $scope.addSystem = function(){
+        if ($scope.system == "" || $scope.system == null) {
+            console.log("game does not exist");
+        } else {
+            if ($scope.system.systemName == "" || $scope.system.systemName == null) { //System Name
+                console.log("No System Name Given");
+            } else if ($scope.system.systemSerial == "" || $scope.system.systemSerial == null) { //System Serial
+                console.log("No System Serial Given");
+            } else if ($scope.system.systemStation == "" || $scope.system.systemStation == null) { //Systems Assigned Station
+                console.log("Please select a station or None");
+            } else {
+                $scope.systems.add($scope.system); // Add to Firebase
+            }
+        }//end if else
+    }//end addSystem
+}//end systemsCRUD
+
+function stationsCRUD($scope, angularFireCollection){
+
+     //urls to the data needed
+    var urlStations = new Firebase('https://wingaminglounge.firebaseio.com/wingaminglounge/stations'); //Stations Firebase
+
+    //collects the info from the database for use.
+    $scope.stations = angularFireCollection(urlStations);
+
+    //create a system and adds it to the database
+    $scope.addStation = function(){
+        if ($scope.station == "" || $scope.station == null) {
+            console.log("Station does not exist");
+        } else {
+            if ($scope.station.stationNumber == "" || $scope.station.stationNumber == null) { //Station Number
+                console.log("No Station chosen");
+            } else if ($scope.station.stationSystem == "" || $scope.station.stationSystem == null) { // The Station System
+                console.log("No SystemTV given");
+            } else if ($scope.station.stationTV == "" || $scope.station.stationTV == null) { //Station TV
+                console.log("Please enter a TV");
+            } else if ($scope.station.stationTVSerial == "" || $scope.station.stationTVSerial == null) { //TV's Serial
+                console.log("Please enter a TV Serial");
+            } else {
+                $scope.stations.add($scope.station);
+            }
+        }//end if else
+    }//end addStation
+}//end systemsCRUD
+
+
+
 

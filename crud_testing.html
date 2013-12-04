@@ -48,7 +48,32 @@ users (w/usertype)
 	</ul>
 </div>
 
+<div ng-controller="systemsCRUD">
+	<form ng-submit="addSystem(system)">
+		<input type="text" placeholder="systemName" ng-model="system.systemName" />	
+		<input type="text" placeholder="systemSerial" ng-model="system.systemSerial" />
+		<input type="number" placeholder="systemStation" ng-model="system.systemStation" />
+		<input type="submit" />
+	</form>
+	
+	<ul>
+		<li ng-repeat="system in systems">{{system.systemName}}</li>
+	</ul>
+</div>
 
+<div ng-controller="stationsCRUD">
+	<form ng-submit="addStation(station)">
+		<input type="number" placeholder="stationNumber" ng-model="station.stationNumber" />	
+		<input type="text" placeholder="stationSystem" ng-model="station.stationSystem" />
+		<input type="text" placeholder="stationTV" ng-model="station.stationTV" />
+		<input type="text" placeholder="stationTVSerial" ng-model="station.stationTVSerial" />
+		<input type="submit" />
+	</form>
+	
+	<ul>
+		<li ng-repeat="station in stations">{{station.stationNumber}}</li>
+	</ul>
+</div>
 
 </body>
 
