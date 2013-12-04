@@ -16,11 +16,15 @@ wingaming.config(function ($routeProvider){
         .when("/",{
             title: 'Home',
 /*             controller:"Login", */
-            templateUrl:"views/home.html",
+            templateUrl:"views/home.html"
         })
         .when("/under_construction", {
             title: 'Work in progress',
-            templateUrl:"views/under_construction.html",
+            templateUrl:"views/under_construction.html"
+        })
+        .when("/gts", {
+            title: 'Gamer Tracking System',
+            templateUrl:"views/gts.html"
         })
         .when("/gts_add_gamer/:user/:stationId", {
             controller:"UserCrud",
