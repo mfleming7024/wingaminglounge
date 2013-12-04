@@ -1,9 +1,9 @@
 <!doctype html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="en" ng-app="wingaming">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Win : Gaming Lounge</title>
+     <title ng-bind="'Win: &mdash; ' + title">Win: Gaming Lounge</title>
 
     <link rel="stylesheet" href="css/foundation.css" />
     <link rel="stylesheet" href="css/normalize.css">
@@ -130,5 +130,21 @@
 <script>
     $(document).foundation();
 </script>
+
+<!-- Firebase Conenctions -->
+<script src="https://cdn.firebase.com/v0/firebase.js"></script>
+
+<!--simple login-->
+<script src="https://cdn.firebase.com/v0/firebase-simple-login.js"></script>
+
+<!--angular-->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+
+<!--angularFire-->
+<script src="https://cdn.firebase.com/libs/angularfire/0.3.0/angularfire.min.js"></script>
+
+<!--Main JS-->
+<script src="js/main.js"></script>
+
 </body>
 </html>
