@@ -1,0 +1,68 @@
+<!--
+games
+staff
+stations
+systems
+
+activeStations
+emptyStations
+queued
+
+users (w/usertype)
+-->
+
+<!DOCTYPE html>
+<head>
+
+</head>
+<body ng-app="crud">
+
+<div ng-controller="gameCRUD">
+	<form ng-submit="addGame(game)">
+		<input type="text" placeholder="gameTitle" ng-model="game.gameTitle" />
+		<select ng-model="game.gameSystem">
+			<option>Playstation 4</option>
+			<option>Xbox One</option>
+			<option>Playstation 3</option>
+		</select>				
+		<input type="number" placeholder="gameQuantity" ng-model="game.gameQuantity" />
+		<input type="text" placeholder="gameArt" ng-model="game.gameArtUrl" />
+		<input type="submit" />
+	</form>
+	
+	<ul>
+		<li ng-repeat="game in games">{{game.gameTitle}}<img src="{{game.gameArtUrl}}" width="100" height="150" /></li>
+	</ul>
+</div>
+
+<div ng-controller="staffCRUD">
+	<form ng-submit="addStaff(staff)">
+		<input type="text" placeholder="staffName" ng-model="staff.staffName" />	
+		<input type="tel" placeholder="staffNumber" ng-model="staff.staffNumber" />
+		<input type="email" placeholder="staffEmail" ng-model="staff.staffEmail" />
+		<input type="submit" />
+	</form>
+	
+	<ul>
+		<li ng-repeat="staff in allStaff">{{staff.staffName}}</li>
+	</ul>
+</div>
+
+
+
+</body>
+
+<!-- Firebase Conenctions -->
+<script src="https://cdn.firebase.com/v0/firebase.js"></script>
+
+<!--angular-->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+
+<!--angularFire-->
+<script src="https://cdn.firebase.com/libs/angularfire/0.3.0/angularfire.min.js"></script>
+
+<!--Main JS-->
+<script type="text/javascript" src="js/main.js"></script>
+
+</body>
+</html>
