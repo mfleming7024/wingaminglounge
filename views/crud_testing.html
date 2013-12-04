@@ -1,23 +1,4 @@
-<!--
-games
-staff
-stations
-systems
-
-activeStations
-emptyStations
-queued
-
-users (w/usertype)
--->
-
-<!DOCTYPE html>
-<head>
-
-</head>
-<body ng-app="crud">
-
-<div ng-controller="gameCRUD">
+<div ng-controller="gameController">
 	<form ng-submit="addGame(game)">
 		<input type="text" placeholder="gameTitle" ng-model="game.gameTitle" />
 		<select ng-model="game.gameSystem">
@@ -35,7 +16,9 @@ users (w/usertype)
 	</ul>
 </div>
 
-<div ng-controller="staffCRUD">
+<hr />
+
+<div ng-controller="staffController">
 	<form ng-submit="addStaff(staff)">
 		<input type="text" placeholder="staffName" ng-model="staff.staffName" />	
 		<input type="tel" placeholder="staffNumber" ng-model="staff.staffNumber" />
@@ -48,7 +31,9 @@ users (w/usertype)
 	</ul>
 </div>
 
-<div ng-controller="systemsCRUD">
+<hr />
+
+<div ng-controller="systemController">
 	<form ng-submit="addSystem(system)">
 		<input type="text" placeholder="systemName" ng-model="system.systemName" />	
 		<input type="text" placeholder="systemSerial" ng-model="system.systemSerial" />
@@ -61,7 +46,9 @@ users (w/usertype)
 	</ul>
 </div>
 
-<div ng-controller="stationsCRUD">
+<hr />
+
+<div ng-controller="stationController">
 	<form ng-submit="addStation(station)">
 		<input type="number" placeholder="stationNumber" ng-model="station.stationNumber" />	
 		<input type="text" placeholder="stationSystem" ng-model="station.stationSystem" />
@@ -75,19 +62,3 @@ users (w/usertype)
 	</ul>
 </div>
 
-</body>
-
-<!-- Firebase Conenctions -->
-<script src="https://cdn.firebase.com/v0/firebase.js"></script>
-
-<!--angular-->
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
-
-<!--angularFire-->
-<script src="https://cdn.firebase.com/libs/angularfire/0.3.0/angularfire.min.js"></script>
-
-<!--Main JS-->
-<script type="text/javascript" src="js/main.js"></script>
-
-</body>
-</html>
