@@ -20,7 +20,7 @@ wingaming.config(function ($routeProvider){
             title: 'Work in progress',
             templateUrl:"views/under_construction.html"
         })
-        .when("/crudTesting", {
+        .when("/crud_testing", {
             title: 'Crud Testing',
             templateUrl:"views/crud_testing.html"
         })
