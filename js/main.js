@@ -13,7 +13,6 @@ wingaming.config(function ($routeProvider){
     $routeProvider
         .when("/",{
             title: 'Home',
-            controller:"Login",
             templateUrl:"views/home.html"
         })
         .when("/under_construction", {
