@@ -11,19 +11,16 @@ wingaming.run(['angularFireAuth', '$rootScope', function(angularFireAuth, $rootS
 }]);
 */
 
-console.log(1);
-
 wingaming.config(function ($routeProvider){
     $routeProvider
         .when("/",{
             title: 'Home',
-            controller:"Login",
+/*             controller:"Login", */
             templateUrl:"views/home.html",
         })
-        .when("/admin_games", {
-            title: 'Admin Games',
-            controller:"GameCrud",
-            templateUrl:"views/admin_games.html",
+        .when("/under_construction", {
+            title: 'Work in progress',
+            templateUrl:"views/under_construction.html",
         })
         .when("/gts_add_gamer/:user/:stationId", {
             controller:"UserCrud",
