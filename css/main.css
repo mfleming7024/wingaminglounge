@@ -1,3 +1,15 @@
+/* CONTENTS
+---------------------
+/* NAVIGATION
+/* STAFF NAVIGATION
+/* INDEX
+/* GTS PAGE
+/* GTS PANEL
+
+---------------------
+*/
+
+
 .off-canvas-wrap, .inner-wrap{
     height:100%!important;
 }
@@ -7,6 +19,7 @@
 h1,h2,h3,h4,h5,h6,p,a{
     font-family: 'Lato', sans-serif;
 }
+
 /* NAVIGATION **************
 *****************************************/
 
@@ -48,7 +61,16 @@ nav.tab-bar div .mobile-logo{
 .mobile-bar{
     font-size: 1.3em;
     color: #000;
-    margin-left: -4px;
+    margin-left: -5px;
+}
+.right-nav{
+    margin-top: -45px;
+    margin-right: -5px;
+}
+/* STAFF NAVIGATION **************
+*****************************************/
+.gts-content .top-bar{
+    margin-top: 50px;
 }
 /* INDEX **************
 *****************************************/
@@ -117,6 +139,30 @@ footer i{
 .fa-google-plus-square{
     color: #D34836;
     text-shadow: -1px 0px 1px #000;
+}
+/* GTS PAGE **************
+*****************************************/
+.gts{
+    padding-left: 5px;
+}
+.gts-content{
+    background-color: #f2f2f2;
+    height: 700px;
+    box-shadow: 0px 5px 10px #000;
+}
+.gts-nav{
+    margin-top: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.gts-nav button{
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-right: 1px solid #17A9CC;
+}
+.gts-hr {
+    padding-right: 5px;
+    padding-left: 5px;
 }
 
 /* GTS PANEL **************

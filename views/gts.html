@@ -1,13 +1,22 @@
 
-        <!-- This is the Content below Navigation -->
-        <div class="gts-content">
+<!-- This is the Content below Navigation -->
+<div class="row">
+    <div class="gts-content">
+        <div class="top-bar hide-for-small">
 
         </div>
+        <!-- GTS Navigation -->
+        <div class="gts-nav">
+            <button class="small-12 medium-6 large-1 columns left" data-reveal-id="add-to-waiting-list">+</button>
+            <button class="small-12 medium-6 large-2 columns left" data-reveal-id="waiting-list">Waiting List</button>
+        </div>
+
+        <div class="gts-hr"><hr /></div>
 
         <div class="gts">
-            <div class="row">
-                <div class="gts-panel">
-                    <div class="panel small-10 medium-4 large-3 columns left collapse">
+            <!-- This is the start of the GTS Panel -->
+            <div class="gts-panel">
+                <div class="panel small-10 medium-4 large-3 columns left collapse">
                         <span data-tooltip class="has-tip" title="Erwin Angeles">
                         <div class="station-number left">
                             <h2>1</h2>
@@ -17,15 +26,38 @@
                             <h5>MIN</h5>
                         </div>
                         </span>
-                        <div class="station-game right">
-                            <img src="http://www.gamestop.com/common/images/lbox/150022b.jpg" alt="Game Box Art">
-                            <a class="right" href="#"><i class="fa fa-exchange"></i> </a>
-                        </div>
+                    <div class="station-game right">
+                        <img src="http://www.gamestop.com/common/images/lbox/150022b.jpg" alt="Game Box Art">
+                        <a class="right" href="#"><i class="fa fa-exchange"></i> </a>
                     </div>
-                    <div class="right-panel large-1 small-1 columns left">
-                        <a href="#" class="button postfix panel-button"><i class="fa fa-play"></i> </a>
-                    </div>
-                </div> <!-- end .gts-panel -->
-            </div> <!-- end row -->
+                </div>
+                <div class="right-panel large-1 small-1 columns left">
+                    <a href="#" class="button postfix panel-button"><i class="fa fa-play"></i> </a>
+                </div>
+            </div> <!-- end .gts-panel -->
         </div><!-- end .gts -->
+    </div> <!-- end gts-content -->
+</div>
 
+
+<!-- Modals -->
+<!-- Add to waiting list modal -->
+<div id="add-to-waiting-list" class="reveal-modal" data-reveal>
+    <h2>Awesome. I have it.</h2>
+    <p class="lead">Your couch.  It is mine.</p>
+    <p>Im a cool paragraph that lives inside of an even cooler modal. Wins</p>
+    <a class="close-reveal-modal">&#215;</a>
+</div>
+
+<!-- Waiting List Modal -->
+<div id="waiting-list" class="reveal-modal" data-reveal>
+    <h2>Awesome. I have it.</h2>
+    <p class="lead">Your couch.  It is mine.</p>
+    <p>Im a cool paragraph that lives inside of an even cooler modal. Wins</p>
+    <a class="close-reveal-modal">&#215;</a>
+</div>
+
+<!-- Need scripts here for modal to work -->
+<script>
+    $(document).foundation();
+</script>

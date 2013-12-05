@@ -18,15 +18,22 @@
 
 <div class="off-canvas-wrap">
     <div class="inner-wrap">
-        <!-- Show for mobile -->
+        <!-- Show for main mobile nav -->
         <nav class="tab-bar show-for-small">
             <a class="left-off-canvas-toggle"><i class="fa fa-bars mobile-bar"></i></a>
             <div class="div.mobile-logo">
                 <a href="./index.html" class="mobile-logo"></a>
             </div>
+            <div class="right-nav right">
+                <a class="right-off-canvas-toggle"><i class="fa fa-bars mobile-bar"></i></a>
+            </div>
         </nav>
+        <!-- Show for admin mobile nav -->
+        <!--<nav class="tab-bar show-for-small">-->
+            <!--<a class="right-off-canvas-toggle"><i class="fa fa-bars mobile-bar"></i></a>-->
+        <!--</nav>-->
 
-        <!-- Off canvas mobile content/navigation -->
+        <!-- left Off canvas mobile main navigation -->
         <aside class="left-off-canvas-menu">
             <ul class="off-canvas-list">
                 <li><label><a href="#/gts"></a> <i class="fa fa-facebook-square"></i> Facebook Login</label></li>
@@ -42,9 +49,15 @@
             </ul>
         </aside>
 
+        <!-- Right Off canvas mobile Admin/Staff navigation -->
+        <aside class="right-off-canvas-menu">
+            <ul class="off-canvas-list">
+                <li><label><a href="#/gts">Admin</a> </label></li>
+            </ul>
+        </aside>
+
         <!-- This top nav only show on tablets and desktops -->
         <!-- Desktop/Tablet Navigation -->
-
         <nav class="top_bar hide-for-small" data-topbar>
             <div class="row">
                 <ul class="title-area left">
@@ -97,9 +110,10 @@
 
     </div><!-- end .inner-wrap -->
 </div> <!-- end .off-canvas-wrap -->
+
 <script src="js/jquery.js"></script>
 <script src="js/foundation.min.js"></script>
-<script src="js/foundation/foundation.topbar.js"></script>
+
 <script>
     $(document).foundation();
 </script>

@@ -37,7 +37,7 @@ wingaming.config(function ($routeProvider){
         	redirectTo:"/",
         	title: "Home"
         });
-        
+
 }).directive('autoComplete', function($timeout) {
         return function(scope, iElement, iAttrs) {
             iElement.autocomplete({
