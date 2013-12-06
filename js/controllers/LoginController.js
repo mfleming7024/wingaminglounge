@@ -25,11 +25,10 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
                 } else {
                 	userExists = true;
                 	theUser = $scope.users[i];
-                	console.log(theUser);
                     break;
                 }
             }
-            
+                        
             if (!userExists) {
 	            console.log("User does not exist, adding " + theUser.email + " to the database.");
 	            
@@ -42,8 +41,10 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
 	            console.log("User does exist, not adding " + theUser.email + " to the database");
 	            if (theUser.userType == "Gamer") {
 		            $location.path("/game_page");
+		            $scope.user.userType="Gamer";
 	            } else if (theUser.userType == "Admin") {
 		            $location.path("/gts");
+		            $scope.user.userType="Admin";
 	            } else {
 		            console.log("usertype not detected");
 	            }
