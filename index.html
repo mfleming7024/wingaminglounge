@@ -16,15 +16,15 @@
 </head>
 <body>
 
-<div class="off-canvas-wrap">
+<div class="off-canvas-wrap" ng-controller="Login">
     <div class="inner-wrap">
         <!-- Show for main mobile nav -->
         <nav class="tab-bar show-for-small">
             <a class="left-off-canvas-toggle"><i class="fa fa-bars mobile-bar"></i></a>
             <div class="div.mobile-logo">
-                <a href="./index.html" class="mobile-logo"></a>
+                <a href="/#" class="mobile-logo"></a>
             </div>
-            <div class="right-nav right">
+            <div class="right-nav right" ng-show="{user.userType='Admin'}">
                 <a class="right-off-canvas-toggle"><i class="fa fa-bars mobile-bar"></i></a>
             </div>
         </nav>
