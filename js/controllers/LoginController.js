@@ -35,7 +35,7 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
 	            var picurl = "http://graph.facebook.com/" + theUser.username + "/picture?type=small";
 		        var picurlLarge = "http://graph.facebook.com/" + theUser.username + "/picture?type=large";
 				
-				$scope.users.add({"displayName": theUser.name, "email": theUser.email, "profilePic": picurl, "profilePicLarge": picurlLarge, userType: "Gamer"});
+				$scope.users.add({"displayName": theUser.name, "email": theUser.email, "profilePic": picurl, "profilePicLarge": picurlLarge});
 				$location.path('/game_page');
             } else {
 	            console.log("User does exist, not adding " + theUser.email + " to the database");
