@@ -34,9 +34,12 @@
         <!--</nav>-->
 
         <!-- left Off canvas mobile main navigation -->
-        <aside class="left-off-canvas-menu">
-            <ul class="off-canvas-list">
-                <li><label><a href="" ng-click="login()"></a><i class="fa fa-facebook-square"></i> Facebook Login</label></li>
+        <aside class="left-off-canvas-menu" ng-controller="Login">
+            <ul class="off-canvas-list" ng-hide="user">
+                <li><label><a href="" ng-click="login()"><i class="fa fa-facebook-square"></i> Facebook Login</a></label></li>
+            </ul>
+            <ul class="off-canvas-list" ng-show="user">
+                <li><a href="" ng-click="logout()">Logout</a></li>
             </ul>
             <ul class="off-canvas-list">
                 <li><label><i class="fa fa-trophy"></i> Competition</label></li>
@@ -80,7 +83,8 @@
                         <li class="divider"></li>
                         <li><a href="#" class="main-nav"><i class="fa fa-info-circle"></i> Support</a></li>
                         <li class="divider"></li>
-                        <li class="active"><a href="" class="main-nav" ng-click="login()"><i class="fa fa-facebook"></i> Facebook Login</a></li>
+                        <li class="active" ng-hide="user"><a href="" class="main-nav" ng-click="login()"><i class="fa fa-facebook"></i> Facebook Login</a></li>
+                        <li class="active" ng-show="user"><a href="" class="main-nav" ng-click="logout()">Logout</a></li>                        
                     </ul>
                 </div>
             </div>
