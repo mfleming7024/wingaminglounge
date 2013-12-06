@@ -40,11 +40,11 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
             } else {
 	            console.log("User does exist, not adding " + theUser.email + " to the database");
 	            if (theUser.userType == "Gamer") {
-		            $location.path("/game_page");
 		            $scope.user.userType="Gamer";
+		            $location.path("/game_page");
 	            } else if (theUser.userType == "Admin") {
-		            $location.path("/gts");
 		            $scope.user.userType="Admin";
+		            $location.path("/gts");
 	            } else {
 		            console.log("usertype not detected");
 	            }
