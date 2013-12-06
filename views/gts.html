@@ -36,6 +36,15 @@
                 </div>
             </div> <!-- end .gts-panel -->
         </div><!-- end .gts -->
+
+        <form ng-controller="Login" class="large-3 small-12">
+            <label>Name</label>
+            <input type="text" placeholder="Search Name">
+
+            <datalist id="users">
+                <option ng-repeat="user in users" value="{{user.displayName}}({{user.email}})"></option>
+            </datalist>
+        </form>
     </div> <!-- end gts-content -->
 </div>
 
