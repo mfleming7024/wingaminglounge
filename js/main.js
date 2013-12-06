@@ -31,6 +31,11 @@ wingaming.config(function ($routeProvider){
             authRequired: true,
             templateUrl:"views/crud_testing.html"
         })
+        .when("/game_page", {
+            title: 'Your a gamer!',
+            authRequired: true,
+            templateUrl:"views/gamer_page.html"
+        })
         .otherwise({
         	redirectTo:"/",
         	title: "Home"

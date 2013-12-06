@@ -21,9 +21,11 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
 			var userExists;		
             for (var i = 0, max = $scope.users.length; i<max; i++) {
                 if ($scope.users[i].email != theUser.email) {
-                	userExists = false;
+                	userExists = false;                
                 } else {
                 	userExists = true;
+                	theUser = $scope.users[i];
+                	console.log(theUser);
                     break;
                 }
             }
@@ -34,10 +36,17 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
 	            var picurl = "http://graph.facebook.com/" + theUser.username + "/picture?type=small";
 		        var picurlLarge = "http://graph.facebook.com/" + theUser.username + "/picture?type=large";
 				
-				$scope.users.add({"displayName": theUser.name, "email": theUser.email, "profilePic": picurl, "profilePicLarge": picurlLarge});
-				$location.path('/gts');
+				$scope.users.add({"displayName": theUser.name, "email": theUser.email, "profilePic": picurl, "profilePicLarge": picurlLarge, userType: "Gamer"});
+				$location.path('/game_page');
             } else {
 	            console.log("User does exist, not adding " + theUser.email + " to the database");
+	            if (theUser.userType == "Gamer") {
+		            $location.path("/game_page");
+	            } else if (theUser.userType == "Admin") {
+		            $location.path("/gts");
+	            } else {
+		            console.log("usertype not detected");
+	            }
             }
 			
 		});		
