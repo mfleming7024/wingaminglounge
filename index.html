@@ -36,7 +36,7 @@
         <!-- left Off canvas mobile main navigation -->
         <aside class="left-off-canvas-menu">
             <ul class="off-canvas-list">
-                <li><label><a href="#/gts"></a> <i class="fa fa-facebook-square"></i> Facebook Login</label></li>
+                <li><label><a href="" ng-click="login()"></a><i class="fa fa-facebook-square"></i> Facebook Login</label></li>
             </ul>
             <ul class="off-canvas-list">
                 <li><label><i class="fa fa-trophy"></i> Competition</label></li>
@@ -66,7 +66,7 @@
                     </li>
                 </ul>
 
-                <div class="top-bar-section">
+                <div class="top-bar-section" ng-controller="Login">
                     <!-- Right Nav Section -->
                     <ul class="right">
                         <li class="has-dropdown">
@@ -80,7 +80,7 @@
                         <li class="divider"></li>
                         <li><a href="#" class="main-nav"><i class="fa fa-info-circle"></i> Support</a></li>
                         <li class="divider"></li>
-                        <li class="active"><a href="#/gts" class="main-nav"><i class="fa fa-facebook"></i> Facebook Login</a></li>
+                        <li class="active"><a href="" class="main-nav" ng-click="login()"><i class="fa fa-facebook"></i> Facebook Login</a></li>
                     </ul>
                 </div>
             </div>
@@ -135,6 +135,9 @@
 
 <!--Crud Controllers-->
 <script src="js/controllers/CRUDController.js"></script>
+
+<!-- Login Controllers -->
+<script src="js/controllers/LoginController.js"></script>
 
 </body>
 </html>

@@ -13,21 +13,15 @@ wingaming.config(function ($routeProvider){
     $routeProvider
         .when("/",{
             title: 'Home',
-
-/*             controller:"Login", */
-
-
             templateUrl:"views/home.html"
         })
         .when("/under_construction", {
             title: 'Work in progress',
             templateUrl:"views/under_construction.html"
-
         })
         .when("/gts", {
             title: 'Gamer Tracking System',
             templateUrl:"views/gts.html"
-
         })
         .when("/crud_testing", {
             title: 'Crud Testing',
