@@ -15,7 +15,7 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
     });
 
     $scope.login = function() {
-<<<<<<< HEAD
+
         angularFireAuth.login("facebook", {
             scope: "email"
         }).then(function(){
@@ -50,7 +50,7 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
                 }
 
             });
-=======
+
 		angularFireAuth.login("facebook", {
 			scope: "email"			
 		}).then(function(){	
@@ -85,7 +85,7 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
             }
 			
 		});		
->>>>>>> ec1aeb386b2532c9c50abde95bf7df20e19ec956
+
     };
     
     $scope.logout = function() {
@@ -100,13 +100,12 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
         return condition ? true_statement : false_statement;
     };
 
-<<<<<<< HEAD
+
     //Filter gamer search and select to input
     $scope.limit = 5;
     $scope.setGamer = function (gamer) {
         $scope.displayName = gamer; };
     // pull selected city using {{selected | json}}
 
-=======
->>>>>>> ec1aeb386b2532c9c50abde95bf7df20e19ec956
+
 }])
