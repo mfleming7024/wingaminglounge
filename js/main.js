@@ -5,7 +5,7 @@ wingaming.run(['angularFireAuth', '$rootScope', function(angularFireAuth, $rootS
     angularFireAuth.initialize(url, {scope: $rootScope, name: "user",path: '/'});
 
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
-        $rootScope.title = current.$$route.title;
+        $rootScope.title = current.$$route.title;        
     });
 }]);
 
