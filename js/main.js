@@ -14,27 +14,27 @@ wingaming.config(function ($routeProvider){
         .when("/" , {
             title: 'Home',
             controller: "Login",
-            templateUrl:"views/home.html"
+            templateUrl:"partials/home.html"
         })
         .when("/under_construction", {
             title: 'Work in progress',
             authRequired: false,
-            templateUrl:"views/under_construction.html"
+            templateUrl:"partials/under_construction.html"
         })
         .when("/gts", {
             title: 'Gamer Tracking System',
             authRequired: true,
-            templateUrl:"views/gts.html"
+            templateUrl:"partials/gts.html"
         })
         .when("/crud_testing", {
             title: 'Crud Testing',
             authRequired: true,
-            templateUrl:"views/crud_testing.html"
+            templateUrl:"partials/crud_testing.html"
         })
         .when("/game_page", {
             title: 'Your a gamer!',
             authRequired: true,
-            templateUrl:"views/gamer_page.html"
+            templateUrl:"partials/gamer_page.html"
         })
         .otherwise({
         	redirectTo:"/",

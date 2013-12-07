@@ -24,9 +24,7 @@
             <div class="div.mobile-logo">
                 <a href="#/home" class="mobile-logo"></a>
             </div>
-            <div class="right-nav right">
-                <a class="right-off-canvas-toggle"><i class="fa fa-bars mobile-bar"></i></a>
-            </div>
+            <div class="right-nav right" ng-bind-html-unsafe="statement"></div>
         </nav>
         <!-- Show for admin mobile nav -->
         <!--<nav class="tab-bar show-for-small">-->
@@ -53,13 +51,11 @@
         </aside>
 
        <!-- Right Off canvas mobile Admin/Staff navigation -->
-       <aside class="right-off-canvas-menu">
+       	<aside class="right-off-canvas-menu">
             <ul class="off-canvas-list">
                 <li><label><a href="#/gts">Admin</a> </label></li>
             </ul>
         </aside>
-        
-		<h1 ng-bind-html="user_type">{{render(user.userType)}}</h1>
 
         <!-- This top nav only show on tablets and desktops -->
         <!-- Desktop/Tablet Navigation -->

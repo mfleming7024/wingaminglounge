@@ -42,9 +42,11 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
 	            if (theUser.userType == "Gamer") {
 		            $scope.user.userType = false;
 		            $location.path("/game_page");
+					$scope.statement = false_statement;					    
 	            } else if (theUser.userType == "Admin") {
 		            $scope.user.userType= true;
 		            $location.path("/gts");
+		            $scope.statement = true_statement;
 	            };
             }
 			
@@ -57,7 +59,7 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
     };
     
     var false_statement = "<h1>Your not an Admin</h1>";
-    var true_statement = "<aside class=\"right-off-canvas-menu\"><ul class=\"off-canvas-list\"><li><label><a href=\"#/gts\">Admin</a> </label></li></ul></aside>";
+    var true_statement = "<a class='right-off-canvas-toggle'><i class='fa fa-bars mobile-bar'></i></a>";
     
     $scope.render = function(condition) {        
 	    return condition ? true_statement : false_statement;
