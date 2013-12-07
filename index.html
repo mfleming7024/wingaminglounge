@@ -25,8 +25,7 @@
             <div class="div.mobile-logo">
                 <a href="#/home" class="mobile-logo"></a>
             </div>
-            <h1>{{user.userType}}</h1>
-            <div class="right-nav right" ng-show="user.userType">
+            <div class="right-nav right">
                 <a class="right-off-canvas-toggle"><i class="fa fa-bars mobile-bar"></i></a>
             </div>
         </nav>
@@ -36,7 +35,7 @@
         <!--</nav>-->
 
         <!-- left Off canvas mobile main navigation -->
-        <aside class="left-off-canvas-menu" ng-controller="Login">
+        <aside class="left-off-canvas-menu">
             <ul class="off-canvas-list" ng-hide="user">
                 <li><label><a href="" ng-click="login()"><i class="fa fa-facebook-square"></i> Facebook Login</a></label></li>
             </ul>
@@ -54,12 +53,14 @@
             </ul>
         </aside>
 
-        <!-- Right Off canvas mobile Admin/Staff navigation -->
-        <aside class="right-off-canvas-menu">
+       <!-- Right Off canvas mobile Admin/Staff navigation -->
+       <aside class="right-off-canvas-menu">
             <ul class="off-canvas-list">
                 <li><label><a href="#/gts">Admin</a> </label></li>
             </ul>
         </aside>
+        
+<!-- 		{{render(user.userType="Admin")}} -->
 
         <!-- This top nav only show on tablets and desktops -->
         <!-- Desktop/Tablet Navigation -->
@@ -83,7 +84,7 @@
                             </ul>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="#" class="main-nav"><i class="fa fa-info-circle"></i> Support</a></li>
+                        <li><a href="#/" class="main-nav"><i class="fa fa-info-circle"></i> Support</a></li>
                         <li class="divider"></li>
                         <li class="active" ng-hide="user"><a href="" class="main-nav" ng-click="login()"><i class="fa fa-facebook"></i> Facebook Login</a></li>
                         <li class="active" ng-show="user"><a href="" class="main-nav" ng-click="logout()">Logout</a></li>                        
