@@ -22,7 +22,7 @@
                             <h2>1</h2>
                         </div>
                         <div class="station-time-remaining left">
-                            <h2>00:21</h2>
+                            <h2>00:60</h2>
                             <h5>MIN</h5>
                         </div>
                         </span>
@@ -31,30 +31,55 @@
                         <a class="right" href="#"><i class="fa fa-exchange"></i> </a>
                     </div>
                 </div>
-                <div class="right-panel large-1 small-1 columns left">
+                <div class="play-panel large-1 small-1 columns left">
                     <a href="#" class="button postfix panel-button"><i class="fa fa-play"></i> </a>
                 </div>
             </div> <!-- end .gts-panel -->
+
+            <!-- Available Station -->
+            <div class="gts-panel">
+                <div class="panel small-10 medium-4 large-3 columns left collapse">
+                    <div class="station-number left">
+                        <h2>2</h2>
+                    </div>
+                </div>
+                <div class="start-panel large-1 small-1 columns left">
+                    <a href="#" class="button postfix panel-button" data-reveal-id="add-to-start">+</i> </a>
+                </div>
+            </div> <!-- end .gts-panel -->
         </div><!-- end .gts -->
-
-        <form ng-controller="Login" class="large-3 small-12">
-            <label>Name</label>
-            <input type="text" placeholder="Search Name">
-
-            <datalist id="users">
-                <option ng-repeat="user in users" value="{{user.displayName}}({{user.email}})"></option>
-            </datalist>
-        </form>
     </div> <!-- end gts-content -->
 </div>
 
 
 <!-- Modals -->
+<!-- Add to Start Modal -->
+<div id="add-to-start" class="reveal-modal small" data-reveal>
+    <form ng-controller="Login" class="large-6 small-12">
+        <label>Name</label>
+        <input type="text" autocomplete="off" placeholder="Search Name" ng-model="displayName">
+        <ul>
+            <li ng-hide="gameTitle" ng-show="displayName" ng-repeat="user in users | filter:displayName | limitTo:limit"><a ng-click="setGamer(user.displayName)">{{user.displayName}}<img src="{{user.profilePic}}"> </a></li>
+        </ul>
+        <!-- Game Selection -->
+        <label>Select Game</label>
+        <select ng-controller="gameController" ng-model="gameTitle">
+            <option ng-repeat="game in games | orderBy:predicate:reverse">{{game.gameTitle}}</option>
+        </select>
+        <label>Playtime</label>
+        <select>
+            <option>30</option>
+            <option>60</option>
+        </select>
+
+        <button class="large-12 small-12"> Add</button>
+    </form>
+    <a class="close-reveal-modal">&#215;</a>
+</div>
+
 <!-- Add to waiting list modal -->
-<div id="add-to-waiting-list" class="reveal-modal" data-reveal>
-    <h2>Awesome. I have it.</h2>
-    <p class="lead">Your couch.  It is mine.</p>
-    <p>Im a cool paragraph that lives inside of an even cooler modal. Wins</p>
+<div id="add-to-waiting-list" class="reveal-modal small" data-reveal>
+
     <a class="close-reveal-modal">&#215;</a>
 </div>
 
