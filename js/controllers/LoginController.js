@@ -27,6 +27,12 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
                 	theUser = $scope.users[i];
                     break;
                 }
+<<<<<<< HEAD
+=======
+
+            });
+
+>>>>>>> c64760aad755e4b06175fa2e215f11f4577bcf4e
             }
                         
             if (!userExists) {
@@ -48,7 +54,12 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
 	            };
             }
 			
+<<<<<<< HEAD
 		});		
+=======
+		});
+
+>>>>>>> c64760aad755e4b06175fa2e215f11f4577bcf4e
     };
     
     $scope.logout = function() {
