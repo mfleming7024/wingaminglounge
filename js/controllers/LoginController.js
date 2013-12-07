@@ -49,10 +49,9 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
                         $location.path("/gts");
                     };
                 }
-<<<<<<< HEAD
 
             });
-=======
+
             }
                         
             if (!userExists) {
@@ -74,8 +73,8 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
 	            };
             }
 			
-		});		
->>>>>>> d2b2fa994f61aac4c0536fec8d71fcc70e2fba01
+		});
+
     };
 
     $scope.logout = function() {
