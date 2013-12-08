@@ -7,6 +7,10 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
             theUser = user;
 
             var urlUser = new Firebase("https://wingaminglounge.firebaseio.com/wingaminglounge/users/"+theUser.id);
+            
+            var usersCollection = new Firebase("https://wingaminglounge.firebaseio.com/wingaminglounge/users/");
+            
+            $scope.users = angularFireCollection(usersCollection);
 
             $rootScope.user = {};
             angularFire(urlUser, $rootScope, 'user').then(function()
