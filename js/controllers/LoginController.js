@@ -1,14 +1,45 @@
-wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFireCollection', 'angularFireAuth', function mtCtrl($scope, $routeParams, $location, angularFireCollection, angularFireAuth){
+wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFireCollection', 'angularFireAuth','$rootScope','angularFire', function mtCtrl($scope, $routeParams, $location, angularFireCollection, angularFireAuth,$rootScope,angularFire){
 
 	var theUser;
-
-    var urlUsers = new Firebase("https://wingaminglounge.firebaseio.com/wingaminglounge/users");
-
-	$scope.users = angularFireCollection(urlUsers);
 	
     $scope.$on("angularFireAuth:login", function(evt, user) {
         if (user.provider == "facebook") {            
             theUser = user;
+
+            var urlUser = new Firebase("https://wingaminglounge.firebaseio.com/wingaminglounge/users/"+theUser.id);
+
+            $rootScope.user = {};
+            angularFire(urlUser, $rootScope, 'user').then(function()
+            {
+                if (Object.keys($rootScope.user).length === 0) {
+                    console.log("User does not exist, adding " + theUser.email + " to the database.");
+
+                    var picurl = "http://graph.facebook.com/" + theUser.username + "/picture?type=small";
+                    var picurlLarge = "http://graph.facebook.com/" + theUser.username + "/picture?type=large";
+
+
+                    $rootScope.user = {"displayName": theUser.name, "email": theUser.email, "profilePic": picurl, "profilePicLarge": picurlLarge, "userType": "Gamer"};
+
+
+                    $location.path('/game_page');
+                } else {
+                    console.log("User does exist, not adding " + theUser.email + " to the database");
+                    console.log('$rootScope..userType',$rootScope.user.userType);
+                    if ($rootScope.user.userType == "Gamer") {
+                        $scope.userType = false;
+                        $location.path("/game_page");
+                        $scope.statement = false_statement;
+                    } else if ($rootScope.user.userType == "Admin") {
+                        $scope.userType = true;
+                        $location.path("/gts");
+                        $scope.statement = true_statement;
+                    };
+                }
+            })
+
+
+
+
         } else {
 	        console.log("Login other then the facebook service");
         }
@@ -17,40 +48,7 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
     $scope.login = function() {
 		angularFireAuth.login("facebook", {
 			scope: "email"			
-		}).then(function(){	
-			var userExists;		
-            for (var i = 0, max = $scope.users.length; i<max; i++) {
-                if ($scope.users[i].email != theUser.email) {
-                	userExists = false;                
-                } else {
-                	userExists = true;
-                	theUser = $scope.users[i];
-                    break;
-                }
-            }
-                        
-            if (!userExists) {
-	            console.log("User does not exist, adding " + theUser.email + " to the database.");
-	            
-	            var picurl = "http://graph.facebook.com/" + theUser.username + "/picture?type=small";
-		        var picurlLarge = "http://graph.facebook.com/" + theUser.username + "/picture?type=large";
-				
-				$scope.users.add({"displayName": theUser.name, "email": theUser.email, "profilePic": picurl, "profilePicLarge": picurlLarge, "userType": "Gamer"});
-				$location.path('/game_page');
-            } else {
-	            console.log("User does exist, not adding " + theUser.email + " to the database");
-	            if (theUser.userType == "Gamer") {
-		            $scope.user.userType = false;
-		            $location.path("/game_page");
-					$scope.statement = false_statement;					    
-	            } else if (theUser.userType == "Admin") {
-		            $scope.user.userType= true;
-		            $location.path("/gts");
-		            $scope.statement = true_statement;
-	            };
-            }
-			
-		});		
+		});
     };
     
     $scope.logout = function() {
