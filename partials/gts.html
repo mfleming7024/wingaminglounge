@@ -55,7 +55,8 @@
 <!-- Modals -->
 <!-- Add to Start Modal -->
 <div id="add-to-start" class="reveal-modal small" data-reveal>
-    <form ng-controller="Login" class="large-6 small-12">
+    <form ng-controller="Login" class="large-8 small-12 large-centered columns">
+        <!-- Search for gamers name from firebase -->
         <label>Name</label>
         <input type="text" autocomplete="off" placeholder="Search Name" ng-model="displayName">
         <ul>
@@ -64,15 +65,15 @@
         <!-- Game Selection -->
         <label>Select Game</label>
         <select ng-controller="gameController" ng-model="gameTitle">
-            <option ng-repeat="game in games | orderBy:predicate:reverse">{{game.gameTitle}}</option>
+            <option ng-repeat="game in games">{{game.gameTitle}}</option>
         </select>
+        <!-- Minutes to play -->
         <label>Playtime</label>
         <select>
             <option>30</option>
             <option>60</option>
         </select>
-
-        <button class="large-12 small-12"> Add</button>
+        <button class="large-12 small-12 button-form"> Add</button>
     </form>
     <a class="close-reveal-modal">&#215;</a>
 </div>
