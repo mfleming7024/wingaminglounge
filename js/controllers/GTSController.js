@@ -53,11 +53,14 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
     //create a active station and adds it to the database
     $scope.addActiveStation = function(){
 
-        $scope.tempStation.stationNumber = document.querySelector("#customDropdown").value;
+        /*		GRAB FROM SCOPE NOT JAVASCRIPT
+$scope.tempStation.stationNumber = document.querySelector("#customDropdown").value;
         $scope.tempStation.boxart = document.querySelector("#games_option").value;
         $scope.tempStation.username = document.querySelector("#username").value;
         $scope.tempStation.countdown = document.querySelector("#time_dropdown").value;
         $scope.tempStation.gamerPic = document.querySelector("#gamerPic").value;
+*/
+
         $scope.tempStation.startTime = new Date().getTime()
         $location.path("/admin");
 
@@ -74,6 +77,7 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
         if (user_delete_confirmed) {
             $scope.tempStation = null;
             $location.path("/admin");
+            //ng-animate?
             $("#user_delete_button").css("background", "#2ba6cb").html("Delete");
             user_delete_confirmed = false;
         } else {
@@ -88,7 +92,8 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
         $location.path("/admin");
     }
 
-    var urlQStation = new Firebase('https://gamerscafe.firebaseio.com/gamerscafe/quedStations');
+    /*		Switching Queued stations to a list instead
+var urlQStation = new Firebase('https://gamerscafe.firebaseio.com/gamerscafe/quedStations');
 
     //test only info page
     if(typeof $routeParams !== "undefined"){
@@ -98,6 +103,7 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
 
         }
     }
+*/
 
     //updates the activeStations database
     $scope.updateActiveStation = function(){
@@ -142,6 +148,7 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
             var time = hours+":"+min;
         }
 
+        //Switch to scope
         var nameValue = document.querySelector("#getName");
         var getName = nameValue.options[nameValue.selectedIndex].text;
 
