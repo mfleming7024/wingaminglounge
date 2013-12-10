@@ -69,7 +69,7 @@ nav.tab-bar div .mobile-logo{
 }
 /* STAFF NAVIGATION **************
 *****************************************/
-.gts-content .top-bar{
+.page-content .top-bar{
     margin-top: 50px;
 }
 /* INDEX **************
@@ -145,7 +145,7 @@ footer i{
 .gts{
     padding-left: 5px;
 }
-.gts-content{
+.page-content{
     background-color: #f2f2f2;
     height: 700px;
     box-shadow: 0px 5px 10px #000;

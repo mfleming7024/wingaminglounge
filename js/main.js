@@ -21,10 +21,19 @@ wingaming.config(function ($routeProvider){
             authRequired: false,
             templateUrl:"partials/under_construction.html"
         })
+        // Admin and Staff Routing
         .when("/gts", {
             title: 'Gamer Tracking System',
             authRequired: true,
             templateUrl:"partials/gts.html",
+            resolve:{
+                factory: checkPermission
+            }
+        })
+        .when("/stations", {
+            title: 'Stations',
+            authRequired: true,
+            templateUrl:"partials/stations.html",
             resolve:{
                 factory: checkPermission
             }
