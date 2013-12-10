@@ -6,6 +6,8 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
         if (user.provider == "facebook") {            
             theUser = user;
 
+            $scope.user = true;
+
             var urlUser = new Firebase("https://wingaminglounge.firebaseio.com/wingaminglounge/users/"+theUser.id);
 
             var usersCollection = new Firebase("https://wingaminglounge.firebaseio.com/wingaminglounge/users/");
@@ -21,9 +23,7 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
                     var picurl = "http://graph.facebook.com/" + theUser.username + "/picture?type=small";
                     var picurlLarge = "http://graph.facebook.com/" + theUser.username + "/picture?type=large";
 
-
                     $rootScope.user = {"displayName": theUser.name, "email": theUser.email, "profilePic": picurl, "profilePicLarge": picurlLarge, "userType": "Gamer"};
-
 
                     $location.path('/game_page');
                 } else {
@@ -36,7 +36,7 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
                     } else if ($rootScope.user.userType == "Admin") {
                         $scope.userType = true;
                         console.log("gts");
-                        $location.path("/gts");
+//                        $location.path("/gts");
                         $scope.statement = true_statement;
                     };
                 }
@@ -48,6 +48,10 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
         } else {
 	        console.log("Login other then the facebook service");
         }
+    });
+
+    $scope.$on("angularFireAuth:logout", function(evt, user) {
+        $scope.user = false;
     });
 
     $scope.login = function() {

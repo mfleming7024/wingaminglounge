@@ -67,7 +67,7 @@ wingaming.config(function ($routeProvider){
     });
 
 var checkPermission = function ($q, $rootScope, $location){
-    console.log('$rootScope.user',$rootScope.user);
+
     if(!$rootScope.user || $rootScope.user.userType == 'Gamer'){
         $location.path('/')
 
