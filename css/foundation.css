@@ -279,6 +279,8 @@ select {
         position: relative;
         padding-left: 0.9375rem;
         padding-right: 0.9375rem;
+        /*padding-left: 0;*/
+        /*padding-right: 0;*/
         float: left; }
 
     .small-1 {
@@ -3314,8 +3316,8 @@ blockquote p {
     left: 50%;
     z-index: 99;
     height: auto;
-    margin-left: -40%;
-    width: 80%;
+    margin-left: -45%;
+    width: 90%;
     background-color: white;
     padding: 1.25rem;
     border: solid 1px #666666;

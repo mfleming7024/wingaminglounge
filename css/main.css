@@ -5,6 +5,7 @@
 /* INDEX
 /* GTS PAGE
 /* GTS PANEL
+/* STATIONS PAGE
 
 ---------------------
 */
@@ -18,6 +19,14 @@
 }
 h1,h2,h3,h4,h5,h6,p,a{
     font-family: 'Lato', sans-serif;
+}
+.page-content{
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.page-title{
+    text-transform: uppercase;
+    font-weight: 500;
 }
 
 /* NAVIGATION **************
@@ -69,7 +78,7 @@ nav.tab-bar div .mobile-logo{
 }
 /* STAFF NAVIGATION **************
 *****************************************/
-.page-content .top-bar{
+.page-container .top-bar{
     margin-top: 50px;
 }
 /* INDEX **************
@@ -145,17 +154,17 @@ footer i{
 .gts{
     padding-left: 5px;
 }
-.page-content{
+.page-container{
     background-color: #f2f2f2;
     height: 700px;
     box-shadow: 0px 5px 10px #000;
 }
-.gts-nav{
+.page-nav{
     margin-top: 20px;
     padding-left: 5px;
     padding-right: 5px;
 }
-.gts-nav button{
+.page-nav button{
     margin-top: 5px;
     margin-bottom: 10px;
     border-right: 1px solid #17A9CC;
@@ -176,15 +185,15 @@ label{
 
 /* GTS PANEL **************
 *****************************************/
-.panel{
+.gts-panels{
     height: 60px!important;
     margin-top: 10px;
     border-color: #17A9CC;
-    background-image: -o-linear-gradient(bottom, #17A9CC 0%, #0085A6 100%)!important;
-    background-image: -moz-linear-gradient(bottom, #17A9CC 0%, #0085A6 100%)!important;
-    background-image: -webkit-linear-gradient(bottom, #17A9CC 0%, #0085A6 100%)!important;
-    background-image: -ms-linear-gradient(bottom, #17A9CC 0%, #0085A6 100%)!important;
-    background-image: linear-gradient(to bottom, #17A9CC 0%, #0085A6 100%)!important;
+    background-image: -o-linear-gradient(bottom, #17A9CC 0%, #0085A6 100%);
+    background-image: -moz-linear-gradient(bottom, #17A9CC 0%, #0085A6 100%);
+    background-image: -webkit-linear-gradient(bottom, #17A9CC 0%, #0085A6 100%);
+    background-image: -ms-linear-gradient(bottom, #17A9CC 0%, #0085A6 100%);
+    background-image: linear-gradient(to bottom, #17A9CC 0%, #0085A6 100%);
 }
 .panel-button{
     height: 60px!important;
@@ -235,4 +244,19 @@ label{
 .exit-off-canvas{
     border-radius: 7px 0 0 7px;
 }
+/* STATIONS PAGE **************
+*****************************************/
+.station-list .station{
+    background-color: #b4b4b4;
+}
 
+.station-list .large-2{
+    /*width: 15.65%;*/
+
+}
+.stations-number{
+    display: inline;
+}
+.stations-number i{
+    font-size: 2.7em;
+}
