@@ -1,31 +1,26 @@
 wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFireCollection', 'angularFireAuth','angularFire','$timeout', function mtCtrl($scope, $routeParams, $location, angularFireCollection, angularFireAuth,angularFire,$timeout){
-    //url to the data needed
-
 
     //************************************Active stations database***************************************************
 
-    //url to the data needed
     var urlActiveStations = new Firebase('https://gamerscafe.firebaseio.com/wingaminglounge/activeStations');
 
     var wrapper = function () {
         updateTimer();
         $timeout(wrapper, 10000);
     }
+    
+    var time = new Date().getTime();
 
-    //updates the display's countdown timer for the active gts
     var updateTimer = function(){
-        //runs a loop for each station on the active stations database
         for (var i = $scope.activeStations.length - 1; i >= 0; i--) {
-            //checks to see if the timer is 0 and will change the status from nomral to red.
-            //sets the minutes to the new time
-            var time = new Date().getTime() - $scope.activeStations[i].startTime;
+            time - $scope.activeStations[i].startTime;
             $scope.activeStations[i].displayTime = parseInt($scope.activeStations[i].countdown - (time/1000/60));
 
-            if($scope.activeStations[i].displayTime <= 0){
-                timesUp = true
-                $(".timeUp").html($scope.activeStations[i].stationNumber );
+            if ($scope.activeStations[i].displayTime <= 0) {
+                timesUp = true;
+                $(".station-time-remaining h2").html($scope.activeStations[i].stationNumber);
                 $scope.activeStations[i].displayTime = 0;
-            }
+            };
         };
     };
 

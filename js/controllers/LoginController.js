@@ -1,16 +1,10 @@
 wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFireCollection', 'angularFireAuth','$rootScope','angularFire', function mtCtrl($scope, $routeParams, $location, angularFireCollection, angularFireAuth,$rootScope,angularFire){
 
 	var theUser;
-	
-	//Testing 
-	var false_desktop_statement = "You are not an Admin";           
-    var true_desktop_statement = "<li><a href=\"#gts\">- GTS</a></li><li><a href=\"#staff\">- Staff</a></li><li><a href=\"#stations\">- Stations</a></li><li><a href=\"#systems\">- Systems</a></li><li><a href=\"#games\">- Games</a></li>";
-            
-    var false_mobile_statement = "You are not an Admin";
+	      
+    var true_desktop_statement = "<li><a href=\"#gts\">- GTS</a></li><li><a href=\"#staff\">- Staff</a></li><li><a href=\"#stations\">- Stations</a></li><li><a href=\"#systems\">- Systems</a></li><li><a href=\"#games\">- Games</a></li>";            
     var true_mobile_statement = "<a class='right-off-canvas-toggle'><i class='fa fa-bars mobile-bar'></i></a>";
     
-    
-	
     $scope.$on("angularFireAuth:login", function(evt, user) {
         if (user.provider == "facebook") {            
             theUser = user;
@@ -19,7 +13,6 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
 
             var urlUser = new Firebase("https://wingaminglounge.firebaseio.com/wingaminglounge/users/"+theUser.id);
             
-            //Testing
             var usersCollection = new Firebase("https://wingaminglounge.firebaseio.com/wingaminglounge/users/");
             $scope.users = angularFireCollection(usersCollection);            
 
@@ -38,9 +31,7 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
                 } else {
                     console.log("User does exist, not adding " + theUser.email + " to the database");
                     if ($rootScope.user.userType == "Gamer") {
-                        $scope.userType = false;
-                        $scope.mobileStatement = false_mobile_statement;
-                        $scope.desktopStatement = false_desktop_statement;                   
+                        $scope.userType = false;                
                     } else if ($rootScope.user.userType == "Admin") {
                         $scope.userType = true;
                         $scope.mobileStatement = true_mobile_statement;
