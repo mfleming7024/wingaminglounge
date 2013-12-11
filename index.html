@@ -24,7 +24,7 @@
             <div class="div.mobile-logo">
                 <a href="#/home" class="mobile-logo"></a>
             </div>
-            <div class="right-nav right" ng-bind-html-unsafe="statement"></div>
+            <div class="right-nav right" ng-bind-html-unsafe="mobileStatement"></div>
         </nav>
         <!-- Show for admin mobile nav -->
         <!--<nav class="tab-bar show-for-small">-->
@@ -89,13 +89,7 @@
                         <li class="active" ng-hide="user"><a href="" class="main-nav" ng-click="login()"><i class="fa fa-facebook"></i> Facebook Login</a></li>
                         <li class="has-dropdown" ng-show="user">
                             <a href="" class="main-nav" ng-click="logout()">Logout</a>
-                            <ul class="dropdown">
-                                <li><a href="#gts">- GTS</a></li>
-                                <li><a href="#staff">- Staff</a></li>
-                                <li><a href="#stations">- Stations</a></li>
-                                <li><a href="#systems">- Systems</a></li>
-                                <li><a href="#games">- Games</a></li>
-                            </ul>
+                            <ul class="dropdown" ng-bind-html-unsafe="desktopStatement"></ul>
                         </li>
                     </ul>
                 </div>
@@ -154,6 +148,9 @@
 
 <!-- Login Controllers -->
 <script src="js/controllers/LoginController.js"></script>
+
+<!-- Login Controllers -->
+<script src="js/controllers/GTSController.js"></script>
 
 </body>
 </html>

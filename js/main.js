@@ -14,7 +14,7 @@ wingaming.config(function ($routeProvider){
         .when("/" , {
             title: 'Home',
             controller: "Login",
-            templateUrl:"partials/home.html"
+            templateUrl: "partials/home.html"
         })
         .when("/under_construction", {
             title: 'Work in progress',
@@ -25,8 +25,9 @@ wingaming.config(function ($routeProvider){
         .when("/gts", {
             title: 'Gamer Tracking System',
             authRequired: true,
+            controller: "GTS",
             templateUrl:"partials/gts.html",
-            resolve:{
+            resolve: {
                 factory: checkPermission
             }
         })
@@ -69,9 +70,9 @@ wingaming.config(function ($routeProvider){
 var checkPermission = function ($q, $rootScope, $location){
 
     if(!$rootScope.user || $rootScope.user.userType == 'Gamer'){
-        $location.path('/')
-
+        $location.path('/');
     }
+    console.log($location.path());
 }
 
 

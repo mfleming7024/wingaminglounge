@@ -187,6 +187,7 @@ label{
 *****************************************/
 .gts-panels{
     height: 60px!important;
+<<<<<<< HEAD
     margin-top: 10px;
     border-color: #17A9CC;
     background-image: -o-linear-gradient(bottom, #17A9CC 0%, #0085A6 100%);
@@ -194,17 +195,32 @@ label{
     background-image: -webkit-linear-gradient(bottom, #17A9CC 0%, #0085A6 100%);
     background-image: -ms-linear-gradient(bottom, #17A9CC 0%, #0085A6 100%);
     background-image: linear-gradient(to bottom, #17A9CC 0%, #0085A6 100%);
-}
-.panel-button{
-    height: 60px!important;
-    width: 25px;
-    margin-left: -15px;
-    margin-top: 10px;
+=======
+    margin: 10px 0 10px 40px;
+    padding: 0;
+    border: 2px solid #17A9CC;
     background-image: -o-linear-gradient(bottom, #17A9CC 0%, #0085A6 100%)!important;
     background-image: -moz-linear-gradient(bottom, #17A9CC 0%, #0085A6 100%)!important;
     background-image: -webkit-linear-gradient(bottom, #17A9CC 0%, #0085A6 100%)!important;
     background-image: -ms-linear-gradient(bottom, #17A9CC 0%, #0085A6 100%)!important;
     background-image: linear-gradient(to bottom, #17A9CC 0%, #0085A6 100%)!important;
+>>>>>>> b88da8c2de791255df8b476070fb41ac8cf0c5a4
+}
+.panel-button{
+    height: 60px!important;
+    width: 25px;
+    z-index: 0!important;
+    background-image: -o-linear-gradient(bottom, #17A9CC 0%, #0085A6 100%)!important;
+    background-image: -moz-linear-gradient(bottom, #17A9CC 0%, #0085A6 100%)!important;
+    background-image: -webkit-linear-gradient(bottom, #17A9CC 0%, #0085A6 100%)!important;
+    background-image: -ms-linear-gradient(bottom, #17A9CC 0%, #0085A6 100%)!important;
+    background-image: linear-gradient(to bottom, #17A9CC 0%, #0085A6 100%)!important;
+}
+.start-panel {
+	margin-top: 10px;
+	padding: 0;
+	height: auto;
+	width: auto;
 }
 .play-panel i{
     margin-top: 20px!important;
@@ -212,9 +228,8 @@ label{
     color: #fff;
 }
 .station-number h2{
-    margin-top: -4px;
-    margin-left: -15px;
     color: #fff;
+    padding-top: 6px;
     opacity: 0.7;
 }
 .station-time-remaining h2,h5{
@@ -222,24 +237,26 @@ label{
     display: inline;
 }
 .station-time-remaining{
-    margin-top: -10px;
     margin-left: 15px;
+    padding-top: 9px;
 }
-.station-game img{
-    height: 50px;
-    margin-top: -15px;
+.station-game {
+	float: right;
+	width: 41px;
+	margin-left: 5px;
+	position: relative;
+}
+.station-game img {
+	width: 100%;
     border: 1px solid #17A9CC;
 }
-.station-game a i{
+.station-game a i {
     color: #fff;
-    position: relative;
-    margin-left: -30px;
-    maring-top: -30px;
+    position: absolute;
+    top: 0;
+    left: 0;
     text-shadow: -1px 1px 2px #000;
-    opacity: 0.8;
-}
-.station-info i{
-
+/*     opacity: 0.8; */
 }
 .exit-off-canvas{
     border-radius: 7px 0 0 7px;

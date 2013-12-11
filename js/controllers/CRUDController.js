@@ -94,4 +94,13 @@ crudControllers.controller('stationController', ['$scope', 'angularFireCollectio
 			}
 		} //end if else
 	} //end addStation
+	
+	
+	//Other GTS related scope setting
+	var urlEmptyStations = new Firebase("https://wingaminglounge.firebaseio.com/wingaminglounge/emptyStations"); //empty stations firebase
+	var urlActiveStations = new Firebase("https://wingaminglounge.firebaseio.com/wingaminglounge/activeStations"); //active stations firebase
+	
+	$scope.emptyStations = angularFireCollection(urlEmptyStations);
+	$scope.activeStations = angularFireCollection(urlActiveStations);
+	
 }]);

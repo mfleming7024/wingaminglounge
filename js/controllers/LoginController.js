@@ -1,7 +1,10 @@
 wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFireCollection', 'angularFireAuth','$rootScope','angularFire', function mtCtrl($scope, $routeParams, $location, angularFireCollection, angularFireAuth,$rootScope,angularFire){
 
 	var theUser;
-	
+	      
+    var true_desktop_statement = "<li><a href=\"#gts\">- GTS</a></li><li><a href=\"#staff\">- Staff</a></li><li><a href=\"#stations\">- Stations</a></li><li><a href=\"#systems\">- Systems</a></li><li><a href=\"#games\">- Games</a></li>";            
+    var true_mobile_statement = "<a class='right-off-canvas-toggle'><i class='fa fa-bars mobile-bar'></i></a>";
+    
     $scope.$on("angularFireAuth:login", function(evt, user) {
         if (user.provider == "facebook") {            
             theUser = user;
@@ -9,10 +12,9 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
             $scope.user = true;
 
             var urlUser = new Firebase("https://wingaminglounge.firebaseio.com/wingaminglounge/users/"+theUser.id);
-
+            
             var usersCollection = new Firebase("https://wingaminglounge.firebaseio.com/wingaminglounge/users/");
-
-            $scope.users = angularFireCollection(usersCollection);
+            $scope.users = angularFireCollection(usersCollection);            
 
             $rootScope.user = {};
             angularFire(urlUser, $rootScope, 'user').then(function()
@@ -28,31 +30,20 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
                     $location.path('/game_page');
                 } else {
                     console.log("User does exist, not adding " + theUser.email + " to the database");
-                    console.log('$rootScope..userType',$rootScope.user.userType);
                     if ($rootScope.user.userType == "Gamer") {
-                        $scope.userType = false;
-                        $location.path("/game_page");
-                        $scope.statement = false_statement;
+                        $scope.userType = false;                
                     } else if ($rootScope.user.userType == "Admin") {
                         $scope.userType = true;
-                        console.log("gts");
-//                        $location.path("/gts");
-                        $scope.statement = true_statement;
-                    };
-                }
-            })
-
-
-
+                        $scope.mobileStatement = true_mobile_statement;
+                        $scope.desktopStatement = true_desktop_statement;                       
+                    };//end usertype loop
+                };//end else
+            });//end angularFire
 
         } else {
 	        console.log("Login other then the facebook service");
-        }
-    });
-
-    $scope.$on("angularFireAuth:logout", function(evt, user) {
-        $scope.user = false;
-    });
+        };//end if else
+    });//end scope.on angularfirelogin
 
     $scope.login = function() {
 		angularFireAuth.login("facebook", {
@@ -65,12 +56,9 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
         $location.path('/');
     };
     
-    var false_statement = "";
-    var true_statement = "<a class='right-off-canvas-toggle'><i class='fa fa-bars mobile-bar'></i></a>";
-    
-    $scope.render = function(condition) {        
-	    return condition ? true_statement : false_statement;
-	};
+    $scope.$on("angularFireAuth:logout", function(evt, user) {
+        $scope.user = false;
+    });
 	
 	//Filter gamer search and select to input
     $scope.limit = 5;
