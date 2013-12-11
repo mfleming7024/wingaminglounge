@@ -40,13 +40,11 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
                     if ($rootScope.user.userType == "Gamer") {
                         $scope.userType = false;
                         $scope.mobileStatement = false_mobile_statement;
-                        $scope.desktopStatement = false_desktop_statement;
-                        $location.path("/game_page");                        
+                        $scope.desktopStatement = false_desktop_statement;                   
                     } else if ($rootScope.user.userType == "Admin") {
                         $scope.userType = true;
                         $scope.mobileStatement = true_mobile_statement;
-                        $scope.desktopStatement = true_desktop_statement;
-                        $location.path("/gts");                        
+                        $scope.desktopStatement = true_desktop_statement;                       
                     };//end usertype loop
                 };//end else
             });//end angularFire
