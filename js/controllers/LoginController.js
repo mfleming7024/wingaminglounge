@@ -47,17 +47,14 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
                         $scope.mobileStatement = true_mobile_statement;
                         $scope.desktopStatement = true_desktop_statement;
                         $location.path("/gts");                        
-                        console.log("gts");
-//                        $location.path("/gts");
-                        $scope.statement = true_statement;
-                    };
-                }
-            })
+                    };//end usertype loop
+                };//end else
+            });//end angularFire
 
         } else {
 	        console.log("Login other then the facebook service");
-        }
-    });    
+        };//end if else
+    });//end scope.on angularfirelogin
 
     $scope.login = function() {
 		angularFireAuth.login("facebook", {
@@ -73,13 +70,6 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
     $scope.$on("angularFireAuth:logout", function(evt, user) {
         $scope.user = false;
     });
-    
-    /*
-	pass in the condition, and what to return whether its false or true
-    $scope.render = function(condition, false_statement, true_statement) {        
-	    return condition ? true_statement : false_statement;
-	};
-	*/
 	
 	//Filter gamer search and select to input
     $scope.limit = 5;
