@@ -15,6 +15,8 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
         if (user.provider == "facebook") {            
             theUser = user;
 
+            $scope.user = true;
+
             var urlUser = new Firebase("https://wingaminglounge.firebaseio.com/wingaminglounge/users/"+theUser.id);
             
             //Testing
@@ -45,6 +47,9 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
                         $scope.mobileStatement = true_mobile_statement;
                         $scope.desktopStatement = true_desktop_statement;
                         $location.path("/gts");                        
+                        console.log("gts");
+//                        $location.path("/gts");
+                        $scope.statement = true_statement;
                     };
                 }
             })
@@ -52,7 +57,7 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
         } else {
 	        console.log("Login other then the facebook service");
         }
-    });
+    });    
 
     $scope.login = function() {
 		angularFireAuth.login("facebook", {
@@ -64,6 +69,10 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
         angularFireAuth.logout();
         $location.path('/');
     };
+    
+    $scope.$on("angularFireAuth:logout", function(evt, user) {
+        $scope.user = false;
+    });
     
     /*
 	pass in the condition, and what to return whether its false or true
