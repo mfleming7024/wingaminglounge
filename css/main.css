@@ -187,7 +187,6 @@ label{
 *****************************************/
 .gts-panels{
     height: 60px!important;
-<<<<<<< HEAD
     margin-top: 10px;
     border-color: #17A9CC;
     background-image: -o-linear-gradient(bottom, #17A9CC 0%, #0085A6 100%);
@@ -195,16 +194,9 @@ label{
     background-image: -webkit-linear-gradient(bottom, #17A9CC 0%, #0085A6 100%);
     background-image: -ms-linear-gradient(bottom, #17A9CC 0%, #0085A6 100%);
     background-image: linear-gradient(to bottom, #17A9CC 0%, #0085A6 100%);
-=======
     margin: 10px 0 10px 40px;
     padding: 0;
     border: 2px solid #17A9CC;
-    background-image: -o-linear-gradient(bottom, #17A9CC 0%, #0085A6 100%)!important;
-    background-image: -moz-linear-gradient(bottom, #17A9CC 0%, #0085A6 100%)!important;
-    background-image: -webkit-linear-gradient(bottom, #17A9CC 0%, #0085A6 100%)!important;
-    background-image: -ms-linear-gradient(bottom, #17A9CC 0%, #0085A6 100%)!important;
-    background-image: linear-gradient(to bottom, #17A9CC 0%, #0085A6 100%)!important;
->>>>>>> b88da8c2de791255df8b476070fb41ac8cf0c5a4
 }
 .panel-button{
     height: 60px!important;
