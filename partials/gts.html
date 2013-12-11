@@ -1,4 +1,3 @@
-
 <!-- This is the Content below Navigation -->
 <div class="row" ng-controller="GTS">
     <div class="page-container">
@@ -37,16 +36,19 @@
             </div> <!-- end .gts-panel -->
 
             <!-- Available Station -->
+
+            <a href="#" class=""  data-reveal-id="add-to-start">
             <div class="gts-panel" ng-repeat="emptyStation in emptyStations">
-                <div class="panel small-10 medium-4 large-3 columns left collapse gts-panels">
-                    <div class="station-number left">
+                <div class="panel small-10 medium-4 large-3 columns left collapse gts-panels" ng-click="enterGamer(emptyStation.$id)">
+                    <div class="station-number left" ng-model="gamer">
                         <h2>{{emptyStation.stationNumber}}</h2>
                     </div>
                 </div>
                 <div class="start-panel large-1 small-1 columns left">
-                    <a href="#" class="button postfix panel-button" data-reveal-id="add-to-start">+</i> </a>
+
+
                 </div>
-            </div> <!-- end .gts-panel -->
+            </div> <!-- end .gts-panel --></a>
         </div><!-- end .gts -->
     </div> <!-- end page-content -->
 </div>
@@ -57,6 +59,7 @@
 <div id="add-to-start" class="reveal-modal small" data-reveal>
     <form ng-controller="Login" class="large-8 small-12 large-centered columns">
         <!-- Search for gamers name from firebase -->
+        <h6>{{stationNumber}}</h6>
         <label>Name</label>
         <input type="text" autocomplete="off" placeholder="Search Name" ng-model="displayName">
         <ul>

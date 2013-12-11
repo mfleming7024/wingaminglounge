@@ -1,4 +1,4 @@
-wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFireCollection', 'angularFireAuth','angularFire','$timeout', function mtCtrl($scope, $routeParams, $location, angularFireCollection, angularFireAuth,angularFire,$timeout){
+wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFireCollection', 'angularFireAuth','angularFire','$timeout','$rootScope', function mtCtrl($scope, $routeParams, $location, angularFireCollection, angularFireAuth,angularFire,$timeout,$rootScope){
 
     //************************************Active stations database***************************************************
 
@@ -189,5 +189,11 @@ var urlQStation = new Firebase('https://gamerscafe.firebaseio.com/gamerscafe/que
     $scope.updateEmptyStation = function(station){
         $scope.emptyStations.update(station);
     };
+
+    $scope.enterGamer = function(stationNumber){
+
+        $rootScope.stationNumber = stationNumber;
+        console.log(stationNumber);
+    }
 
 }])
