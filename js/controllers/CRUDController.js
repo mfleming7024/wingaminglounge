@@ -74,33 +74,33 @@ crudControllers.controller('systemController', ['$scope', 'angularFireCollection
 crudControllers.controller('stationController', ['$scope', 'angularFireCollection','$rootScope', function($scope,angularFireCollection,$rootScope) {
 	//urls to the data needed
 	var urlStations = new Firebase('https://wingaminglounge.firebaseio.com/wingaminglounge/stations'); //Stations Firebase
+	var urlEmptyStations = new Firebase('https://wingaminglounge.firebaseio.com/wingaminglounge/emptyStations')//Empty Stations Firebase
 	//collects the info from the database for use.
 	$scope.stations = angularFireCollection(urlStations);
+	$scope.emptyStations = angularFireCollection(urlEmptyStations);
 	//create a system and adds it to the database
 	$scope.addStation = function() {
 		if ($scope.station == "" || $scope.station == null) {
 			console.log("Station does not exist");
 		} else {
-			if ($scope.station.stationNumber == "" || $scope.station.stationNumber == null) { //Station Number
-				console.log("No Station chosen");
-			} else if ($scope.station.stationSystem == "" || $scope.station.stationSystem == null) { // The Station System
+			 if ($scope.station.stationSystem == "" || $scope.station.stationSystem == null) { // The Station System
 				console.log("No SystemTV given");
 			} else if ($scope.station.stationTV == "" || $scope.station.stationTV == null) { //Station TV
 				console.log("Please enter a TV");
 			} else if ($scope.station.stationTVSerial == "" || $scope.station.stationTVSerial == null) { //TV's Serial
 				console.log("Please enter a TV Serial");
 			} else {
+				var stationsLength = $scope.stations.length+1;
+				$scope.station.stationNumber = stationsLength;
 				$scope.stations.add($scope.station);
+				$scope.emptyStations.add({"stationNumber": stationsLength, "stationSystem": $scope.station.stationSystem});
 			}
 		} //end if else
 	} //end addStation
 	
 	
 	//Other GTS related scope setting
-	var urlEmptyStations = new Firebase("https://wingaminglounge.firebaseio.com/wingaminglounge/emptyStations"); //empty stations firebase
 	var urlActiveStations = new Firebase("https://wingaminglounge.firebaseio.com/wingaminglounge/activeStations"); //active stations firebase
-	
-	$scope.emptyStations = angularFireCollection(urlEmptyStations);
 	$scope.activeStations = angularFireCollection(urlActiveStations);
 
 
