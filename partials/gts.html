@@ -43,10 +43,7 @@
                     <div class="station-number left" ng-model="gamer">
                         <h2>{{emptyStation.stationNumber}}</h2>
                     </div>
-                </div>
-                <div class="start-panel large-1 small-1 columns left">
-
-
+                    <h3>{{emptyStation.stationSystem}}</h3>
                 </div>
             </div> <!-- end .gts-panel --></a>
         </div><!-- end .gts -->
@@ -76,7 +73,7 @@
             <option>30</option>
             <option>60</option>
         </select>
-        <button class="large-12 small-12 button-form"> Add</button>
+        <a class="large-12 small-12 button add"  ng-click="addEmptyStation()">Add</a>
     </form>
     <a class="close-reveal-modal">&#215;</a>
 </div>

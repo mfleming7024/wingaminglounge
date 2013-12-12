@@ -50,15 +50,14 @@
 
 <div ng-controller="stationController">
 	<form ng-submit="addStation(station)">
-		<input type="number" placeholder="stationNumber" ng-model="station.stationNumber" />	
 		<input type="text" placeholder="stationSystem" ng-model="station.stationSystem" />
 		<input type="text" placeholder="stationTV" ng-model="station.stationTV" />
 		<input type="text" placeholder="stationTVSerial" ng-model="station.stationTVSerial" />
 		<input type="submit" />
 	</form>
 	
-	<ul>
-		<li ng-repeat="station in stations">{{station.stationNumber}}</li>
+	<ul style="margin-bottom: 50px">
+		<li ng-repeat="station in stations">{{station.stationNumber}} + {{station.stationSystem}}</li>
 	</ul>
 </div>
 

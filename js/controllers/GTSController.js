@@ -47,25 +47,31 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
 
     //create a active station and adds it to the database
     $scope.addActiveStation = function(){
-
-        /*		GRAB FROM SCOPE NOT JAVASCRIPT
+        		
+        /*
 $scope.tempStation.stationNumber = document.querySelector("#customDropdown").value;
         $scope.tempStation.boxart = document.querySelector("#games_option").value;
         $scope.tempStation.username = document.querySelector("#username").value;
         $scope.tempStation.countdown = document.querySelector("#time_dropdown").value;
         $scope.tempStation.gamerPic = document.querySelector("#gamerPic").value;
-*/
 
         $scope.tempStation.startTime = new Date().getTime()
         $location.path("/admin");
+        
+        $scope.staffs.add($scope.staff);
 
         if(typeof $routeParams.user !== "undefined"){
             if(typeof $routeParams.stationId !== "undefined"){
                 $scope.deleteQuedStation($routeParams.stationId);
             }
         }
-        console.log("add ActiveStations clicked");
+*/		
+		var startTime = new Date().getTime();
+		
+		$scope.activeStations.add({"boxart": "img.jpg", "countdown": 30, "gamerPic": "img.jpg", "id": "-JAUpfrEtJk8yCTbrPLj", "startTime": startTime, "stationNumber": 1, })
+        console.log("add ActiveStations clicked", $scope.tempStation);
     }
+    
     user_delete_confirmed = false;
     //removes activeStations based on a unique id
     $scope.deleteActiveStation = function(removeStation){
