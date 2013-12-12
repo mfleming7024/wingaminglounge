@@ -6,30 +6,40 @@
 
         </div>
         <!-- Page Navigation -->
-        <div class="page-nav">
-            <button class="small-12 medium-2 large-1 columns left" data-reveal-id="add-station">+</button>
-        </div>
+        <!--<div class="page-nav">-->
+            <!--<button class="small-12 medium-2 large-1 columns left" data-reveal-id="add-station">+</button>-->
+        <!--</div>-->
 
-        <div class="gts-hr"><hr /></div>
+
         <!-- Page Title -->
         <h1 class="text-center page-title">Stations</h1>
+        <div class="gts-hr"><hr /></div>
         <!-- Page Content -->
         <div class="page-content">
             <!-- Page Search -->
-            <div class="large-3 medium-3 small-12">
-                <input type="text" placeholder="Search Station" ng-model="stationNumber">
-            </div>
+            <!--<div class="large-3 medium-3 small-12">-->
+                <!--<input type="text" placeholder="Search Station" ng-model="stationNumbers">-->
+            <!--</div>-->
             <!-- Station info -->
-            <a href="#" data-reveal-id="station-info">
-                <div class="station-list">
-                    <div class="panel station large-2 medium-3 small-6 columns left" ng-repeat="station in stations | filter:stationNumber">
-                        <div class="stations-number">
-                            <h2 class="left">{{station.stationNumber}}</h2>
-                            <i class="fa fa-angle-right right"></i>
+            <form class="large-6 columns large-centered">
+
+                    <div class="row">
+                        <div class="large-8 medium-5 small-12 columns medium-centered large-centered">
+                            <label>Stations</label>
+                            <select ng-model="selectStations" ng-change="stationInfo(test)">
+                                <option ng-model="test" ng-repeat="station in stations" value="{{station}}">{{station.stationNumber}}</option>
+                            </select>
                         </div>
                     </div>
-                </div>
-            </a>
+                    <div class="row">
+                        <div class="large-8 medium-5 small-12 columns medium-centered large-centered">
+                            <label>Station Number</label>
+                            <input type="text" placeholder="Add New Station" value="{{selectStations}}">
+                        </div>
+                    </div>
+                
+
+            </form>
         </div>
     </div> <!-- end page-container -->
 </div>

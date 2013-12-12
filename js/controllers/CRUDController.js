@@ -71,7 +71,7 @@ crudControllers.controller('systemController', ['$scope', 'angularFireCollection
 	} //end addSystem
 }]);
 
-crudControllers.controller('stationController', ['$scope', 'angularFireCollection', function($scope, angularFireCollection) {
+crudControllers.controller('stationController', ['$scope', 'angularFireCollection','$rootScope', function($scope,angularFireCollection,$rootScope) {
 	//urls to the data needed
 	var urlStations = new Firebase('https://wingaminglounge.firebaseio.com/wingaminglounge/stations'); //Stations Firebase
 	//collects the info from the database for use.
@@ -102,5 +102,12 @@ crudControllers.controller('stationController', ['$scope', 'angularFireCollectio
 	
 	$scope.emptyStations = angularFireCollection(urlEmptyStations);
 	$scope.activeStations = angularFireCollection(urlActiveStations);
+
+
+    $scope.stationInfo = function(test){
+
+        $rootScope.stationInfo = test;
+        console.log(test);
+    }
 	
 }]);
