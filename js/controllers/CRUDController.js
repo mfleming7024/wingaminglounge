@@ -97,12 +97,6 @@ crudControllers.controller('stationController', ['$scope', 'angularFireCollectio
 			}
 		} //end if else
 	} //end addStation
-	
-	
-	//Other GTS related scope setting
-	var urlActiveStations = new Firebase("https://wingaminglounge.firebaseio.com/wingaminglounge/activeStations"); //active stations firebase
-	$scope.activeStations = angularFireCollection(urlActiveStations);
-
 
     $scope.stationInfo = function(test){
 
