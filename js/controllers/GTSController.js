@@ -49,12 +49,12 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
     $scope.addActiveStation = function(){
 
         /*		GRAB FROM SCOPE NOT JAVASCRIPT
-	    $scope.tempStation.stationNumber = document.querySelector("#customDropdown").value;
+$scope.tempStation.stationNumber = document.querySelector("#customDropdown").value;
         $scope.tempStation.boxart = document.querySelector("#games_option").value;
         $scope.tempStation.username = document.querySelector("#username").value;
         $scope.tempStation.countdown = document.querySelector("#time_dropdown").value;
         $scope.tempStation.gamerPic = document.querySelector("#gamerPic").value;
-        */
+*/
 
         $scope.tempStation.startTime = new Date().getTime()
         $location.path("/admin");
@@ -124,20 +124,57 @@ var urlQStation = new Firebase('https://gamerscafe.firebaseio.com/gamerscafe/que
             $location.path("/admin");
         }
     }
+    //************************************Queued stations database***************************************************
 
+    //url to the data needed
+    var urlQueuedStations = new Firebase('https://gamerscafe.firebaseio.com/gamerscafe/quedStations');
+
+    //collects the info from the database for use.
+    $scope.quedStations = angularFireCollection(urlQueuedStations);
+
+    //create a active station and adds it to the database
+    $scope.addQuedStation = function(tempuser){
+
+        var hours = new Date().getHours();
+        var min =  new Date().getMinutes();
+        if(parseInt(min) < 10){
+            var time = hours+":0"+min;
+        }else{
+            var time = hours+":"+min;
+        }
+
+        //Switch to scope
+        var nameValue = document.querySelector("#getName");
+        var getName = nameValue.options[nameValue.selectedIndex].text;
+
+        $scope.gamersPic = tempuser;
+
+        $scope.quedStations.add({username:getName, currentTime:time, gamerPic:tempuser});
+        console.log("addQuedStations clicked");
+        $location.path("/admin");
+    }
+
+    //removes quedStations based on a unique id
+    $scope.deleteQuedStation = function(myid){
+        $scope.quedStations.remove(myid);
+    }
+
+    //updates the quedStations database
+    //have fields instead of string literal
+    $scope.updateQuedStation = function(station){
+        $scope.quedStations.update(station);
+    }
     //************************************Empty stations database***************************************************
 
     //url to the data needed
-    var urlEmptyStations = new Firebase('https://wingaminglounge.firebaseio.com/wingaminglounge/emptyStations');
+    var urlEmptyStations = new Firebase('https://gamerscafe.firebaseio.com/gamerscafe/emptyStations');
 
     //collects the info from the database for use.
     $scope.emptyStations = angularFireCollection(urlEmptyStations);
 
     //create a active station and adds it to the database
     $scope.addEmptyStation = function(){
-    	var length = $scope.emptyStations.length;
-    	console.log($scope.emptyStations, length);
-        //$scope.emptyStations.add({stationNumber: " "});
+        $scope.emptyStations.add({stationNumber: " "});
         console.log("add EmptyStations clicked");
     }
 
