@@ -106,8 +106,10 @@ crudControllers.controller('stationController', ['$scope', 'angularFireCollectio
 
     $scope.stationInfo = function(test){
 
-        $rootScope.stationInfo = test;
-        console.log(test);
+        $rootScope.stationInfos = test;
+       var lol =  test.stationSystem;
+
+        console.log(lol);
     }
 	
 }]);
