@@ -98,15 +98,14 @@ crudControllers.controller('stationController', ['$scope', 'angularFireCollectio
 			}
 		} //end if else
 	} //end addStation
-<<<<<<< HEAD
+
 
     $scope.save = function(){
         console.log('clicked');
         var one = document.querySelector('#one');
-=======
->>>>>>> 8399c3448802d51287a7c67ef37386b7b3cdcd33
 
-        if(one == ){
+
+        if(one){
             console.log('test');
         }
     }
