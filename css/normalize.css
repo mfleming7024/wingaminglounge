@@ -314,7 +314,8 @@ input {
 
 button,
 select {
-    text-transform: none;
+    text-transform: uppercase;
+    font-family: 'Lato', sans-serif;
 }
 
 /**

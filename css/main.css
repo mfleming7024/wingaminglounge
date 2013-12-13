@@ -28,6 +28,13 @@ h1,h2,h3,h4,h5,h6,p,a{
     text-transform: uppercase;
     font-weight: 500;
 }
+.form-buttons{
+    margin-top: 10px;
+    background-color: #9d9d9d;
+}
+.delete-button{
+    background-color: red;
+}
 
 /* NAVIGATION **************
 *****************************************/
@@ -35,6 +42,9 @@ h1,h2,h3,h4,h5,h6,p,a{
 .top_bar{
     background: #999;
     height: 45px;
+}
+.top_bar ul{
+    margin-left: 0!important;
 }
 .desktop-logo{
     height: 45px;
@@ -56,7 +66,6 @@ h1,h2,h3,h4,h5,h6,p,a{
 }
 .desktop-logo{
     height: 45px;
-    margin-left: 5px;
 }
 nav.tab-bar div .mobile-logo{
     background: url(../img/logo.png) no-repeat center center;
@@ -64,7 +73,7 @@ nav.tab-bar div .mobile-logo{
     height: 45px;
     background-size: contain;
     margin: 0 auto;
-    margin-top: -45px;
+    margin-top: -47px;
     display: block;
 }
 .mobile-bar{
@@ -79,7 +88,8 @@ nav.tab-bar div .mobile-logo{
 /* STAFF NAVIGATION **************
 *****************************************/
 .page-container .top-bar{
-    margin-top: 50px;
+    height: 10px;
+    background-color: #17A9CC;
 }
 /* INDEX **************
 *****************************************/
@@ -114,7 +124,7 @@ nav.tab-bar div .mobile-logo{
     margin-bottom: 75px;
 }
 footer{
-	position: fixed;
+    position: fixed;
 	bottom: 0;
     background-color: #555;
     height: 45px;
@@ -156,8 +166,12 @@ footer i{
 }
 .page-container{
     background-color: #f2f2f2;
-    height: 700px;
-    box-shadow: 0px 5px 10px #000;
+    height: 100%;
+    overflow: hidden;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    box-shadow: 0px 1px 2px #000;
 }
 .page-nav{
     margin-top: 20px;

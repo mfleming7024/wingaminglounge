@@ -4242,7 +4242,8 @@ select {
     padding: 0.5rem;
     font-size: 0.875rem;
     -webkit-border-radius: 0;
-    border-radius: 0; }
+    border-radius: 0;
+    color: gray;}
 select.radius {
     -webkit-border-radius: 3px;
     border-radius: 3px; }

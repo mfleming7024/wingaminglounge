@@ -2,14 +2,13 @@
 <!-- This is the Content below Navigation -->
 <div class="row">
     <div class="page-container" ng-controller="stationController">
-        <div class="top-bar hide-for-small">
+        <div class="top-bar">
 
         </div>
         <!-- Page Navigation -->
         <!--<div class="page-nav">-->
         <!--<button class="small-12 medium-2 large-1 columns left" data-reveal-id="add-station">+</button>-->
         <!--</div>-->
-
 
         <!-- Page Title -->
         <h1 class="text-center page-title">Stations</h1>
@@ -20,79 +19,62 @@
             <!--<div class="large-3 medium-3 small-12">-->
             <!--<input type="text" placeholder="Search Station" ng-model="stationNumbers">-->
             <!--</div>-->
+
             <!-- Station info -->
-            <form class="large-6 columns large-centered">
+            <form class="large-6 columns large-centered" ng-submit="save()">
+                <!-- Station Dropdown list for current stations -->
                 <div class="row">
                     <div class="large-8 medium-5 small-12 columns medium-centered large-centered">
                         <label>Stations</label>
-                        <select ng-model="selectStations" ng-change="stationInfo(selectStations)">
-                            <option ng-repeat="station in stations" value="{{station.$id}}">{{station.stationNumber}}</option>
+                        <select id="one" class="page-select" ng-model="selectStations" ng-change="stationInfo(selectStations)">
+                            <option value="" disabled selected>Select Your Option</option>
+                            <option class="one" ng-model="new" value="New Station" selected="selected">New Station</option>
+                            <option ng-repeat="(index,station) in stations" value="{{index}}">{{station.stationNumber}}</option>
                         </select>
                     </div>
                 </div>
+                <!-- Station Number -->
                 <div class="row">
                     <div class="large-8 medium-5 small-12 columns medium-centered large-centered">
                         <label>Station Number</label>
-                        <input type="text" placeholder="Add New Station" value="{{stationInfos}}">
+                        <input type="text" placeholder="Add New Station" ng-model="stationInfos.stationNumber">
+                    </div>
+                </div>
+                <!-- System -->
+                <div class="row">
+                    <div class="large-8 medium-5 small-12 columns medium-centered large-centered">
+                        <label>Systems</label>
+                        <select ng-model="stationInfos.stationSystem">
+                            <option value="" disabled selected>Select The System</option>
+                            <option>Playstation 4</option>
+                            <option>Playstation 3</option>
+                            <option>Xbox One</option>
+                            <option>Wii U</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- TV Type -->
+                <div class="row">
+                    <div class="large-8 medium-5 small-12 columns medium-centered large-centered">
+                        <label>Television</label>
+                        <input type="text" placeholder="Add New Television" ng-model="stationInfos.stationTV">
+                    </div>
+                </div>
+                <!-- TV Serial Number -->
+                <div class="row">
+                    <div class="large-8 medium-5 small-12 columns medium-centered large-centered">
+                        <label>Television Serial</label>
+                        <input type="text" placeholder="Enter Television Model Serial"ng-model="stationInfos.stationTVSerial">
+                    </div>
+                </div>
+                <!-- Form Buttons Add/Edit/Delete -->
+                <div class="row">
+                    <div class="large-8 medium-5 small-12 columns medium-centered large-centered">
+                        <button class="add-button form-buttons large-12 medium-12 small-12">Save</button>
+                        <button class="delete-button form-buttons large-12 medium-12 small-12">Delete</button>
                     </div>
                 </div>
             </form>
         </div>
     </div> <!-- end page-container -->
-</div>
-
-<!-- Modals -->
-<!-- Add Station Modal -->
-<div id="add-station" class="reveal-modal small" data-reveal>
-    <form ng-controller="Login" class="large-8 small-12 large-centered columns">
-        <!-- Search for gamers name from firebase -->
-        <label>Name</label>
-        <input type="text" autocomplete="off" placeholder="Search Name" ng-model="displayName">
-        <ul>
-            <li ng-hide="gameTitle" ng-show="displayName" ng-repeat="user in users | filter:displayName | limitTo:limit"><a ng-click="setGamer(user.displayName)">{{user.displayName}}<img src="{{user.profilePic}}"> </a></li>
-        </ul>
-        <!-- Game Selection -->
-        <label>Select Game</label>
-        <select ng-controller="gameController" ng-model="gameTitle">
-            <option ng-repeat="game in games">{{game.gameTitle}}</option>
-        </select>
-        <!-- Minutes to play -->
-        <label>Playtime</label>
-        <select>
-            <option>30</option>
-            <option>60</option>
-        </select>
-        <button class="large-12 small-12 button-form"> Add</button>
-    </form>
-    <a class="close-reveal-modal">&#215;</a>
-</div>
-<!-- Station Info Modal -->
-<div id="station-info" class="reveal-modal small" data-reveal>
-    <form ng-controller="Login" class="large-8 small-12 large-centered columns">
-        <!-- Search for gamers name from firebase -->
-        <label>Name</label>
-        <input type="text" autocomplete="off" placeholder="Search Name" ng-model="displayName">
-        <ul>
-            <li ng-hide="gameTitle" ng-show="displayName" ng-repeat="user in users | filter:displayName | limitTo:limit"><a ng-click="setGamer(user.displayName)">{{user.displayName}}<img src="{{user.profilePic}}"> </a></li>
-        </ul>
-        <!-- Game Selection -->
-        <label>Select Game</label>
-        <select ng-controller="gameController" ng-model="gameTitle">
-            <option ng-repeat="game in games">{{game.gameTitle}}</option>
-        </select>
-        <!-- Minutes to play -->
-        <label>Playtime</label>
-        <select>
-            <option>30</option>
-            <option>60</option>
-        </select>
-        <button class="large-12 small-12 button-form"> Add</button>
-    </form>
-    <a class="close-reveal-modal">&#215;</a>
-</div>
-
-
-<!-- Need scripts here for modal to work -->
-<script>
-    $(document).foundation();
-</script>
+</div><!-- end row -->

@@ -78,6 +78,7 @@ crudControllers.controller('stationController', ['$scope', 'angularFireCollectio
 	//collects the info from the database for use.
 	$scope.stations = angularFireCollection(urlStations);
 	$scope.emptyStations = angularFireCollection(urlEmptyStations);
+
 	//create a system and adds it to the database
 	$scope.addStation = function() {
 		if ($scope.station == "" || $scope.station == null) {
@@ -97,19 +98,22 @@ crudControllers.controller('stationController', ['$scope', 'angularFireCollectio
 			}
 		} //end if else
 	} //end addStation
-	
-	
+
+    $scope.save = function(){
+        console.log('clicked');
+        var one = document.querySelector('#one');
+
+        if(one == ){
+            console.log('test');
+        }
+    }
+
 	//Other GTS related scope setting
 	var urlActiveStations = new Firebase("https://wingaminglounge.firebaseio.com/wingaminglounge/activeStations"); //active stations firebase
 	$scope.activeStations = angularFireCollection(urlActiveStations);
 
-
-    $scope.stationInfo = function(test){
-
-        $rootScope.stationInfos = test;
-       var lol =  test.stationSystem;
-
-        console.log(lol);
+    $scope.stationInfo = function(info){
+        $rootScope.stationInfos = $scope.stations[info];
     }
 	
 }]);
