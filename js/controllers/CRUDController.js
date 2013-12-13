@@ -101,12 +101,17 @@ crudControllers.controller('stationController', ['$scope', 'angularFireCollectio
 
 
     $scope.save = function(){
-        console.log('clicked');
-        var one = document.querySelector('#one');
 
-
-        if(one){
-            console.log('test');
+        if($scope.selectStations === "New Station")
+        {
+            console.log('new station');
+        }else if(typeof $scope.selectStation !== 'undefinded')
+        {
+            console.log('old station');
+        }
+        else
+        {
+            // didn't pick an option throw error
         }
     }
 
