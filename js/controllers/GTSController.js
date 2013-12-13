@@ -13,7 +13,7 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
         for (var i = $scope.activeStations.length - 1; i >= 0; i--) {
             var time = new Date().getTime() - $scope.activeStations[i].startTime;
             $scope.activeStations[i].displayTime = parseInt($scope.activeStations[i].countdown - (time/1000/60));
-
+            console.log($scope.activeStations[i].displayTime);
             if($scope.activeStations[i].displayTime <= 0){
                 timesUp = true;
                 $(".station-time-remaining h2").html($scope.activeStations[i].stationNumber);
@@ -51,7 +51,7 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
         tempStation.boxart = "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTKa1lpNVTPQotsxG6bexIrU4Dm9jfH1oxrmC0GrOiVVu_rqwSEhA";
         tempStation.username = "michael fleming";
         tempStation.countdown = "30";
-        tempStation.startTime = new Date().getTime()
+        tempStation.startTime = new Date().getTime();
 
 //        if(typeof $routeParams.user !== "undefined"){
 //            if(typeof $routeParams.stationId !== "undefined"){
@@ -59,9 +59,9 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
 //            }
 //        }
         
-        $scope.activeStations.add(tempStation);	    
+        $scope.activeStations.add(tempStation);
     }
-    
+
     user_delete_confirmed = false;
     //removes activeStations based on a unique id
     $scope.deleteActiveStation = function(removeStation){
