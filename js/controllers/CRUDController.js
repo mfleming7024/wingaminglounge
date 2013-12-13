@@ -71,7 +71,7 @@ crudControllers.controller('systemController', ['$scope', 'angularFireCollection
 	} //end addSystem
 }]);
 
-crudControllers.controller('stationController', ['$scope', 'angularFireCollection','$rootScope', function($scope,angularFireCollection,$rootScope) {
+crudControllers.controller('stationController', ['$scope', 'angularFireCollection','$rootScope','$location', function($scope,angularFireCollection,$rootScope,$location) {
 	//urls to the data needed
 	var urlStations = new Firebase('https://wingaminglounge.firebaseio.com/wingaminglounge/stations'); //Stations Firebase
 	var urlEmptyStations = new Firebase('https://wingaminglounge.firebaseio.com/wingaminglounge/emptyStations')//Empty Stations Firebase
@@ -79,42 +79,52 @@ crudControllers.controller('stationController', ['$scope', 'angularFireCollectio
 	$scope.stations = angularFireCollection(urlStations);
 	$scope.emptyStations = angularFireCollection(urlEmptyStations);
 
-	//create a system and adds it to the database
-	$scope.addStation = function() {
-		if ($scope.station == "" || $scope.station == null) {
-			console.log("Station does not exist");
-		} else {
-			 if ($scope.station.stationSystem == "" || $scope.station.stationSystem == null) { // The Station System
-				console.log("No SystemTV given");
-			} else if ($scope.station.stationTV == "" || $scope.station.stationTV == null) { //Station TV
-				console.log("Please enter a TV");
-			} else if ($scope.station.stationTVSerial == "" || $scope.station.stationTVSerial == null) { //TV's Serial
-				console.log("Please enter a TV Serial");
-			} else {
-				var stationsLength = $scope.stations.length+1;
-				$scope.station.stationNumber = stationsLength;
-				$scope.stations.add($scope.station);
-				$scope.emptyStations.add({"stationNumber": stationsLength, "stationSystem": $scope.station.stationSystem});
-			}
-		} //end if else
-	} //end addStation
 
-
-    $scope.save = function(){
+    $scope.saveStation = function(){
 
         if($scope.selectStations === "New Station")
         {
+            if ($scope.stationInfos == "" || $scope.stationInfos == null) {
+                console.log("Station does not exist");
+            } else {
+                if ($scope.stationInfos.stationSystem == "" || $scope.stationInfos.stationSystem == null) { // The Station System
+                    console.log("No SystemTV given");
+                } else if ($scope.stationInfos.stationTV == "" || $scope.stationInfos.stationTV == null) { //Station TV
+                    console.log("Please enter a TV");
+                } else if ($scope.stationInfos.stationTVSerial == "" || $scope.stationInfos.stationTVSerial == null) { //TV's Serial
+                    console.log("Please enter a TV Serial");
+                } else {
+                    var stationsLength = $scope.stations.length+1;
+                    $scope.stationInfos.stationNumber = stationsLength;
+                    $scope.stations.add($scope.stationInfos);
+                    $scope.emptyStations.add({"stationNumber": stationsLength, "stationSystem": $scope.stationInfos.stationSystem});
+                }
+            } //end if else
             console.log('new station');
-        }else if(typeof $scope.selectStation !== 'undefinded')
+        }else if(typeof $scope.selectStations !== 'undefined')
         {
-            console.log('old station');
+           $scope.stations.update($scope.stationInfos.$id);
+            console.log('update');
+//            console.log($rootScope.stationInfos.$id);
         }
         else
         {
+            console.log('error');
             // didn't pick an option throw error
         }
     }
 
+    //removes system based on a unique id
+    $scope.deleteStation = function(station){
+        $scope.stations.remove(station.$id);
+
+        for (var i= 0,max=$scope.emptyStations.length;i<max;i++) {
+            if ($scope.emptyStations[i].stationNumber == station.stationNumber) {
+                $scope.emptyStations.remove($scope.emptyStations[i].$id);
+            }
+        }
+}
+    //Station Firebase information
     $scope.stationInfo = function(info){
         $rootScope.stationInfos = $scope.stations[info];
     }

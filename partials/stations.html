@@ -5,39 +5,22 @@
         <div class="top-bar">
 
         </div>
-        <!-- Page Navigation -->
-        <!--<div class="page-nav">-->
-        <!--<button class="small-12 medium-2 large-1 columns left" data-reveal-id="add-station">+</button>-->
-        <!--</div>-->
-
         <!-- Page Title -->
         <h1 class="text-center page-title">Stations</h1>
         <div class="gts-hr"><hr /></div>
         <!-- Page Content -->
         <div class="page-content">
-            <!-- Page Search -->
-            <!--<div class="large-3 medium-3 small-12">-->
-            <!--<input type="text" placeholder="Search Station" ng-model="stationNumbers">-->
-            <!--</div>-->
-
             <!-- Station info -->
-            <form class="large-6 columns large-centered" ng-submit="save()">
+            <form class="large-6 columns large-centered">
                 <!-- Station Dropdown list for current stations -->
                 <div class="row">
                     <div class="large-8 medium-5 small-12 columns medium-centered large-centered">
                         <label>Stations</label>
-                        <select id="one" class="page-select" ng-model="selectStations" ng-change="stationInfo(selectStations)" required="">
-                            <option value="" disabled selected>Select Your Option</option>
-                            <option class="one" ng-model="new" value="New Station" selected="selected">New Station</option>
+                        <select id="one" class="page-select" ng-model="selectStations" ng-change="stationInfo(selectStations)" required>
+                            <option value="" disabled selected>Select An Option</option>
+                            <option class="one" value="New Station" selected>New Station</option>
                             <option ng-repeat="(index,station) in stations" value="{{index}}">{{station.stationNumber}}</option>
                         </select>
-                    </div>
-                </div>
-                <!-- Station Number -->
-                <div class="row">
-                    <div class="large-8 medium-5 small-12 columns medium-centered large-centered">
-                        <label>Station Number</label>
-                        <input type="text" placeholder="Add New Station" ng-model="stationInfos.stationNumber">
                     </div>
                 </div>
                 <!-- System -->
@@ -70,8 +53,8 @@
                 <!-- Form Buttons Add/Edit/Delete -->
                 <div class="row">
                     <div class="large-8 medium-5 small-12 columns medium-centered large-centered">
-                        <button class="add-button form-buttons large-12 medium-12 small-12" ng-disabled="form.$invalid">Save</button>
-                        <button class="delete-button form-buttons large-12 medium-12 small-12">Delete</button>
+                        <button class="add-button form-buttons large-12 medium-12 small-12" ng-disabled="form.$invalid" ng-click="saveStation()">Save</button>
+                        <button class="delete-button form-buttons large-12 medium-12 small-12" ng-click="deleteStation(stationInfos)">Delete</button>
                     </div>
                 </div>
             </form>
