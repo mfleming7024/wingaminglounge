@@ -6,12 +6,14 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
 
     var wrapper = function () {
         updateTimer();
-        $timeout(wrapper, 10000);
+        $timeout(wrapper, 1000);
     }    
+    
+    var time;
     
     var updateTimer = function(){
         for (var i = $scope.activeStations.length - 1; i >= 0; i--) {
-            var time = new Date().getTime() - $scope.activeStations[i].startTime;
+            time = new Date().getTime() - $scope.activeStations[i].startTime;
             $scope.activeStations[i].displayTime = parseInt($scope.activeStations[i].countdown - (time/1000/60));
             console.log($scope.activeStations[i].displayTime);
             if($scope.activeStations[i].displayTime <= 0){
@@ -29,6 +31,7 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
         var startKillWatch = $scope.$watch('activeStations', function(){
             $timeout(wrapper);
             startKillWatch();
+            console.log("start kill watch ran");
         })
     });
 
@@ -114,24 +117,6 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
 
     //collects the info from the database for use.
     $scope.emptyStations = angularFireCollection(urlEmptyStations);
-
-    //create a active station and adds it to the database
-    $scope.addEmptyStation = function(){
-        $scope.emptyStations.add({stationNumber: " "});
-        console.log("add EmptyStations clicked");
-    }
-
-    //removes emptyStations based on a unique id
-    $scope.deleteEmptyStation = function(myid){
-        $scope.emptyStations.remove(myid);
-        console.log("delete EmptyStations clicked");
-    }
-
-    //updates the emptyStations database
-    //have fields instead of string literal
-    $scope.updateEmptyStation = function(station){
-        $scope.emptyStations.update(station);
-    };
 
     $scope.enterGamer = function(stationNumber){
 
