@@ -6,7 +6,8 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
 
     var wrapper = function () {
         updateTimer();
-        $timeout(wrapper, 1000);
+        $timeout(wrapper, 5000);
+        console.log("wrapper");
     }    
     
     var time;
@@ -17,9 +18,9 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
             $scope.activeStations[i].displayTime = parseInt($scope.activeStations[i].countdown - (time/1000/60));
             console.log($scope.activeStations[i].displayTime);
             if($scope.activeStations[i].displayTime <= 0){
-                timesUp = true;
-                $(".station-time-remaining h2").html($scope.activeStations[i].stationNumber);
-                $scope.activeStations[i].displayTime = 0;
+                $scope.activeStations.remove($scope.activeStations[i].$id);
+                //throw alert for station time up
+                console.log("Time is up for " + $scope.activeStations[i].username + " at station number " + $scope.activeStations[i].stationNumber);
             }
         };
     };
@@ -31,7 +32,6 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
         var startKillWatch = $scope.$watch('activeStations', function(){
             $timeout(wrapper);
             startKillWatch();
-            console.log("start kill watch ran");
         })
     });
 
@@ -53,7 +53,7 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
         tempStation.stationNumber = "1";
         tempStation.boxart = "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTKa1lpNVTPQotsxG6bexIrU4Dm9jfH1oxrmC0GrOiVVu_rqwSEhA";
         tempStation.username = "michael fleming";
-        tempStation.countdown = "30";
+        tempStation.countdown = "2";
         tempStation.startTime = new Date().getTime();
 
 //        if(typeof $routeParams.user !== "undefined"){
