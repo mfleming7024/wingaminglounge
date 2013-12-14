@@ -8,15 +8,25 @@
         <div class="page-nav">
             <button class="small-12 medium-6 large-1 columns left" data-reveal-id="add-to-waiting-list">+</button>
             <button class="small-12 medium-6 large-2 columns left" data-reveal-id="waiting-list">Waiting List</button>
+            <form ng-submit="addActiveStation(tempStation)">
+                <select ng-model="tempStation.stationNumber" style="margin-bottom: 10px">
+                    <option ng-repeat="emptyStation in emptyStations">{{emptyStation.stationNumber}}</option>
+                </select>
+                <input type="text" ng-model="tempStation.stationGamer" placeholder="Player Name" />
+                <input type="text" ng-model="tempStation.gameArt" placeholder="Game Name" />
+                <select ng-model="tempStation.countdown">
+                    <option>30</option>
+                    <option>60</option>
+                </select>
+                <div class="gts-hr"><hr /><input type="submit" class="button" value="Submit"></input></div>            
+            </form>
             <!--
                 1.  Dropdown for stations
                 2.  Autocomplete for email/name
                 3.  Game Autocomplete
                 4.  How much time (select)
             -->
-        </div>
-
-        <div class="gts-hr"><hr /><a class="button" ng-click="addActiveStation()">Add to active</a></div>
+        </div>       
 
         <div class="gts" ng-controller="stationController">
             <!-- This is the start of the GTS Panel -->
@@ -39,7 +49,7 @@
 
             <!-- Available Station -->            
             <div class="gts-panel" ng-repeat="emptyStation in emptyStations">
-                <div class="panel small-10 medium-4 large-3 columns left collapse gts-panels" ng-click="enterGamer(emptyStation.$id)">
+                <div class="panel small-10 medium-4 large-3 columns left collapse gts-panels">
                     <div class="station-number left" ng-model="gamer">
                         <h2>{{emptyStation.stationNumber}}</h2>
                     </div>

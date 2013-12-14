@@ -40,25 +40,26 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
     });
 
     //create a active station and adds it to the database
-    $scope.addActiveStation = function(){                
-        var tempStation = {};
+    $scope.addActiveStation = function(tempStation){                
         
-        tempStation.stationNumber = "1";
+        //tempStation.stationNumber = "1";
+        //Select system by whatever system the chosen game supports?
         tempStation.stationSystem = "Playstation 4";
-        tempStation.gameArt = "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTKa1lpNVTPQotsxG6bexIrU4Dm9jfH1oxrmC0GrOiVVu_rqwSEhA";
-        tempStation.stationGamer = "michael fleming";
-        tempStation.countdown = "2";
-        tempStation.startTime = new Date().getTime();
+        //tempStation.gameArt = "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTKa1lpNVTPQotsxG6bexIrU4Dm9jfH1oxrmC0GrOiVVu_rqwSEhA";
         
-        $scope.activeStations.add(tempStation);
+        tempStation.startTime = new Date().getTime();
+
+        console.log(tempStation);
+        
+        //$scope.activeStations.add(tempStation);
         
         //checks against empty stations to remove it so multiple cannot be selected
-        var i;
+        /*var i;
         for (i = 0; i < $scope.emptyStations.length; i++) {
             if ($scope.emptyStations[i].stationNumber == tempStation.stationNumber) {
                 $scope.emptyStations.remove($scope.emptyStations[i].$id);
             }
-        }
+        }*/
         
     }
 
