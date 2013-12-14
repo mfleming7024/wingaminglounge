@@ -20,6 +20,9 @@
 h1,h2,h3,h4,h5,h6,p,a{
     font-family: 'Lato', sans-serif;
 }
+li{
+    list-style: none;
+}
 .page-content{
     padding-left: 5px;
     padding-right: 5px;
@@ -35,7 +38,21 @@ h1,h2,h3,h4,h5,h6,p,a{
 .delete-button{
     background-color: red;
 }
-
+.searchOutcome{
+    height: 70px;
+    background: #fff;
+    margin-top: -16px;
+    margin-left: -10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 30px;
+    border-bottom: 1px solid #c0c0c0;
+    box-shadow: 0px 1px 1px #000;
+}
+.searchImg{
+    height: 50px;
+    width: 45px;
+}
 /* NAVIGATION **************
 *****************************************/
 

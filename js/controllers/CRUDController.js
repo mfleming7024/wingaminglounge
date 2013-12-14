@@ -1,28 +1,39 @@
 var crudControllers = angular.module('crudControllers', []);
 
-crudControllers.controller('gameController', ['$scope', 'angularFireCollection', function($scope, angularFireCollection) {
+crudControllers.controller('gameController', ['$scope', 'angularFireCollection','$rootScope', function($scope, angularFireCollection,$rootScope) {
 	var urlGames = new Firebase("https://wingaminglounge.firebaseio.com/wingaminglounge/games");
 	//collects the info from the database for use.
 	$scope.games = angularFireCollection(urlGames);
 	//create a game and adds it to the database
 	$scope.addGame = function() {
-		if ($scope.game == "" || $scope.game == null) {
+		if ($scope.gameInfos == "" || $scope.gameInfos == null) {
 			console.log("game does not exist");
 		} else {
 			//error checking for if fields are null
-			if ($scope.game.gameSystem == "" || $scope.game.gameSystem == null) { //System
+			if ($scope.gameInfos.gameSystem == "" || $scope.gameInfos.gameSystem == null) { //System
 				console.log("No game system given");
-			} else if ($scope.game.gameTitle == "" || $scope.game.gameTitle == null) { //Game Title
+			} else if ($scope.gameInfos.gameTitle == "" || $scope.gameInfos.gameTitle == null) { //Game Title
 				console.log("No game title given");
-			} else if ($scope.game.gameArtUrl == "" || $scope.game.gameArtUrl == null) { // Game Box Art
+			} else if ($scope.gameInfos.gameArtUrl == "" || $scope.gameInfos.gameArtUrl == null) { // Game Box Art
 				console.log("No game art url given");
-			} else if ($scope.game.gameQuantity == "" || $scope.game.gameQuantity == null) { //Quantity
+			} else if ($scope.gameInfos.gameQuantity == "" || $scope.gameInfos.gameQuantity == null) { //Quantity
 				console.log("No game quantity given");
 			} else {
-				$scope.games.add($scope.game); //Adds to Firebase
+				$scope.games.add($scope.gameInfos); //Adds to Firebase
 			}
 		} //end if else
 	} //end addGame
+
+    //Select Game from search input
+    $scope.selectGame = function(title){
+        $scope.limit = 5;
+        $scope.gameInfos = $scope.games[title];
+    }
+
+    //removes from firebase
+    $scope.deleteGame = function(game){
+       $scope.games.remove(game.$id);
+    }
 }]);
 
 crudControllers.controller('staffController', ['$scope', 'angularFireCollection', function($scope, angularFireCollection) {
@@ -46,29 +57,6 @@ crudControllers.controller('staffController', ['$scope', 'angularFireCollection'
 			}
 		} //end if else
 	} //end addStaff
-}]);
-
-crudControllers.controller('systemController', ['$scope', 'angularFireCollection', function($scope, angularFireCollection) {
-	//url to the data needed
-	var urlSystem = new Firebase('https://wingaminglounge.firebaseio.com/wingaminglounge/systems');
-	//collects the info from the database for use.
-	$scope.systems = angularFireCollection(urlSystem);
-	//create a system and adds it to the database
-	$scope.addSystem = function() {
-		if ($scope.system == "" || $scope.system == null) {
-			console.log("game does not exist");
-		} else {
-			if ($scope.system.systemName == "" || $scope.system.systemName == null) { //System Name
-				console.log("No System Name Given");
-			} else if ($scope.system.systemSerial == "" || $scope.system.systemSerial == null) { //System Serial
-				console.log("No System Serial Given");
-			} else if ($scope.system.systemStation == "" || $scope.system.systemStation == null) { //Systems Assigned Station
-				console.log("Please select a station or None");
-			} else {
-				$scope.systems.add($scope.system); // Add to Firebase
-			}
-		} //end if else
-	} //end addSystem
 }]);
 
 //Station Crud
