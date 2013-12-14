@@ -1,11 +1,11 @@
 
 <!-- This is the Content below Navigation -->
 <div class="row">
-    <div class="page-container" ng-controller="gameController">
+    <div class="page-container" ng-controller="loginController">
         <div class="top-bar"></div>
 
         <!-- Page Title -->
-        <h1 class="text-center page-title">Games</h1>
+        <h1 class="text-center page-title">Users</h1>
         <div class="gts-hr"><hr /></div>
         <!-- Page Content -->
         <div class="page-content">
@@ -13,16 +13,16 @@
             <form class="large-6 columns large-centered" name="form" novalidate>
 
                 <!-- Station Dropdown list for current stations -->
-                <div class="row">
-                <div class="large-8 medium-5 small-12 columns medium-centered large-centered">
-                <label>Games</label>
-                <select id="one" class="page-select" ng-model="selectGames" ng-change="stationInfo(selectStations)">
-                <option value="" disabled selected>Select An Option</option>
-                <option class="one" value="New Station" selected>New Game</option>
-                <option ng-repeat="(index,game) in games" value="{{index}}">{{game.gameTitle}}({{game.gameSystem}})</option>
-                </select>
-                </div>
-                </div>
+                <!--<div class="row">-->
+                <!--<div class="large-8 medium-5 small-12 columns medium-centered large-centered">-->
+                <!--<label>Games</label>-->
+                <!--<select id="one" class="page-select" ng-model="selectGames" ng-change="stationInfo(selectStations)">-->
+                <!--<option value="" disabled selected>Select An Option</option>-->
+                <!--<option class="one" value="New Station" selected>New Game</option>-->
+                <!--<option ng-repeat="(index,game) in games" value="{{index}}">{{game.gameTitle}}({{game.gameSystem}})</option>-->
+                <!--</select>-->
+                <!--</div>-->
+                <!--</div>-->
 
                 <!-- Search or Add new game -->
                 <div class="row">

@@ -31,6 +31,14 @@ wingaming.config(function ($routeProvider){
                 factory: checkPermission
             }
         })
+        .when("/admin_users", {
+            title: 'Admin Users',
+            authRequired: true,
+            templateUrl:"partials/admin_users.html",
+            resolve:{
+                factory: checkPermission
+            }
+        })
         .when("/stations", {
             title: 'Stations',
             authRequired: true,

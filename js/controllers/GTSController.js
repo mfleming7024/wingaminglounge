@@ -30,6 +30,8 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
     //collects the info from the database for use.
     $scope.activeStations = angularFireCollection(urlActiveStations,function()
     {
+
+        console.log('clicked');
         //starts the clocks
         var startKillWatch = $scope.$watch('activeStations', function(){
             $timeout(wrapper);

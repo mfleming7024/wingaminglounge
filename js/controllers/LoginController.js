@@ -2,7 +2,10 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
 
 	var theUser;
 	      
-    var true_desktop_statement = "<li><a href=\"#gts\">- GTS</a></li><li><a href=\"#staff\">- Staff</a></li><li><a href=\"#stations\">- Stations</a></li><li><a href=\"#systems\">- Systems</a></li><li><a href=\"#games\">- Games</a></li>";            
+    var true_desktop_statement = "<li><a href=\"#gts\">- GTS</a></li>" +
+        "<li><a href=\"#admin_users\">- Users</a></li>" +
+        "<li><a href=\"#stations\">- Stations</a></li>" +
+        "<li><a href=\"#games\">- Games</a></li>";
     var true_mobile_statement = "<a class='right-off-canvas-toggle'><i class='fa fa-bars mobile-bar'></i></a>";
     
     $scope.$on("angularFireAuth:login", function(evt, user) {
