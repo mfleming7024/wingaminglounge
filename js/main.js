@@ -81,7 +81,7 @@ var checkPermission = function ($q, $rootScope, $location){
         $location.path('/');
         console.log("gamer");
     } else {
-        console.log("admin"); 
+        console.log("admin");
     }
     
 }
