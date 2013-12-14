@@ -8,13 +8,19 @@
         <div class="page-nav">
             <button class="small-12 medium-6 large-1 columns left" data-reveal-id="add-to-waiting-list">+</button>
             <button class="small-12 medium-6 large-2 columns left" data-reveal-id="waiting-list">Waiting List</button>
+            <!--
+                1.  Dropdown for stations
+                2.  Autocomplete for email/name
+                3.  Game Autocomplete
+                4.  How much time (select)
+            -->
         </div>
 
         <div class="gts-hr"><hr /><a class="button" ng-click="addActiveStation()">Add to active</a></div>
 
         <div class="gts" ng-controller="stationController">
             <!-- This is the start of the GTS Panel -->
-            <div class="gts-panel" ng-repeat="activeStation in activeStations">
+            <div class="gts-panel" ng-repeat="activeStation in activeStations | orderBy:activeStation.stationNumber">
                 <div class="panel small-10 medium-4 large-3 columns left collapse gts-panels">
                     <div class="station-number left">
                         <h2>{{activeStation.stationNumber}}</h2>
@@ -25,91 +31,21 @@
                     </div>
                     </span>
                     <div class="station-game right">
-                        <img src="{{activeStation.boxart}}" alt="Game Box Art">
+                        <img src="{{activeStation.gameArt}}" alt="Game Box Art">
                         <a class="right" href="#"><i class="fa fa-exchange"></i> </a>
                     </div>
                 </div>
             </div> <!-- end .gts-panel -->
 
-            <!-- Available Station -->
-
-            <a href="#" class=""  data-reveal-id="add-to-start">
-                <div class="gts-panel" ng-repeat="emptyStation in emptyStations">
-                    <div class="panel small-10 medium-4 large-3 columns left collapse gts-panels" ng-click="enterGamer(emptyStation.$id)">
-                        <div class="station-number left" ng-model="gamer">
-                            <h2>{{emptyStation.stationNumber}}</h2>
-                        </div>
-                        <h3>{{emptyStation.stationSystem}}</h3>
+            <!-- Available Station -->            
+            <div class="gts-panel" ng-repeat="emptyStation in emptyStations">
+                <div class="panel small-10 medium-4 large-3 columns left collapse gts-panels" ng-click="enterGamer(emptyStation.$id)">
+                    <div class="station-number left" ng-model="gamer">
+                        <h2>{{emptyStation.stationNumber}}</h2>
                     </div>
-                </div> <!-- end .gts-panel --></a>
+                    <h3>{{emptyStation.stationSystem}}</h3>
+                </div>
+            </div> <!-- end .gts-panel -->
         </div><!-- end .gts -->
     </div> <!-- end page-content -->
 </div>
-
-
-<!-- Modals -->
-<!-- Add to Start Modal -->
-<div id="add-to-start" class="reveal-modal small" data-reveal>
-    <form ng-controller="Login" class="large-8 small-12 large-centered columns">
-        <!-- Search for gamers name from firebase -->
-        <h6>{{stationNumber}}</h6>
-        <label>Name</label>
-        <input type="text" autocomplete="off" placeholder="Search Name" ng-model="displayName">
-        <ul>
-            <li ng-hide="gameTitle" ng-show="displayName" ng-repeat="user in users | filter:displayName | limitTo:limit"><a ng-click="setGamer(user.displayName)">{{user.displayName}}<img src="{{user.profilePic}}"> </a></li>
-        </ul>
-        <!-- Game Selection -->
-        <label>Select Game</label>
-        <select ng-controller="gameController" ng-model="gameTitle">
-            <option ng-repeat="game in games">{{game.gameTitle}}</option>
-        </select>
-        <!-- Minutes to play -->
-        <label>Playtime</label>
-        <select>
-            <option>30</option>
-            <option>60</option>
-        </select>
-        <a class="large-12 small-12 button add"  ng-click="addEmptyStation()">Add</a>
-    </form>
-    <a class="close-reveal-modal">&#215;</a>
-</div>
-
-<!-- Add to waiting list modal -->
-<div id="add-to-waiting-list" class="reveal-modal small" data-reveal>
-    <form class="large-8 small-12 large-centered columns">
-        <label>Name</label>
-        <input type="text" placeholder="Name">
-        <label>Current Time</label>
-        <h6>1230</h6>
-        <button class="large-12 small-12 button-form"> Add</button>
-    </form>
-    <a class="close-reveal-modal">&#215;</a>
-</div>
-
-<!-- Waiting List Modal -->
-<div id="waiting-list" class="reveal-modal small" data-reveal>
-    <table class="large-8 small-12 large-centered columns">
-        <thead>
-        <tr>
-            <th width="200">Name</th>
-            <th>Checked In</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>Erwin Fleming</td>
-            <td>1230</td>
-        </tr>
-        <tr>
-            <td>Mike Angeles</td>
-            <td>1232</td>
-        </tr>
-        </tbody>
-    </table>
-    <a class="close-reveal-modal">&#215;</a>
-</div>
-
-<!-- Need scripts here for modal to work -->
-<script>
-    $(document).foundation();
-</script>

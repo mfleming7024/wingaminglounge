@@ -7,7 +7,6 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
     var wrapper = function () {
         updateTimer();
         $timeout(wrapper, 5000);
-        console.log("wrapper");
     }    
     
     var time;
@@ -17,10 +16,13 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
             time = new Date().getTime() - $scope.activeStations[i].startTime;
             $scope.activeStations[i].displayTime = parseInt($scope.activeStations[i].countdown - (time/1000/60));
             console.log($scope.activeStations[i].displayTime);
-            if($scope.activeStations[i].displayTime <= 0){
-                $scope.activeStations.remove($scope.activeStations[i].$id);
+            if($scope.activeStations[i].displayTime <= 0){ 
                 //throw alert for station time up
-                console.log("Time is up for " + $scope.activeStations[i].username + " at station number " + $scope.activeStations[i].stationNumber);
+                console.log("Time is up for " + $scope.activeStations[i].stationGamer + " at station number " + $scope.activeStations[i].stationNumber);
+                
+                $scope.emptyStations.add({"stationNumber": $scope.activeStations[i].stationNumber, "stationSystem": $scope.activeStations[i].stationSystem});
+                
+                $scope.activeStations.remove($scope.activeStations[i].$id);
             }
         };
     };
@@ -35,34 +37,27 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
         })
     });
 
-    //checks to make sure that the routes parameters are set the sets the tempstation for use.
-    if(typeof $routeParams !== "undefined"){
-        if(typeof $routeParams.stationId !== "undefined"){
-            $scope.tempStation = {};
-            angularFire(urlActiveStations.child($routeParams.stationId),$scope,'tempStation');
-            $timeout(function (){
-                $scope.tempStation.id = $routeParams.stationId
-            });
-        }
-    }
-
     //create a active station and adds it to the database
     $scope.addActiveStation = function(){                
         var tempStation = {};
         
         tempStation.stationNumber = "1";
-        tempStation.boxart = "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTKa1lpNVTPQotsxG6bexIrU4Dm9jfH1oxrmC0GrOiVVu_rqwSEhA";
-        tempStation.username = "michael fleming";
+        tempStation.stationSystem = "Playstation 4";
+        tempStation.gameArt = "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTKa1lpNVTPQotsxG6bexIrU4Dm9jfH1oxrmC0GrOiVVu_rqwSEhA";
+        tempStation.stationGamer = "michael fleming";
         tempStation.countdown = "2";
         tempStation.startTime = new Date().getTime();
-
-//        if(typeof $routeParams.user !== "undefined"){
-//            if(typeof $routeParams.stationId !== "undefined"){
-//                $scope.deleteQuedStation($routeParams.stationId);
-//            }
-//        }
         
         $scope.activeStations.add(tempStation);
+        
+        //checks against empty stations to remove it so multiple cannot be selected
+        var i;
+        for (i = 0; i < $scope.emptyStations.length; i++) {
+            if ($scope.emptyStations[i].stationNumber == tempStation.stationNumber) {
+                $scope.emptyStations.remove($scope.emptyStations[i].$id);
+            }
+        }
+        
     }
 
     user_delete_confirmed = false;
@@ -79,36 +74,6 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
             user_delete_confirmed = true;
         }
 
-    }
-    
-    $scope.cancelActiveStation = function(){
-        $scope.tempStation = null;
-        $location.path("/admin");
-    }
-
-    //updates the activeStations database
-    $scope.updateActiveStation = function(){
-        console.log('urlActiveStations',urlActiveStations)
-        if(typeof $scope.activeStations == "undefined"){
-            $scope.activeStations = angularFireCollection(urlActiveStations,function(snap){
-                var stations = snap.val();
-                if(typeof $routeParams !== "undefined"){
-                    var stationDropdown = $scope.tempStation.stationNumber = document.querySelector("#customDropdown");
-                    $scope.tempStation.stationNumber = stationDropdown.options[stationDropdown.selectedIndex].text;
-                    $scope.tempStation.boxart = document.querySelector("#games_option").value;
-                    $scope.tempStation.username = document.querySelector("#username").value;
-                    $scope.tempStation.countdown = parseFloat($scope.tempStation.countdown) + parseFloat(document.querySelector("#time_dropdown").value);
-                    $location.path("/admin");
-                }
-            })
-        }else{
-            var stationDropdown = $scope.tempStation.stationNumber = document.querySelector("#customDropdown");
-            $scope.tempStation.stationNumber = stationDropdown.options[stationDropdown.selectedIndex].text;
-            $scope.tempStation.boxart = document.querySelector("#games_option").value;
-            $scope.tempStation.username = document.querySelector("#username").value;
-            $scope.tempStation.countdown = parseFloat($scope.tempStation.countdown) + parseFloat(document.querySelector("#time_dropdown").value);
-            $location.path("/admin");
-        }
     }
     //************************************Empty stations database***************************************************
 
