@@ -2,21 +2,20 @@
 <!-- This is the Content below Navigation -->
 <div class="row">
     <div class="page-container" ng-controller="stationController">
-        <div class="top-bar">
+        <div class="top-bar"></div>
 
-        </div>
         <!-- Page Title -->
         <h1 class="text-center page-title">Stations</h1>
         <div class="gts-hr"><hr /></div>
         <!-- Page Content -->
         <div class="page-content">
             <!-- Station info -->
-            <form class="large-6 columns large-centered">
+            <form class="large-6 columns large-centered" name="form" novalidate>
                 <!-- Station Dropdown list for current stations -->
                 <div class="row">
                     <div class="large-8 medium-5 small-12 columns medium-centered large-centered">
                         <label>Stations</label>
-                        <select id="one" class="page-select" ng-model="selectStations" ng-change="stationInfo(selectStations)" required>
+                        <select id="one" class="page-select" ng-model="selectStations" ng-change="stationInfo(selectStations)">
                             <option value="" disabled selected>Select An Option</option>
                             <option class="one" value="New Station" selected>New Station</option>
                             <option ng-repeat="(index,station) in stations" value="{{index}}">{{station.stationNumber}}</option>
@@ -27,7 +26,7 @@
                 <div class="row">
                     <div class="large-8 medium-5 small-12 columns medium-centered large-centered">
                         <label>Systems</label>
-                        <select ng-model="stationInfos.stationSystem">
+                        <select ng-model="stationInfos.stationSystem" required>
                             <option value="" disabled selected>Select The System</option>
                             <option>Playstation 4</option>
                             <option>Playstation 3</option>
@@ -39,18 +38,31 @@
                 <!-- TV Type -->
                 <div class="row">
                     <div class="large-8 medium-5 small-12 columns medium-centered large-centered">
-                        <label>Television</label>
-                        <input type="text" placeholder="Add New Television" ng-model="stationInfos.stationTV">
+                        <label>TV Model</label>
+                        <input type="text"
+                               placeholder="Add New TV Model"
+                               name="tv"
+                               ng-model="stationInfos.stationTV" required>
+                        <!-- Form Validation -->
+                        <div class="error" ng-show="form.tv.$dirty && form.tv.$invalid">
+                            <small class="error" ng-show="form.tv.$error.required">Please input a TV Model</small>
+                        </div>
                     </div>
                 </div>
                 <!-- TV Serial Number -->
                 <div class="row">
                     <div class="large-8 medium-5 small-12 columns medium-centered large-centered">
                         <label>Television Serial</label>
-                        <input type="text" placeholder="Enter Television Model Serial"ng-model="stationInfos.stationTVSerial">
+                        <input type="text" placeholder="Enter Television Model Serial"
+                               name="tvSerial"
+                               ng-model="stationInfos.stationTVSerial" required>
+                        <!-- Form Validation -->
+                        <div class="error" ng-show="form.tvSerial.$dirty && form.tv.$invalid">
+                            <small class="error" ng-show="form.tvSerial.$error.required">Please input a TV Serial</small>
+                        </div>
                     </div>
                 </div>
-                <!-- Form Buttons Add/Edit/Delete -->
+                <!-- Form Buttons Save/Delete -->
                 <div class="row">
                     <div class="large-8 medium-5 small-12 columns medium-centered large-centered">
                         <button class="add-button form-buttons large-12 medium-12 small-12" ng-disabled="form.$invalid" ng-click="saveStation()">Save</button>

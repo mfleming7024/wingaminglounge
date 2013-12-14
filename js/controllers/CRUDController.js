@@ -71,6 +71,7 @@ crudControllers.controller('systemController', ['$scope', 'angularFireCollection
 	} //end addSystem
 }]);
 
+//Station Crud
 crudControllers.controller('stationController', ['$scope', 'angularFireCollection','$rootScope','$location', function($scope,angularFireCollection,$rootScope,$location) {
 	//urls to the data needed
 	var urlStations = new Firebase('https://wingaminglounge.firebaseio.com/wingaminglounge/stations'); //Stations Firebase
@@ -79,9 +80,9 @@ crudControllers.controller('stationController', ['$scope', 'angularFireCollectio
 	$scope.stations = angularFireCollection(urlStations);
 	$scope.emptyStations = angularFireCollection(urlEmptyStations);
 
-
+    //When save button is clicked this function will run
     $scope.saveStation = function(){
-
+        // If new station, new station will be added to firebase
         if($scope.selectStations === "New Station")
         {
             if ($scope.stationInfos == "" || $scope.stationInfos == null) {
@@ -101,23 +102,18 @@ crudControllers.controller('stationController', ['$scope', 'angularFireCollectio
                 }
             } //end if else
             console.log('new station');
-        }else if(typeof $scope.selectStations !== 'undefined')
-        {
+        }
+        else if(typeof $scope.selectStations !== 'undefined')
+        {   //If not new station, form will validate instead.
            $scope.stations.update($scope.stationInfos.$id);
             console.log('update');
-//            console.log($rootScope.stationInfos.$id);
-        }
-        else
-        {
-            console.log('error');
-            // didn't pick an option throw error
         }
     }
 
-    //removes system based on a unique id
+    //removes from firebase
     $scope.deleteStation = function(station){
         $scope.stations.remove(station.$id);
-
+        //Also deletes from emptystations
         for (var i= 0,max=$scope.emptyStations.length;i<max;i++) {
             if ($scope.emptyStations[i].stationNumber == station.stationNumber) {
                 $scope.emptyStations.remove($scope.emptyStations[i].$id);
