@@ -308,7 +308,7 @@ label{
     margin-bottom:17px;
     border-radius:20px;
     background: #FFEC8B;
-    opacity:0.8;
+    opacity:0.9;
 }
 
 .custom-alert * {
@@ -346,6 +346,6 @@ label{
 #alert-container {
     position:absolute;
     top: 0px;
-    right: 0px;
+    right: 5px;
     width:53%;
 }
