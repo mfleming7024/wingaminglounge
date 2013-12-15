@@ -13,19 +13,13 @@
                     <option ng-repeat="emptyStation in emptyStations">{{emptyStation.stationNumber}}</option>
                 </select>
                 <input type="text" ng-model="tempStation.stationGamer" placeholder="Player Name" />
-                <input type="text" ng-model="tempStation.gameArt" placeholder="Game Name" />
+                <input type="text" ng-model="tempStation.gameArt" placeholder="Game Name (maybe filter by system from game object?)" />
                 <select ng-model="tempStation.countdown">
                     <option>30</option>
                     <option>60</option>
                 </select>
                 <div class="gts-hr"><hr /><input type="submit" class="button" value="Submit"></input></div>            
             </form>
-            <!--
-                1.  Dropdown for stations
-                2.  Autocomplete for email/name
-                3.  Game Autocomplete
-                4.  How much time (select)
-            -->
         </div>       
 
         <div class="gts" ng-controller="stationController">

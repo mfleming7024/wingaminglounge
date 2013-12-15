@@ -1,7 +1,7 @@
 wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFireCollection', 'angularFireAuth','angularFire','$timeout','$rootScope', function mtCtrl($scope, $routeParams, $location, angularFireCollection, angularFireAuth,angularFire,$timeout,$rootScope){
 
     //************************************Active stations database***************************************************
-
+    console.log($location.path());
     var urlActiveStations = new Firebase('https://wingaminglounge.firebaseio.com/wingaminglounge/activeStations');
 
     var wrapper = function () {
@@ -31,35 +31,34 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
     $scope.activeStations = angularFireCollection(urlActiveStations,function()
     {
 
-        console.log('clicked');
+        console.log('activeStations ran');
         //starts the clocks
         var startKillWatch = $scope.$watch('activeStations', function(){
             $timeout(wrapper);
+            console.log("startKillWatch ran");
             startKillWatch();
         })
     });
 
     //create a active station and adds it to the database
-    $scope.addActiveStation = function(tempStation){                
+    $scope.addActiveStation = function(tempActiveStation){                
         
         //tempStation.stationNumber = "1";
         //Select system by whatever system the chosen game supports?
-        tempStation.stationSystem = "Playstation 4";
-        //tempStation.gameArt = "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTKa1lpNVTPQotsxG6bexIrU4Dm9jfH1oxrmC0GrOiVVu_rqwSEhA";
-        
-        tempStation.startTime = new Date().getTime();
-
-        console.log(tempStation);
-        
-        //$scope.activeStations.add(tempStation);
+        //tempActiveStation.stationSystem = "Playstation 4";
+        tempActiveStation.gameArt = "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTKa1lpNVTPQotsxG6bexIrU4Dm9jfH1oxrmC0GrOiVVu_rqwSEhA";
+        tempActiveStation.startTime = new Date().getTime();
         
         //checks against empty stations to remove it so multiple cannot be selected
-        /*var i;
+        var i;
         for (i = 0; i < $scope.emptyStations.length; i++) {
-            if ($scope.emptyStations[i].stationNumber == tempStation.stationNumber) {
+            if ($scope.emptyStations[i].stationNumber == tempActiveStation.stationNumber) {
                 $scope.emptyStations.remove($scope.emptyStations[i].$id);
+                tempActiveStation.stationSystem = $scope.emptyStations[i].stationNumber;
             }
-        }*/
+        }
+        console.log(tempActiveStation);
+        $scope.activeStations.add(tempActiveStation);
         
     }
 
@@ -91,5 +90,5 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
         $rootScope.stationNumber = stationNumber;
         console.log(stationNumber);
     }
-
+    
 }])
