@@ -260,25 +260,25 @@ label{
     display: inline;
 }
 .station-time-remaining{
-    margin-left: 15px;
+    margin-left: 65px;
     padding-top: 9px;
 }
 .station-game {
 	float: right;
 	width: 41px;
-	margin-left: 5px;
+	margin: 5px;
 	position: relative;
 }
 .station-game img {
 	width: 100%;
     border: 1px solid #17A9CC;
+    opacity:0.7;
 }
 .station-game a i {
     color: #fff;
     position: absolute;
-    top: 0;
-    left: 0;
-    text-shadow: -1px 1px 2px #000;
+    top: 15px;
+    left: 10px;
 }
 /* Empty Stations */
 .gts-panel .panel h3 {
