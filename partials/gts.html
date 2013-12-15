@@ -8,6 +8,14 @@
         <div class="page-nav">
             <button class="small-12 medium-6 large-1 columns left" data-reveal-id="add-to-waiting-list">+</button>
             <button class="small-12 medium-6 large-2 columns left" data-reveal-id="waiting-list">Waiting List</button>
+            <div id="alert-container">
+                <div class="custom-alert" ng-animate=" 'animate' " ng-repeat="tempAlert in alerts">
+                    <i class="fa fa-exclamation-circle"></i>
+                    <h1>{{tempAlert.user}}</h1>
+                    <p>The time at station {{tempAlert.stationNumber}} is up!</p>
+                    <a id="close-alert" ng-click="removeAlert(tempAlert.$id)">X</a>
+                </div>
+            </div>
             <form ng-submit="addActiveStation(tempStation)">
                 <select ng-model="tempStation.stationNumber" style="margin-bottom: 10px">
                     <option ng-repeat="emptyStation in emptyStations">{{emptyStation.stationNumber}}</option>
@@ -24,7 +32,7 @@
 
         <div class="gts" ng-controller="stationController">
             <!-- This is the start of the GTS Panel -->
-            <div class="gts-panel" ng-repeat="activeStation in activeStations | orderBy:activeStation.stationNumber">
+            <div class="gts-panel" ng-repeat="activeStation in activeStations">
                 <div class="panel small-10 medium-4 large-3 columns left collapse gts-panels">
                     <div class="station-number left">
                         <h2>{{activeStation.stationNumber}}</h2>

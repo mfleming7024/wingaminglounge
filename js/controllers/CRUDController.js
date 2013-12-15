@@ -47,7 +47,30 @@ crudControllers.controller('stationController', ['$scope', 'angularFireCollectio
 	//collects the info from the database for use.
 	$scope.stations = angularFireCollection(urlStations);
 	$scope.emptyStations = angularFireCollection(urlEmptyStations);
-
+    
+    var bs = new Firebase("https://chapman.firebaseio.com");
+    
+    console.log(bs);
+    
+    $scope.chapman = angularFireCollection(bs);
+    
+    console.log($scope.chapman);
+    
+    $scope.addStation = function() {
+        for (var i=1;i<$scope.stations.length+1;i++) {
+            console.log($scope.stations[i].stationNumber);
+            if ($scope.stations[i].stationNumber != i) {
+                $scope.stationInfos.stationNumber = i;
+                $scope.stations.add($scope.stationInfos);
+                //$scope.emptyStations.stations.add($scope.stationInfos);
+                break;
+            } else if (i == $scope.stations.length) {
+                $scope.stationInfos.stationNumber = i+1;
+                $scope.stations.add($scope.stationInfos);
+            }
+        }
+    }
+    
     //When save button is clicked this function will run
     $scope.saveStation = function(){
         // If new station, new station will be added to firebase
@@ -63,10 +86,23 @@ crudControllers.controller('stationController', ['$scope', 'angularFireCollectio
                 } else if ($scope.stationInfos.stationTVSerial == "" || $scope.stationInfos.stationTVSerial == null) { //TV's Serial
                     console.log("Please enter a TV Serial");
                 } else {
-                    var stationsLength = $scope.stations.length+1;
+                    //adding stations bug
+                    for (var i=1;i<$scope.stations.length+1;i++) {
+                        console.log($scope.stations[i].stationNumber);
+                        if ($scope.stations[i].stationNumber != i) {
+                            $scope.stationInfos.stationNumber = i;
+                            $scope.stations.add($scope.stationInfos);
+                            //$scope.emptyStations.stations.add($scope.stationInfos);
+                            break;
+                        } else if (i == $scope.stations.length) {
+                            $scope.stationInfos.stationNumber = i;
+                            $scope.stations.add($scope.stationInfos);
+                        }
+                    }
+                    /*var stationsLength = $scope.stations.length+1;
                     $scope.stationInfos.stationNumber = stationsLength;
                     $scope.stations.add($scope.stationInfos);
-                    $scope.emptyStations.add({"stationNumber": stationsLength, "stationSystem": $scope.stationInfos.stationSystem});
+                    $scope.emptyStations.add({"stationNumber": stationsLength, "stationSystem": $scope.stationInfos.stationSystem});*/
                 }
             } //end if else
             console.log('new station');

@@ -6,8 +6,8 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
         
         //Actual code    
         //************************************Active stations database***************************************************
-        var urlActiveStations = new Firebase('https://wingaminglounge.firebaseio.com/wingaminglounge/activeStations');
-    
+        var urlActiveStations = new Firebase('https://wingaminglounge.firebaseio.com/wingaminglounge/activeStations');            
+        
         var wrapper = function () {
             updateTimer();
             $timeout(wrapper, 5000);
@@ -19,10 +19,17 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
             for (var i = $scope.activeStations.length - 1; i >= 0; i--) {
                 time = new Date().getTime() - $scope.activeStations[i].startTime;
                 $scope.activeStations[i].displayTime = parseInt($scope.activeStations[i].countdown - (time/1000/60));
+                
                 console.log($scope.activeStations[i].displayTime);
+                
                 if($scope.activeStations[i].displayTime <= 0){ 
-                    //throw alert for station time up
-                    console.log("Time is up for " + $scope.activeStations[i].stationGamer + " at station number " + $scope.activeStations[i].stationNumber);
+                    //throw alert for station time up                   
+                    var alert = {
+                        "user": $scope.activeStations[i].stationGamer,
+                        "stationNumber": $scope.activeStations[i].stationNumber
+                    }
+                    $scope.alerts.add(alert);
+                    
                     $scope.emptyStations.add({"stationNumber": $scope.activeStations[i].stationNumber, "stationSystem": $scope.activeStations[i].stationSystem});
                     $scope.activeStations.remove($scope.activeStations[i].$id);
                 }
@@ -41,8 +48,6 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
     
         //create a active station and adds it to the database
         $scope.addActiveStation = function(tempActiveStation){                
-            
-            //tempStation.stationNumber = "1";
             //Select system by whatever system the chosen game supports?
             //tempActiveStation.stationSystem = "Playstation 4";
             tempActiveStation.gameArt = "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTKa1lpNVTPQotsxG6bexIrU4Dm9jfH1oxrmC0GrOiVVu_rqwSEhA";
@@ -61,24 +66,25 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
             $scope.activeStations.add(tempActiveStation);
             
         }
+        
         //************************************Empty stations database***************************************************
-    
-        //url to the data needed
         var urlEmptyStations = new Firebase('https://wingaminglounge.firebaseio.com/wingaminglounge/emptyStations');
     
         //collects the info from the database for use.
         $scope.emptyStations = angularFireCollection(urlEmptyStations);
-    
-        $scope.enterGamer = function(stationNumber){
-            $rootScope.stationNumber = stationNumber;
-            console.log(stationNumber);
+        
+        //*******************************************Alerts database****************************************************
+        var urlAlerts = new Firebase("https://wingaminglounge.firebaseio.com/wingaminglounge/alerts");
+        
+        $scope.alerts = angularFireCollection(urlAlerts);
+        
+        $scope.addAlert = function(alert) {
+            $scope.alerts.add(alert);
         }
         
-        
+        $scope.removeAlert = function(alertID) {
+            $scope.alerts.remove(alertID);
+        }
     }
-    
-    $scope.init();
-    
-    
-    
+    $scope.init(); 
 }])
