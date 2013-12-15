@@ -325,12 +325,13 @@ label{
 
 .custom-alert h1 {
     float:left;
-    margin:3px 0 5px 60px;
+    font-size: 26px;
+    margin:7px 0 5px 50px;
 }
 
 .custom-alert p {
     float:left;
-    margin: 20px 0 5px 100px;
+    margin: 12px 0 5px 70px;
     font-size: 18px;
 }
 
@@ -338,8 +339,8 @@ label{
     color:black;
     position:absolute;
     right:0;
-    margin:8px 4px 0;
-    font-size: 30px;
+    margin:12px;
+    font-size: 20px;
 }
 
 #alert-container {
