@@ -8,6 +8,19 @@
         <div class="page-nav">
             <button class="small-12 medium-6 large-1 columns left" data-reveal-id="add-to-waiting-list">+</button>
             <button class="small-12 medium-6 large-2 columns left" data-reveal-id="waiting-list">Waiting List</button>
+            <div class="custom-alert" style="clear: both;" ng-repeat="tempAlert in alerts">
+                <i class="fa fa-exclamation-circle"></i>
+                <h1>{{tempAlert.user}}</h1>
+                <p>The time at station {{tempAlert.stationNumber}} is up!</p>
+                <a id="close-alert" ng-click="removeAlert(tempAlert.$id)">X</a>
+            </div>
+            <!--<div class="custom-alert">
+                <i class="fa fa-exclamation-circle"></i>
+                <h1>Michael Fleming</h1>
+                <p>The time at station 12 is up!</p>
+                <a id="close-alert" ng-click="removeAlert()">X</a>
+            </div>-->
+            
             <form ng-submit="addActiveStation(tempStation)">
                 <select ng-model="tempStation.stationNumber" style="margin-bottom: 10px">
                     <option ng-repeat="emptyStation in emptyStations">{{emptyStation.stationNumber}}</option>
