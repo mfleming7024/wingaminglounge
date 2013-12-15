@@ -302,11 +302,10 @@ label{
 }
 
 .custom-alert {
-    position:absolute;
-    width:93%;
+    width:100%;
     height:50px;
-    top:0;
-    right:0;
+    float:left;
+    margin-bottom:17px;
     border-radius:20px;
     background: #FFEC8B;
     opacity:0.8;
@@ -341,4 +340,11 @@ label{
     right:0;
     margin:8px 4px 0;
     font-size: 30px;
+}
+
+#alert-container {
+    position:absolute;
+    top: 0px;
+    right: 0px;
+    width:53%;
 }

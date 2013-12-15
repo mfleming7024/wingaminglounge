@@ -52,7 +52,7 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
             //tempActiveStation.stationSystem = "Playstation 4";
             tempActiveStation.gameArt = "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTKa1lpNVTPQotsxG6bexIrU4Dm9jfH1oxrmC0GrOiVVu_rqwSEhA";
             tempActiveStation.startTime = new Date().getTime();
-            tempActiveStation.countdown = "1";
+            tempActiveStation.countdown = "2";
             
             //checks against empty stations to remove it so multiple cannot be selected
             var i;
