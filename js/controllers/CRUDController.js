@@ -24,10 +24,12 @@ crudControllers.controller('gameController', ['$scope', 'angularFireCollection',
 		} //end if else
 	} //end addGame
 
+    $scope.typing = false;
     //Select Game from search input
     $scope.selectGame = function(title){
         $scope.limit = 5;
-        $scope.gameInfos = $scope.games[title];
+        $scope.gameInfos = angular.fromJson(angular.toJson($scope.games[title]));
+        $scope.typing = false;
     }
 
     //removes from firebase

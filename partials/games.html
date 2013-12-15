@@ -33,9 +33,9 @@
                 <div class="row">
                     <div class="large-8 medium-5 small-12 columns medium-centered large-centered">
                         <label>Title</label>
-                        <input type="text" autocomplete="off" placeholder="Search Or Add Game" ng-model="gameInfos.gameTitle" required>
-                        <ul ng-hide="stationInfos.stationSystem" ng-model="update">
-                            <li ng-show="gameInfos.gameTitle" ng-repeat="(index,game) in games | filter:gameInfos.gameTitle | limitTo:limit">
+                        <input type="text" autocomplete="off" placeholder="Search Or Add Game" ng-model="gameInfos.gameTitle" ng-change="typing=true" required>
+                        <ul ng-show="typing" ng-model="update">
+                            <li  ng-repeat="(index,game) in games | filter:gameInfos.gameTitle | limitTo:limit">
                                 <a ng-click="selectGame(index)">
                                     <div class="searchOutcome large-12 columns">
                                         <h6 class="left inline-list">{{game.gameTitle}}</h6>
