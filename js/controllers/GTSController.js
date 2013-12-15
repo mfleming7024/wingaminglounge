@@ -66,9 +66,8 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
             $scope.activeStations.add(tempActiveStation);
             
         }
+        
         //************************************Empty stations database***************************************************
-    
-        //url to the data needed
         var urlEmptyStations = new Firebase('https://wingaminglounge.firebaseio.com/wingaminglounge/emptyStations');
     
         //collects the info from the database for use.
@@ -87,9 +86,5 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
             $scope.alerts.remove(alertID);
         }
     }
-    
-    $scope.init();
-    
-    
-    
+    $scope.init(); 
 }])
