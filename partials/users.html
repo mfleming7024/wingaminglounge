@@ -1,0 +1,96 @@
+
+<!-- This is the Content below Navigation -->
+<div class="row">
+    <div class="page-container" ng-controller="Login">
+        <div class="top-bar"></div>
+
+        <!-- Page Title -->
+        <h1 class="text-center page-title">Users List</h1>
+        <div class="gts-hr"><hr /></div>
+        <!-- Page Content -->
+        <div class="page-content">
+            <!-- User/Staff info -->
+            <form class="large-6 medium-6 small-12 columns small-centered medium-centered large-centered" name="form" novalidate>
+
+                <!-- Tabs -->
+                <dl class="tabs" data-tab>
+                    <dd class="active"><a href="#userTab">Users</a> </dd>
+                    <dd><a href="#staffTab">Staff</a></dd>
+                </dl>
+                <!-- Users/Staff tab -->
+                <div class="tabs-content">
+                    <div class="content active large-12 medium-12 small-12 small-centered medium-centered large-centered" id="userTab">
+                        <!-- Tab Content -->
+
+                        <!-- User Image -->
+                        <div class="row">
+                            <div class="large-8 medium-10 small-12 columns small-centered medium-centered large-centered" ng-show="userInfos.displayName">
+                                <img class="userPagePic large-12 medium-12 small-12" src="{{userInfos.profilePicLarge}}">
+                            </div>
+                        </div>
+                        <!-- Search Users/Staff -->
+                        <div class="row">
+                            <div class="large-8 medium-10 small-12 columns small-centered medium-centered large-centered">
+                                <label>Search User</label>
+                                <input type="text" autocomplete="off" placeholder="Search User" ng-model="userInfos.displayName" ng-change="typing=true" required>
+                                <ul ng-show="typing">
+                                    <li ng-repeat="(index,user) in users | filter:userInfos.displayName | limitTo:limit">
+                                        <a ng-click="selectUser(user)">
+                                            <div class="searchOutcome large-12 columns">
+                                                <h6 class="left inline-list">{{user.displayName}}</h6>
+                                                <img class="searchImg right" src="{{user.profilePic}}">
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- User Email -->
+                        <div class="row">
+                            <div class="large-8 medium-10 small-12 columns small-centered medium-centered large-centered">
+                                <label>User Email:</label>
+                                <input type="email" placeholder="User Email" ng-model="userInfos.email" required>
+                            </div>
+                        </div>
+                        <!-- User Permission -->
+                        <div class="row">
+                            <div class="large-8 medium-10 small-12 columns medium-centered large-centered">
+                                <label>User Permission</label>
+                                <select id="one" class="page-select" ng-model="userInfos.userType" required>
+                                    <option>Admin</option>
+                                    <option>Staff</option>
+                                    <option>Gamer</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Form Buttons Save/Delete -->
+                        <div class="row">
+                            <div class="large-8 medium-10 small-12 columns small-centered medium-centered large-centered">
+                                <button class="add-button form-buttons large-12 medium-12 small-12" ng-disabled="form.$invalid" ng-click="updatePermission(users[1].$id)">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Staff Tab -->
+                    <div class="content" id="staffTab">
+                        <div data-ng-repeat="user in users | filter:user.userType | filter:staffFilter">
+                            <!-- filter :usertype == staff -->
+                            {{user.displayName}}
+                            <!-- Staff Image -->
+                            <div class="row">
+                                <div class="large-8 medium-5 small-12 columns medium-centered large-centered">
+                                    <img src="{{user.profilePicLarge}}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+    </div> <!-- end page-container -->
+</div><!-- end row -->
+
+<script>
+    $(document).foundation();
+</script>

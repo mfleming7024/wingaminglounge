@@ -38,28 +38,6 @@ crudControllers.controller('gameController', ['$scope', 'angularFireCollection',
     }
 }]);
 
-crudControllers.controller('staffController', ['$scope', 'angularFireCollection', function($scope, angularFireCollection) {
-	//url to the data needed
-	var urlStaff = new Firebase('https://wingaminglounge.firebaseio.com/wingaminglounge/staff');
-	//collects the info from the database for use.
-	$scope.allStaff = angularFireCollection(urlStaff);
-	//create a staff member and adds it to the staff database
-	$scope.addStaff = function() {
-		if ($scope.staff == "" || $scope.staff == null) {
-			console.log("staff does not exist");
-		} else {
-			if ($scope.staff.staffName == "" || $scope.staff.staffName == null) { //Staff Name
-				console.log("No Staff Name Given");
-			} else if ($scope.staff.staffNumber == "" || $scope.staff.staffNumber == null) { //Staff Cell Number
-				console.log("No Number Given");
-			} else if ($scope.staff.staffEmail == "" || $scope.staff.staffEmail == null) { //Staffs Email
-				console.log("Please Enter an Email");
-			} else {
-				$scope.allStaff.add($scope.staff);
-			}
-		} //end if else
-	} //end addStaff
-}]);
 
 //Station Crud
 crudControllers.controller('stationController', ['$scope', 'angularFireCollection','$rootScope','$location', function($scope,angularFireCollection,$rootScope,$location) {
@@ -98,6 +76,7 @@ crudControllers.controller('stationController', ['$scope', 'angularFireCollectio
            $scope.stations.update($scope.stationInfos.$id);
             console.log('update');
         }
+
     }
 
     //removes from firebase

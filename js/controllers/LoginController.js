@@ -3,11 +3,14 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
 	var theUser;
 	      
     var true_desktop_statement = "<li><a href=\"#gts\">- GTS</a></li>" +
-        "<li><a href=\"#admin_users\">- Users</a></li>" +
+        "<li><a href=\"#users\">- Users</a></li>" +
         "<li><a href=\"#stations\">- Stations</a></li>" +
         "<li><a href=\"#games\">- Games</a></li>";
     var true_mobile_statement = "<a class='right-off-canvas-toggle'><i class='fa fa-bars mobile-bar'></i></a>";
-    
+
+    var usersCollection = new Firebase("https://wingaminglounge.firebaseio.com/wingaminglounge/users/");
+    $scope.users = angularFireCollection(usersCollection);
+
     $scope.$on("angularFireAuth:login", function(evt, user) {
         if (user.provider == "facebook") {            
             theUser = user;
@@ -15,9 +18,6 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
             $scope.user = true;
 
             var urlUser = new Firebase("https://wingaminglounge.firebaseio.com/wingaminglounge/users/"+theUser.id);
-            
-            var usersCollection = new Firebase("https://wingaminglounge.firebaseio.com/wingaminglounge/users/");
-            $scope.users = angularFireCollection(usersCollection);            
 
             $rootScope.user = {};
             angularFire(urlUser, $rootScope, 'user').then(function()
@@ -28,9 +28,11 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
                     var picurl = "http://graph.facebook.com/" + theUser.username + "/picture?type=small";
                     var picurlLarge = "http://graph.facebook.com/" + theUser.username + "/picture?type=large";
 
-                    $rootScope.user = {"displayName": theUser.name, "email": theUser.email, "profilePic": picurl, "profilePicLarge": picurlLarge, "userType": "Gamer"};
+                    $rootScope.user = {"displayName": theUser.name, "email": theUser.email, "profilePic": picurl, "profilePicLarge": picurlLarge, "userType": "Gamer","id": theUser.id};
 
                     $location.path('/game_page');
+
+
                 } else {
                     console.log("User does exist, not adding " + theUser.email + " to the database");
                     if ($rootScope.user.userType == "Gamer") {
@@ -42,7 +44,7 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
                     };//end usertype loop
                 };//end else
             });//end angularFire
-
+            console.log($scope.users[0].$id);
         } else {
 	        console.log("Login other then the facebook service");
         };//end if else
@@ -53,7 +55,7 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
 			scope: "email"			
 		});
     };
-    
+    //logout function
     $scope.logout = function() {
         angularFireAuth.logout();
         $location.path('/');
@@ -62,11 +64,26 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
     $scope.$on("angularFireAuth:logout", function(evt, user) {
         $scope.user = false;
     });
-	
-	//Filter gamer search and select to input
+
+    $scope.typing = false;
+	//Filter user search and select to input
     $scope.limit = 5;
-    $scope.setGamer = function (gamer) {
-        $scope.displayName = gamer; };
-    // pull selected city using {{selected | json}}
+    $scope.selectUser = function (gamer) {
+
+        $scope.userInfos = angular.fromJson(angular.toJson(gamer));
+        $scope.typing = false;
+
+    };
+    //Filter user types for staff
+    $scope.staffFilter = function(staff){
+        return (staff.userType == 'Admin' || staff.userType == 'Staff');
+
+    }
+
+    $scope.updatePermission = function(info){
+//        $scope.users.update($scope.userInfos);
+        console.log('clicked', info);
+
+    }
 
 }])
