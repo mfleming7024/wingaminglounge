@@ -34,7 +34,7 @@
                                 <label>Search User</label>
                                 <input type="text" autocomplete="off" placeholder="Search User" ng-model="userInfos.displayName" ng-change="typing=true" required>
                                 <ul ng-show="typing">
-                                    <li ng-repeat="(index,user) in users | filter:userInfos.displayName | limitTo:limit">
+                                    <li ng-repeat="user in users | filter:userInfos.displayName | limitTo:limit">
                                         <a ng-click="selectUser(user)">
                                             <div class="searchOutcome large-12 columns">
                                                 <h6 class="left inline-list">{{user.displayName}}</h6>
@@ -66,7 +66,7 @@
                         <!-- Form Buttons Save/Delete -->
                         <div class="row">
                             <div class="large-8 medium-10 small-12 columns small-centered medium-centered large-centered">
-                                <button class="add-button form-buttons large-12 medium-12 small-12" ng-disabled="form.$invalid" ng-click="updatePermission(users[1].$id)">Save</button>
+                                <button class="add-button form-buttons large-12 medium-12 small-12" ng-disabled="form.$invalid" ng-click="updatePermission(userInfos)">Save</button>
                             </div>
                         </div>
                     </div>
