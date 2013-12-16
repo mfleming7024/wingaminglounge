@@ -77,7 +77,6 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
         //************************************Empty stations database***************************************************
         var urlEmptyStations = new Firebase('https://wingaminglounge.firebaseio.com/wingaminglounge/emptyStations');
     
-        //collects the info from the database for use.
         $scope.emptyStations = angularFireCollection(urlEmptyStations);
         
         //*******************************************Alerts database****************************************************
@@ -92,6 +91,45 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
         $scope.removeAlert = function(alertID) {
             $scope.alerts.remove(alertID);
         }
+        
+        //******************************************Queue database*******************************************************
+        var urlPlayerQueue = new Firebase("https://wingaminglounge.firebaseio.com/wingaminglounge/playerQueue");
+        
+        $scope.playerQueue = angularFireCollection(urlPlayerQueue);
+        
+        $scope.addToPlayerQueue = function(playerRequest) {            
+            var d = new Date();
+            
+            var origHours = d.getHours();
+            var origMin =   d.getMinutes();
+            var formatHours, formatMinutes;
+            
+            if (origHours > 12) {
+                formatHours = origHours - 12;
+            } else if (origHours == 0) {
+                formatHours = 12;
+            } else {
+                formatHours = origHours;
+            }
+            
+            if (origMin < 10) {
+                formatMinutes = "0" + origMin;
+            } else {
+                formatMinutes = origMin;
+            }
+            
+            var dformat = [formatHours, formatMinutes].join(":");
+            
+            playerRequest.checkedIn = dformat;
+            
+            $scope.playerQueue.add(playerRequest);
+            console.log(playerRequest);
+        }
+        
+        $scope.removeFromQueue = function(playerID) {
+            $scope.playerQueue.remove(playerID);
+        }
+        
     }
     $scope.init(); 
 }])

@@ -60,4 +60,49 @@
             </div> <!-- end .gts-panel -->
         </div><!-- end .gts -->
     </div> <!-- end page-content -->
+    <!-- Add to waiting list modal -->
+    <div id="add-to-waiting-list" class="reveal-modal small" data-reveal>
+        <form class="large-8 small-12 large-centered columns">
+            <label>Name</label>
+            <input type="text" ng-model="tempPlayer.playerName" placeholder="Player Name">
+            <label>System</label>
+            <select ng-model="tempPlayer.systemPreference">
+                <option>Playstation 4</option>            
+                <option>Playstation 3</option>            
+                <option>Xbox One</option>            
+                <option>Wii U</option>            
+            </select>
+            <a ng-click="addToPlayerQueue(tempPlayer)" class="large-12 small-12 button-form">Add</a>
+        </form>
+        <a class="close-reveal-modal">&#215;</a>
+    </div>
+    
+    <!-- Waiting List Modal -->
+    <div id="waiting-list" class="reveal-modal small" data-reveal>
+        <table class="large-8 small-12 large-centered columns">
+            <thead>
+                <tr>
+                    <th width="200">Name</th>
+                    <th>Checked In</th>
+                    <th>System</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="queuedPlayer in playerQueue">
+                    <td>{{queuedPlayer.playerName}}</td>
+                    <td>{{queuedPlayer.checkedIn}}</td>
+                    <td>{{queuedPlayer.systemPreference}}</td>
+                    <td><a ng-click="removeFromQueue(queuedPlayer.$id)">Remove</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <a class="close-reveal-modal">&#215;</a>
+    </div>
 </div>
+
+
+<!-- Need scripts here for modal to work -->
+<script>
+    $(document).foundation();
+</script> 
