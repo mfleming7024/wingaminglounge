@@ -1,30 +1,32 @@
 wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFireCollection', 'angularFireAuth','$rootScope','angularFire', function mtCtrl($scope, $routeParams, $location, angularFireCollection, angularFireAuth,$rootScope,angularFire){
 
+    var usersCollection = new Firebase("https://wingaminglounge.firebaseio.com/wingaminglounge/users/");
+    $scope.users = angularFireCollection(usersCollection);
+
     $scope.init=function() {
         if ($rootScope.loginInit==true) return;
         $rootScope.loginInit=true;
 
-        //Actual code
         var theUser;
 
-        var true_desktop_statement = "<li><a href=\"#gts\">- GTS</a></li>" +
-            "<li><a href=\"#users\">- Users</a></li>" +
-            "<li><a href=\"#stations\">- Stations</a></li>" +
-            "<li><a href=\"#games\">- Games</a></li>";
+        var true_desktop_statement = "<li><a href=\"#gts\"> Gamer Track System</a></li>" +
+            "<li><a href=\"#users\"> Users</a></li>" +
+            "<li><a href=\"#stations\"> Stations</a></li>" +
+            "<li><a href=\"#games\"> Games</a></li>";
         var true_mobile_statement = "<a class='right-off-canvas-toggle'><i class='fa fa-bars mobile-bar'></i></a>";
-
-        var usersCollection = new Firebase("https://wingaminglounge.firebaseio.com/wingaminglounge/users/");
-        $scope.users = angularFireCollection(usersCollection);
 
         $scope.$on("angularFireAuth:login", function(evt, user) {
             if (user.provider == "facebook") {
                 theUser = user;
 
                 $scope.user = true;
+                $scope.displayName = user.displayName;
+                $scope.profilePic = "http://graph.facebook.com/" + user.username + "/picture?type=large";
 
                 var urlUser = new Firebase("https://wingaminglounge.firebaseio.com/wingaminglounge/users/"+theUser.id);
 
                 $rootScope.user = {};
+
                 angularFire(urlUser, $rootScope, 'user').then(function()
                 {
                     if (Object.keys($rootScope.user).length === 0) {
@@ -37,7 +39,6 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
 
                         $location.path('/game_page');
 
-
                     } else {
                         console.log("User does exist, not adding " + theUser.email + " to the database");
                         if ($rootScope.user.userType == "Gamer") {
@@ -48,8 +49,9 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
                             $scope.desktopStatement = true_desktop_statement;
                         };//end usertype loop
                     };//end else
+
+                    console.log($scope.users);
                 });//end angularFire
-                console.log($scope.users[0].$id);
             } else {
                 console.log("Login other then the facebook service");
             };//end if else
@@ -70,28 +72,31 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
             $scope.user = false;
         });
 
-        $scope.typing = false;
-        //Filter user search and select to input
-        $scope.limit = 5;
-        $scope.selectUser = function (gamer) {
-
-            $scope.userInfos = angular.fromJson(angular.toJson(gamer));
-            $scope.typing = false;
-
-        };
-        //Filter user types for staff
-        $scope.staffFilter = function(staff){
-            return (staff.userType == 'Admin' || staff.userType == 'Staff');
-
-        }
-
-        $scope.updatePermission = function(info){
-            //        $scope.users.update($scope.userInfos);
-            console.log('clicked', info);
-
-
-        }
     }
-    $scope.init();
 
+    $scope.typing = false;
+    //Filter user search and select to input
+    $scope.limit = 5;
+    $scope.selectUser = function (gamer) {
+
+        $scope.userInfos = angular.fromJson(angular.toJson(gamer));
+        $scope.typing = false;
+
+    };
+    //Filter user types for staff
+    $scope.staffFilter = function(staff){
+        return (staff.userType == 'Admin' || staff.userType == 'Staff');
+
+    }
+
+    $scope.updatePermission = function(info){
+        console.log(info);
+//        $scope.users.update(info);
+
+//         $rootScope.userInfos = $scope.users[info];
+//        console.log(angular.fromJson(angular.toJson($scope.users[info])));
+    }
+
+
+    $scope.init();
 }]);

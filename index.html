@@ -2,7 +2,7 @@
 <html class="no-js" lang="en" ng-app="wingaming">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0, initial-scale=1.0" />
      <title ng-bind="'Win: &mdash; ' + title">Win: Gaming Lounge</title>
 
     <link rel="stylesheet" href="css/foundation.css" />
@@ -26,38 +26,54 @@
             </div>
             <div class="right-nav right" ng-bind-html-unsafe="mobileStatement"></div>
         </nav>
-        <!-- Show for admin mobile nav -->
-        <!--<nav class="tab-bar show-for-small">-->
-            <!--<a class="right-off-canvas-toggle"><i class="fa fa-bars mobile-bar"></i></a>-->
-        <!--</nav>-->
 
         <!-- left Off canvas mobile main navigation -->
         <aside class="left-off-canvas-menu">
-            <ul class="off-canvas-list" ng-hide="user">
+            <div class="small-8 columns">
+                <img class="mobile-pic" src="{{profilePic}}">
+                <h6 class="displayName">{{displayName}}</h6>
+            </div>
+
+            <ul class="off-canvas-list small-12 columns" ng-hide="user">
                 <li><label><a href="" ng-click="login()"><i class="fa fa-facebook-square"></i> Facebook Login</a></label></li>
             </ul>
-            <ul class="off-canvas-list" ng-show="user">
+            <ul class="off-canvas-list small-12 columns" ng-show="user">
                 <li><a href="" ng-click="logout()">Logout</a></li>
             </ul>
-            <ul class="off-canvas-list">
+            <ul class="off-canvas-list small-12 columns">
                 <li><label><i class="fa fa-trophy"></i> Competition</label></li>
                 <li><a href="">News</a></li>
                 <li><a href="">Leagues</a></li>
                 <li><a href="">Tournaments</a></li>
             </ul>
-            <ul class="off-canvas-list">
+            <ul class="off-canvas-list small-12 columns">
                 <li><label><i class="fa fa-info-circle"></i> Support</label></li>
             </ul>
         </aside>
 
        <!-- Right Off canvas mobile Admin/Staff navigation -->
        	<aside class="right-off-canvas-menu">
+            <!-- Admin Search User -->
+            <div class="mobile-input large-12 small-12 medium-12" ng-controller="Login">
+                <input class="" type="text" autocomplete="off" placeholder="Search User" ng-model="userInfos.displayName" ng-change="typing=true" required>
+                <ul ng-show="typing">
+                    <li ng-repeat="user in users | filter:userInfos.displayName | limitTo:limit">
+                        <a ng-click="selectUser(user)">
+                            <div class="searchOutcome large-12 columns">
+                                <h6 class="left inline-list">{{user.displayName}}</h6>
+                                <img class="searchImg right" src="{{user.profilePic}}">
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
             <ul class="off-canvas-list">
                 <li><label>Admin Navigation</label></li>
-                <li><a href="#gts">- GTS</a></li>
-                <li><a href="#users">- Users</a></li>
-                <li><a href="#stations">- Stations</a></li>
-                <li><a href="#games">- Games</a></li>
+                <li><a href="#gts"> Gamer Tracking System</a></li>
+                <li><a href="#users"> Users</a></li>
+                <li><a href="#stations"> Stations</a></li>
+                <li><a href="#games"> Games</a></li>
             </ul>
         </aside>
 

@@ -4001,6 +4001,7 @@ ul.off-canvas-list {
 ul.off-canvas-list li label {
     padding: 0.3rem 0.9375rem;
     color: #999999;
+    font-family: 'Lato', sans-serif;
     text-transform: uppercase;
     font-weight: bold;
     background: #556270;
@@ -4009,6 +4010,9 @@ ul.off-canvas-list li label {
     margin: 0; }
 ul.off-canvas-list li a {
     display: block;
+    font-family: 'Lato', sans-serif;
+    text-transform: uppercase;
+    font-weight: 300;
     padding: 0.66667rem;
     color: rgba(255, 255, 255, 0.7);}
 /*border-bottom: 1px solid #262626; }*/
