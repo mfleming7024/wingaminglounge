@@ -87,9 +87,6 @@ var checkPermission = function ($q, $rootScope, $location){
 
     if(!$rootScope.user || $rootScope.user.userType == 'Gamer'){
         $location.path('/');
-        console.log("gamer");
-    } else {
-        console.log("admin");
     }
     
 }

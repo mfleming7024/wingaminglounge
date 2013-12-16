@@ -89,6 +89,7 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
             //        $scope.users.update($scope.userInfos);
             console.log('clicked', info);
 
+
         }
     }
     $scope.init();
