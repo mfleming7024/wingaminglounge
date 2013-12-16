@@ -16,7 +16,7 @@
                     <a id="close-alert" ng-click="removeAlert(tempAlert.$id)">X</a>
                 </div>
             </div>
-            <form ng-submit="addActiveStation(tempStation)">
+            <form class="large-4 " ng-submit="addActiveStation(tempStation)">
                 <select ng-model="tempStation.stationNumber" style="margin-bottom: 10px">
                     <option ng-repeat="emptyStation in emptyStations">{{emptyStation.stationNumber}}</option>
                 </select>
