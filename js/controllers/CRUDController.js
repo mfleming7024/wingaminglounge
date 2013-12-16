@@ -48,14 +48,6 @@ crudControllers.controller('stationController', ['$scope', 'angularFireCollectio
 	$scope.stations = angularFireCollection(urlStations);
 	$scope.emptyStations = angularFireCollection(urlEmptyStations);
     
-    var bs = new Firebase("https://chapman.firebaseio.com");
-    
-    console.log(bs);
-    
-    $scope.chapman = angularFireCollection(bs);
-    
-    console.log($scope.chapman);
-    
     $scope.addStation = function() {
         for (var i=1;i<$scope.stations.length+1;i++) {
             console.log($scope.stations[i].stationNumber);
