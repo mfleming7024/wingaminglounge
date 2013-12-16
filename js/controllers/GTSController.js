@@ -20,8 +20,6 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
                 time = new Date().getTime() - $scope.activeStations[i].startTime;
                 $scope.activeStations[i].displayTime = parseInt($scope.activeStations[i].countdown - (time/1000/60));
                 
-                console.log($scope.activeStations[i].displayTime);
-                
                 if($scope.activeStations[i].displayTime <= 0){ 
                     //throw alert for station time up                   
                     var alert = {
@@ -30,7 +28,10 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
                     }
                     $scope.alerts.add(alert);
                     
-                    $scope.emptyStations.add({"stationNumber": $scope.activeStations[i].stationNumber, "stationSystem": $scope.activeStations[i].stationSystem});
+                    $scope.emptyStations.add({
+                        "stationNumber": $scope.activeStations[i].stationNumber, 
+                        "stationSystem": $scope.activeStations[i].stationSystem
+                    });
                     $scope.activeStations.remove($scope.activeStations[i].$id);
                 }
             };
@@ -49,22 +50,28 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
         //create a active station and adds it to the database
         $scope.addActiveStation = function(tempActiveStation){                
             //Select system by whatever system the chosen game supports?
-            //tempActiveStation.stationSystem = "Playstation 4";
             tempActiveStation.gameArt = "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTKa1lpNVTPQotsxG6bexIrU4Dm9jfH1oxrmC0GrOiVVu_rqwSEhA";
             tempActiveStation.startTime = new Date().getTime();
-            tempActiveStation.countdown = "2";
             
-            //checks against empty stations to remove it so multiple cannot be selected
-            var i;
-            for (i = 0; i < $scope.emptyStations.length; i++) {
+            //Removes from empty by station number
+            for (var i = 0; i < $scope.emptyStations.length; i++) {
                 if ($scope.emptyStations[i].stationNumber == tempActiveStation.stationNumber) {
                     $scope.emptyStations.remove($scope.emptyStations[i].$id);
                     tempActiveStation.stationSystem = $scope.emptyStations[i].stationSystem;
                 }
             }
-            console.log(tempActiveStation);
-            $scope.activeStations.add(tempActiveStation);
             
+            $scope.activeStations.add(tempActiveStation);
+        }
+        
+        $scope.removeActiveStation = function(station) {
+            $scope.activeStations.remove(station.$id);
+            
+            var tempEmptyStation = {
+                "stationNumber": station.stationNumber,
+                "stationSystem": station.stationSystem
+            };            
+            $scope.emptyStations.add(tempEmptyStation);
         }
         
         //************************************Empty stations database***************************************************
