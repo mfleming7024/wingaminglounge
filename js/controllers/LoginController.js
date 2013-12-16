@@ -8,8 +8,7 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
         "<li><a href=\"#games\">- Games</a></li>";
     var true_mobile_statement = "<a class='right-off-canvas-toggle'><i class='fa fa-bars mobile-bar'></i></a>";
 
-    var usersCollection = new Firebase("https://wingaminglounge.firebaseio.com/wingaminglounge/users/");
-    $scope.users = angularFireCollection(usersCollection);
+
 
     $scope.$on("angularFireAuth:login", function(evt, user) {
         if (user.provider == "facebook") {            
@@ -20,6 +19,10 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
             var urlUser = new Firebase("https://wingaminglounge.firebaseio.com/wingaminglounge/users/"+theUser.id);
 
             $rootScope.user = {};
+
+            var usersCollection = new Firebase("https://wingaminglounge.firebaseio.com/wingaminglounge/users/");
+            $scope.users = angularFireCollection(usersCollection);
+
             angularFire(urlUser, $rootScope, 'user').then(function()
             {
                 if (Object.keys($rootScope.user).length === 0) {
@@ -44,7 +47,7 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
                     };//end usertype loop
                 };//end else
             });//end angularFire
-            console.log($scope.users[0].$id);
+            console.log($scope.users.$id);
         } else {
 	        console.log("Login other then the facebook service");
         };//end if else
@@ -81,8 +84,11 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
     }
 
     $scope.updatePermission = function(info){
-//        $scope.users.update($scope.userInfos);
-        console.log('clicked', info);
+        console.log(info);
+        $scope.users.update(info);
+
+//         $rootScope.userInfos = $scope.users[info];
+//        console.log(angular.fromJson(angular.toJson($scope.users[info])));
 
     }
 
