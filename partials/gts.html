@@ -115,7 +115,7 @@
         <!-- GTS -->
         <div class="gts">
             <!-- This is the start of the GTS Panel -->
-            <div class="gts-panel" ng-repeat="activeStation in activeStations">
+            <div class="gts-panel" ng-repeat="activeStation in activeStations | orderBy:'stationNumber'">
                 <div class="panel small-10 medium-4 large-3 columns left collapse gts-panels">
                     <div class="station-number left">
                         <h2>{{activeStation.stationNumber}}</h2>
@@ -133,7 +133,7 @@
             </div> <!-- end .gts-panel -->
 
             <!-- Available Station -->
-            <div class="gts-panel" ng-repeat="emptyStation in emptyStations">
+            <div class="gts-panel" ng-repeat="emptyStation in emptyStations | orderBy:'stationNumber'">
                 <div class="panel small-10 medium-4 large-3 columns left collapse gts-panels">
                     <div class="station-number left" ng-model="gamer">
                         <h2>{{emptyStation.stationNumber}}</h2>
