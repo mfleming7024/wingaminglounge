@@ -50,10 +50,11 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
         //create a active station and adds it to the database
         $scope.addActiveStation = function(tempActiveStation){                
             //Select system by whatever system the chosen game supports?
-            console.log(tempActiveStation);  
             tempActiveStation.stationGamer="Michael";
+            tempActiveStation.countdown = "2";
             tempActiveStation.gameArt = "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTKa1lpNVTPQotsxG6bexIrU4Dm9jfH1oxrmC0GrOiVVu_rqwSEhA";
             tempActiveStation.startTime = new Date().getTime();
+            console.log(tempActiveStation);  
             
             //Removes from empty by station number
             for (var i = 0; i < $scope.emptyStations.length; i++) {
