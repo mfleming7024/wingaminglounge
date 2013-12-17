@@ -34,7 +34,7 @@
                                 <label>Search User</label>
                                 <input type="text" autocomplete="off" placeholder="Search User" ng-model="userInfos.displayName" ng-change="typing=true" required>
                                 <ul ng-show="typing">
-                                    <li ng-repeat="user in users | filter:userInfos.displayName | limitTo:limit">
+                                    <li ng-repeat="user in users | filter:userInfos.displayName | limitTo:limit | orderBy:'displayName'">
                                         <a ng-click="selectUser(user)">
                                             <div class="searchOutcome large-12 columns">
                                                 <h6 class="left inline-list">{{user.displayName}}</h6>

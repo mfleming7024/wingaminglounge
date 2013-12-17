@@ -5,30 +5,38 @@ crudControllers.controller('gameController', ['$scope', 'angularFireCollection',
 	//collects the info from the database for use.
 	$scope.games = angularFireCollection(urlGames);
 	//create a game and adds it to the database
-	$scope.addGame = function() {
-		if ($scope.gameInfos == "" || $scope.gameInfos == null) {
-			console.log("game does not exist");
-		} else {
-			//error checking for if fields are null
-			if ($scope.gameInfos.gameSystem == "" || $scope.gameInfos.gameSystem == null) { //System
-				console.log("No game system given");
-			} else if ($scope.gameInfos.gameTitle == "" || $scope.gameInfos.gameTitle == null) { //Game Title
-				console.log("No game title given");
-			} else if ($scope.gameInfos.gameArtUrl == "" || $scope.gameInfos.gameArtUrl == null) { // Game Box Art
-				console.log("No game art url given");
-			} else if ($scope.gameInfos.gameQuantity == "" || $scope.gameInfos.gameQuantity == null) { //Quantity
-				console.log("No game quantity given");
-			} else {
-				$scope.games.add($scope.gameInfos); //Adds to Firebase
-			}
-		} //end if else
+	$scope.saveGame = function(info) {
+        if($scope.selectGames === "New Game"){
+            if ($scope.gameInfos == "" || $scope.gameInfos == null) {
+                console.log("game does not exist");
+            } else {
+                //error checking for if fields are null
+                if ($scope.gameInfos.gameSystem == "" || $scope.gameInfos.gameSystem == null) { //System
+                    console.log("No game system given");
+                } else if ($scope.gameInfos.gameTitle == "" || $scope.gameInfos.gameTitle == null) { //Game Title
+                    console.log("No game title given");
+                } else if ($scope.gameInfos.gameArtUrl == "" || $scope.gameInfos.gameArtUrl == null) { // Game Box Art
+                    console.log("No game art url given");
+                } else if ($scope.gameInfos.gameQuantity == "" || $scope.gameInfos.gameQuantity == null) { //Quantity
+                    console.log("No game quantity given");
+                } else {
+//                    $scope.games.add($scope.gameInfos); //Adds to Firebase
+                }
+            } //end if else
+            console.log('new game added');
+        }else {
+            $scope.games.update($scope.gameInfos.$id);
+            console.log('update game ', info);
+        }
+
 	} //end addGame
 
     $scope.typing = false;
     //Select Game from search input
     $scope.selectGame = function(title){
         $scope.limit = 5;
-        $scope.gameInfos = angular.fromJson(angular.toJson($scope.games[title]));
+//        $scope.gameInfos = angular.fromJson(angular.toJson($scope.games[title]));
+        $scope.gameInfos = $scope.games[title];
         $scope.typing = false;
     }
 
@@ -47,7 +55,7 @@ crudControllers.controller('stationController', ['$scope', 'angularFireCollectio
 	//collects the info from the database for use.
 	$scope.stations = angularFireCollection(urlStations);
 	$scope.emptyStations = angularFireCollection(urlEmptyStations);
-    
+
     $scope.addStation = function() {
         for (var i=1;i<$scope.stations.length+1;i++) {
             console.log($scope.stations[i].stationNumber);
@@ -62,7 +70,7 @@ crudControllers.controller('stationController', ['$scope', 'angularFireCollectio
             }
         }
     }
-    
+
     //When save button is clicked this function will run
     $scope.saveStation = function(){
         // If new station, new station will be added to firebase
@@ -97,12 +105,10 @@ crudControllers.controller('stationController', ['$scope', 'angularFireCollectio
                     $scope.emptyStations.add({"stationNumber": stationsLength, "stationSystem": $scope.stationInfos.stationSystem});*/
                 }
             } //end if else
-            console.log('new station');
         }
         else if(typeof $scope.selectStations !== 'undefined')
         {   //If not new station, form will validate instead.
            $scope.stations.update($scope.stationInfos.$id);
-            console.log('update');
         }
 
     }
@@ -121,5 +127,5 @@ crudControllers.controller('stationController', ['$scope', 'angularFireCollectio
     $scope.stationInfo = function(info){
         $rootScope.stationInfos = $scope.stations[info];
     }
-	
+
 }]);
