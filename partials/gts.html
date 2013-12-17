@@ -12,11 +12,11 @@
                 <form class="large-8 columns large-centered" ng-submit="addActiveStation(tempStation)">
                     <!-- Available Stations -->
                     <div class="row">
-                        <div ng-controller="stationController">
+                        <div>
                             <label>Stations</label>
-                            <select id="one" class="page-select" ng-model="selectStations" ng-change="stationInfo(selectStations)">
+                            <select id="one" class="page-select" ng-model="tempStation.stationNumber">
                                 <option value="" disabled selected>Select A Station</option>
-                                <option ng-repeat="(index,station) in stations" value="{{index}}">{{station.stationNumber}}</option>
+                                <option ng-repeat="emptyStation in emptyStations">{{emptyStation.stationNumber}}</option>
                             </select>
                         </div>
                     </div>

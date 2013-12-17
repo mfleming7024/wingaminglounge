@@ -50,7 +50,7 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
                         };//end usertype loop
                     };//end else
 
-                    console.log($scope.users);
+                    /*console.log($scope.users);*/
                 });//end angularFire
             } else {
                 console.log("Login other then the facebook service");

@@ -60,7 +60,7 @@ wingaming.config(function ($routeProvider){
             authRequired: true,
             templateUrl:"partials/crud_testing.html"
         })
-        .when("/game_page", {
+        .when("/gamer_page", {
             title: 'Your a gamer!',
             authRequired: true,
             templateUrl:"partials/gamer_page.html"
