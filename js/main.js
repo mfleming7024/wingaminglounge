@@ -16,6 +16,11 @@ wingaming.config(function ($routeProvider){
             controller: "Login",
             templateUrl: "partials/home.html"
         })
+        .when("/about", {
+            title: 'About Us',
+            authRequired: false,
+            templateUrl:"partials/about.html"
+        })
         .when("/under_construction", {
             title: 'Work in progress',
             authRequired: false,
