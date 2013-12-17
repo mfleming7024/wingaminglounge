@@ -1,11 +1,15 @@
 var wingaming = angular.module('wingaming', ['firebase', 'crudControllers']);
 
-wingaming.run(['angularFireAuth', '$rootScope', function(angularFireAuth, $rootScope){
+wingaming.run(['angularFireAuth', '$rootScope', '$route', function(angularFireAuth, $rootScope, $route){
     var url = new Firebase("https://wingaminglounge.firebaseio.com/");
     angularFireAuth.initialize(url, {scope: $rootScope, name: "fb_user",path: '/'});
+    
+    $rootScope.$on("$routeChangeStart", function(event, current, previous){
+        $rootScope.shopInit = false;
+    });
 
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
-        $rootScope.title = current.$$route.title;        
+        $rootScope.title = current.$$route.title;
     });
 }]);
 
