@@ -84,8 +84,10 @@
                 </div>
                 <div class="large-9 columns large-centered">
                     <div class="row">
+                        {{playerQueue}}
                         <div class="queue-list" ng-repeat="queuedPlayer in playerQueue | limitTo:limit">
                             <div class="large-12 columns">
+                                
                                 <h6 class="queue-name left">{{queuedPlayer.playerName}}</h6>
                                 <a class="queue-remove right" ng-click="removeFromQueue(queuedPlayer.$id)">&#215;</a>
                                 <h6 class="check-in right">{{queuedPlayer.checkedIn}}</h6>
@@ -112,27 +114,6 @@
         </div>
         <!-- GTS -->
         <div class="gts" ng-controller="stationController">
-            <div class="gts-panel large-12 columns large-centered" ng-repeat="activeStation in activeStations">
-                <div class="row">
-                    <div class="panel small-10 medium-4 large-3 columns left collapse gts-panels">
-                        <div class="station-number left">
-                            <h2>{{activeStation.stationNumber}}</h2>
-                        </div>
-                        <div class="station-time-remaining left">
-                            <h2>{{activeStation.displayTime}}</h2>
-                            <h5>MIN</h5>
-                        </div>
-                        <div class="station-game right">
-                            <img src="{{activeStation.gameArt}}" alt="Game Box Art">
-                            <a class="right" href="#"><i class="fa fa-exchange"></i> </a>
-                        </div>
-                        <a ng-click="removeActiveStation(activeStation)">X</a>
-                    </div>
-                </div>
-            </div>
-
-
-
             <!-- This is the start of the GTS Panel -->
             <div class="gts-panel" ng-repeat="activeStation in activeStations">
                 <div class="panel small-10 medium-4 large-3 columns left collapse gts-panels">
