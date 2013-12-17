@@ -54,7 +54,7 @@ li{
     width: 45px;
 }
 .userPagePic{
-    border: 5px solid #17A9CC;
+    border: 5px solid #fff;
 }
 .displayName{
     color: #17A9CC;
@@ -64,6 +64,10 @@ li{
 }
 .soon{
     color: #000;
+}
+.gamerProfilePic{
+    border: 5px solid #fff;
+    margin: 10px 0 10px 10px;
 }
 /* NAVIGATION **************
 *****************************************/
@@ -233,6 +237,25 @@ footer i{
 }
 label{
     margin-top: 10px;
+}
+.queue-system h6{
+    margin-top: -10px;
+}
+.check-in{
+    margin-right: 10px;
+    font-weight: bold;
+}
+.queue-remove{
+    font-size: 1.5em;
+    color: red;
+    margin-top: 1px;
+}
+.queue-name{
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.queue-list{
+    margin-top: 12px;
 }
 
 /* GTS PANEL **************

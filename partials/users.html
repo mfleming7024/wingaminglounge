@@ -71,17 +71,17 @@
                         </div>
                     </div>
                     <!-- Staff Tab -->
-                    <div class="content" id="staffTab">
-                        <div data-ng-repeat="user in users | filter:user.userType | filter:staffFilter">
-                            <!-- filter :usertype == staff -->
-                            {{user.displayName}}
-                            <!-- Staff Image -->
-                            <div class="row">
-                                <div class="large-8 medium-5 small-12 columns medium-centered large-centered">
-                                    <img src="{{user.profilePicLarge}}">
+                    <div class="content large-12 medium-12 small-12 small-centered medium-centered large-centered" id="staffTab">
+
+                            <div class="large-6 medium-6 small-6 columns small-centered medium-centered large-centered" data-ng-repeat="user in users | filter:user.userType | filter:staffFilter">
+                                <div>
+                                    <img class="userPagePic" src="{{user.profilePicLarge}}">
+                                </div>
+                                <div>
+                                    <h6>{{user.displayName}}</h6>
                                 </div>
                             </div>
-                        </div>
+
                     </div>
                 </div>
 

@@ -20,7 +20,7 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
                 theUser = user;
 
                 $scope.user = true;
-                $scope.displayName = user.displayName;
+                $rootScope.displayName = user.displayName;
                 $scope.profilePic = "http://graph.facebook.com/" + user.username + "/picture?type=large";
 
                 var urlUser = new Firebase("https://wingaminglounge.firebaseio.com/wingaminglounge/users/"+theUser.id);
