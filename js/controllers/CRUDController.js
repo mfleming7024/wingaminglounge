@@ -86,23 +86,10 @@ crudControllers.controller('stationController', ['$scope', 'angularFireCollectio
                 } else if ($scope.stationInfos.stationTVSerial == "" || $scope.stationInfos.stationTVSerial == null) { //TV's Serial
                     console.log("Please enter a TV Serial");
                 } else {
-                    //adding stations bug
-                    for (var i=1;i<$scope.stations.length+1;i++) {
-                        console.log($scope.stations[i].stationNumber);
-                        if ($scope.stations[i].stationNumber != i) {
-                            $scope.stationInfos.stationNumber = i;
-                            $scope.stations.add($scope.stationInfos);
-                            //$scope.emptyStations.stations.add($scope.stationInfos);
-                            break;
-                        } else if (i == $scope.stations.length) {
-                            $scope.stationInfos.stationNumber = i;
-                            $scope.stations.add($scope.stationInfos);
-                        }
-                    }
-                    /*var stationsLength = $scope.stations.length+1;
+                    var stationsLength = $scope.stations.length+1;
                     $scope.stationInfos.stationNumber = stationsLength;
                     $scope.stations.add($scope.stationInfos);
-                    $scope.emptyStations.add({"stationNumber": stationsLength, "stationSystem": $scope.stationInfos.stationSystem});*/
+                    $scope.emptyStations.add({"stationNumber": stationsLength, "stationSystem": $scope.stationInfos.stationSystem});
                 }
             } //end if else
         }

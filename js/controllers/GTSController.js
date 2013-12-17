@@ -13,7 +13,7 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
             $timeout(wrapper, 5000);
         }    
         
-        var time;
+        var time,alert;
         
         var updateTimer = function(){
             for (var i = $scope.activeStations.length - 1; i >= 0; i--) {
@@ -22,7 +22,7 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
                 
                 if($scope.activeStations[i].displayTime <= 0){ 
                     //throw alert for station time up                   
-                    var alert = {
+                    alert = {
                         "user": $scope.activeStations[i].stationGamer,
                         "stationNumber": $scope.activeStations[i].stationNumber
                     }
