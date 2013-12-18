@@ -176,6 +176,16 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
             $scope.gameChange = true;
         }
         
+        $scope.switchGame = function(tempGame, tempStation){
+           
+            //console.log(tempGame, tempStation);
+            console.log(tempStation.gameArt);
+            var temp = angular.fromJson(angular.toJson(tempGame));
+            console.log(temp);
+            $scope.gameChange = false;
+            //tempStation.gameArt = tempGame.gameArtUrl;
+        }
+        
     }
     $scope.init(); 
 }])
