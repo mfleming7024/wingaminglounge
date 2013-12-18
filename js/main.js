@@ -5,7 +5,13 @@ wingaming.run(['angularFireAuth', '$rootScope', '$route', function(angularFireAu
     angularFireAuth.initialize(url, {scope: $rootScope, name: "fb_user",path: '/'});
     
     $rootScope.$on("$routeChangeStart", function(event, current, previous){
-        $rootScope.shopInit = false;
+/*        console.log(event, current, previous);*/
+        if (current.title == "Gamer Tracking System") {
+            console.log("gts");
+            $rootScope.shopInit = false;
+        } else {
+            $rootScope.shopInit = true;            
+        }
     });
 
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {

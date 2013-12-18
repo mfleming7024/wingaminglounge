@@ -114,9 +114,14 @@
                         <h2>{{activeStation.displayTime}}</h2>
                         <h5>MIN</h5>
                     </div>
+                    <div>
+                        <select style="z-index:0">
+                            <option ng-repeat="game in games">{{game.gameTitle}}</option>
+                        </select>
+                    </div>
                     <div class="station-game right">
                         <img src="{{activeStation.gameArt}}" alt="Game Box Art">
-                        <a class="right" href="#"><i class="fa fa-exchange"></i> </a>
+                        <a class="right" ng-click="changeActiveGame(activeStation)"><i class="fa fa-exchange"></i> </a>
                     </div>
                     <a ng-click="removeActiveStation(activeStation)">X</a>
                 </div>

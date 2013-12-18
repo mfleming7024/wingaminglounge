@@ -36,10 +36,10 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
         var urlActiveStations = new Firebase('https://wingaminglounge.firebaseio.com/wingaminglounge/activeStations'); 
         
         var urlGames = new Firebase("https://wingaminglounge.firebaseio.com/wingaminglounge/games");
-        //var urlUsers = new Firebase("https://wingaminglounge.firebaseio.com/wingaminglounge/users");
+        var urlUsers = new Firebase("https://wingaminglounge.firebaseio.com/wingaminglounge/users");
         
         $scope.games = angularFireCollection(urlGames);
-        //$scope.users = angularFireCollection(urlUsers);
+        $scope.users = angularFireCollection(urlUsers);
         
         var wrapper = function () {
             updateTimer();
@@ -98,6 +98,11 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
             }
             
             $scope.activeStations.add(tempActiveStation);
+        }
+        
+        $scope.changeActiveGame = function(activeStation, gameObj) {
+            console.log(activeStation);
+            console.log(gameObj);
         }
         
         $scope.removeActiveStation = function(station) {
