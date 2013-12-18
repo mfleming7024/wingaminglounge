@@ -4,6 +4,20 @@ crudControllers.controller('gameController', ['$scope', 'angularFireCollection',
 	var urlGames = new Firebase("https://wingaminglounge.firebaseio.com/wingaminglounge/games");
 	//collects the info from the database for use.
 	$scope.games = angularFireCollection(urlGames);
+    
+    var id;
+    $scope.typing = false;
+    //Select Game from search input
+    $scope.selectGame = function(game){
+        $scope.limit = 5;
+        id = game.$id;
+        ref = game.$ref;
+        $scope.gameInfos = angular.fromJson(angular.toJson(game));
+        $scope.gameInfos.$id = id;
+        $scope.gameInfos.$ref = ref;
+        $scope.typing = false;
+    }
+
 	//create a game and adds it to the database
 	$scope.saveGame = function(info) {
         if($scope.selectGames === "New Game"){
@@ -20,25 +34,17 @@ crudControllers.controller('gameController', ['$scope', 'angularFireCollection',
                 } else if ($scope.gameInfos.gameQuantity == "" || $scope.gameInfos.gameQuantity == null) { //Quantity
                     console.log("No game quantity given");
                 } else {
-//                    $scope.games.add($scope.gameInfos); //Adds to Firebase
+                    $scope.games.add($scope.gameInfos); //Adds to Firebase;
+                    console.log('new');
                 }
             } //end if else
             console.log('new game added');
         }else {
-            $scope.games.update($scope.gameInfos.$id);
-            console.log('update game ', info);
+            $scope.games.update($scope.gameInfos);
         }
 
 	} //end addGame
 
-    $scope.typing = false;
-    //Select Game from search input
-    $scope.selectGame = function(title){
-        $scope.limit = 5;
-//        $scope.gameInfos = angular.fromJson(angular.toJson($scope.games[title]));
-        $scope.gameInfos = $scope.games[title];
-        $scope.typing = false;
-    }
 
     //removes from firebase
     $scope.deleteGame = function(game){
