@@ -1,16 +1,29 @@
 wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFireCollection', 'angularFireAuth','angularFire','$timeout','$rootScope', function mtCtrl($scope, $routeParams, $location, angularFireCollection, angularFireAuth,angularFire,$timeout,$rootScope){
     
     $rootScope.gameTitleasdf;
-    $rootScope.userName;
+    $rootScope.stationGamerasdf;
+    
     //Testing Integrating the Auto complete functionality
     $scope.gameTyping = false;
+    $scope.userTyping = false;
+    $scope.limit = 5;
+    
     //Select Game from search input
     $scope.selectGame = function(game){
-        $scope.limit = 5;
         $scope.gameInfos = angular.fromJson(angular.toJson(game));
         $rootScope.gameTitleasdf = $scope.gameInfos.gameArtUrl;
         $scope.gameTyping = false;
     }
+    
+    //Filter user search and select to input
+    $scope.selectUser = function (gamer) {
+        $scope.userInfos = angular.fromJson(angular.toJson(gamer));
+        $rootScope.stationGamerasdf = $scope.userInfos.displayName;
+        $scope.userTyping = false;
+        
+    };
+    
+    //select user
     
     
     
@@ -70,21 +83,21 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
         //create a active station and adds it to the database
         $scope.addActiveStation = function(tempActiveStation){                
             //Select system by whatever system the chosen game supports?
-            tempActiveStation.stationGamer="Michael";
+            tempActiveStation.stationGamer= $rootScope.stationGamerasdf;
             tempActiveStation.gameArt = $rootScope.gameTitleasdf;
-            tempActiveStation.countdown = "2";
             tempActiveStation.startTime = new Date().getTime();
+            tempActiveStation.countdown = "2";
             console.log(tempActiveStation);
             
             //Removes from empty by station number
-            /*for (var i = 0; i < $scope.emptyStations.length; i++) {
+            for (var i = 0; i < $scope.emptyStations.length; i++) {
                 if ($scope.emptyStations[i].stationNumber == tempActiveStation.stationNumber) {
                     $scope.emptyStations.remove($scope.emptyStations[i].$id);
                     tempActiveStation.stationSystem = $scope.emptyStations[i].stationSystem;
                 }
             }
             
-            $scope.activeStations.add(tempActiveStation);*/
+            $scope.activeStations.add(tempActiveStation);
         }
         
         $scope.removeActiveStation = function(station) {

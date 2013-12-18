@@ -24,8 +24,8 @@
                     <div class="row">
                         <div>
                             <label>Search User</label>
-                            <input type="text" autocomplete="off" placeholder="Search User" ng-model="userInfos.displayName" ng-change="typing=true" required>
-                            <!--<ul ng-show="typing">
+                            <input type="text" autocomplete="off" placeholder="Search User" ng-model="userInfos.displayName" ng-change="userTyping=true" required>
+                            <ul ng-show="userTyping">
                                 <li ng-repeat="user in users | filter:userInfos.displayName | limitTo:limit | orderBy:'displayName'">
                                     <a ng-click="selectUser(user)">
                                         <div class="searchOutcome large-12 columns">
@@ -34,7 +34,7 @@
                                         </div>
                                     </a>
                                 </li>
-                            </ul>-->
+                            </ul>
                         </div>
                     </div>
                     <!-- Select Game to play -->
