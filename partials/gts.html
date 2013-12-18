@@ -86,7 +86,7 @@
                     <div class="row">
                         <div class="queue-list" ng-repeat="queuedPlayer in playerQueue | limitTo:limit">
                             <div class="large-12 columns">
-                                
+
                                 <h6 class="queue-name left">{{queuedPlayer.playerName}}</h6>
                                 <a class="queue-remove right" ng-click="removeFromQueue(queuedPlayer.$id)">&#215;</a>
                                 <h6 class="check-in right">{{queuedPlayer.checkedIn}}</h6>
@@ -116,11 +116,7 @@
                     </div>
                     <div ng-show="gameChange">
                         <select ng-change="switchGame(switchedGame, activeStation)" ng-model="switchedGame">
-<<<<<<< HEAD
-                            <option value="{{game}}" ng-repeat="game in games">{{game.gameTitle}}</option>
-=======
                             <option value={{game.gameArtUrl}} ng-repeat="game in games">{{game.gameTitle}}</option>
->>>>>>> 57770a1a050fded7c904a3b57c73e2b2563eeb38
                         </select>
                     </div>
                     <div class="station-game right" ng-hide="gameChange">
@@ -149,18 +145,18 @@
 <div id="add-to-waiting-list" class="reveal-modal small" data-reveal>
     <form class="large-8 small-12 large-centered columns">
         <div ng-controller="Login">
-        <label>Search User</label>
-        <input type="text" autocomplete="off" placeholder="Search User" ng-model="userInfos.displayName" ng-change="typing=true" required>
-        <ul ng-show="typing">
-        <li ng-repeat="user in users | filter:userInfos.displayName | limitTo:limit">
-        <a ng-click="selectUser(user)">
-        <div class="searchOutcome large-12 columns">
-        <h6 class="left inline-list">{{user.displayName}}</h6>
-        <img class="searchImg right" src="{{user.profilePic}}">
-        </div>
-        </a>
-        </li>
-        </ul>
+            <label>Search User</label>
+            <input type="text" autocomplete="off" placeholder="Search User" ng-model="userInfos.displayName" ng-change="typing=true" required>
+            <ul ng-show="typing">
+                <li ng-repeat="user in users | filter:userInfos.displayName | limitTo:limit">
+                    <a ng-click="selectUser(user)">
+                        <div class="searchOutcome large-12 columns">
+                            <h6 class="left inline-list">{{user.displayName}}</h6>
+                            <img class="searchImg right" src="{{user.profilePic}}">
+                        </div>
+                    </a>
+                </li>
+            </ul>
         </div>
         <input type="text" ng-model="tempPlayer.playerName" placeholder="Player Name">
         <label>System</label>
