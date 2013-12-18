@@ -27,8 +27,9 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
 
                 $rootScope.user = {};
 
-                angularFire(urlUser, $rootScope, 'user').then(function()
+                angularFire(urlUser, $rootScope, 'user').then(function(dis)
                 {
+
                     if (Object.keys($rootScope.user).length === 0) {
                         console.log("User does not exist, adding " + theUser.email + " to the database.");
 
@@ -49,6 +50,8 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
                             $scope.desktopStatement = true_desktop_statement;
                         };//end usertype loop
                     };//end else
+
+                    dis();
 
                     /*console.log($scope.users);*/
                 });//end angularFire

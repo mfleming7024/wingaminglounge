@@ -38,7 +38,7 @@
                         </div>
                     </div>
                     <!-- Select Game to play -->
-                    <div class="row" ng-controller="GTS">
+                    <div class="row">
                         <div>
                             <label>Select Game</label>
                             <input type="text" autocomplete="off" placeholder="Search Or Add Game" ng-model="gameInfos.gameTitle" ng-change="typing=true" required>
@@ -140,20 +140,20 @@
 <!-- Add to waiting list modal -->
 <div id="add-to-waiting-list" class="reveal-modal small" data-reveal>
     <form class="large-8 small-12 large-centered columns">
-        <!--<div ng-controller="Login">-->
-        <!--<label>Search User</label>-->
-        <!--<input type="text" autocomplete="off" placeholder="Search User" ng-model="userInfos.displayName" ng-change="typing=true" required>-->
-        <!--<ul ng-show="typing">-->
-        <!--<li ng-repeat="user in users | filter:userInfos.displayName | limitTo:limit">-->
-        <!--<a ng-click="selectUser(user)">-->
-        <!--<div class="searchOutcome large-12 columns">-->
-        <!--<h6 class="left inline-list">{{user.displayName}}</h6>-->
-        <!--<img class="searchImg right" src="{{user.profilePic}}">-->
-        <!--</div>-->
-        <!--</a>-->
-        <!--</li>-->
-        <!--</ul>-->
-        <!--</div>-->
+        <div ng-controller="Login">
+        <label>Search User</label>
+        <input type="text" autocomplete="off" placeholder="Search User" ng-model="userInfos.displayName" ng-change="typing=true" required>
+        <ul ng-show="typing">
+        <li ng-repeat="user in users | filter:userInfos.displayName | limitTo:limit">
+        <a ng-click="selectUser(user)">
+        <div class="searchOutcome large-12 columns">
+        <h6 class="left inline-list">{{user.displayName}}</h6>
+        <img class="searchImg right" src="{{user.profilePic}}">
+        </div>
+        </a>
+        </li>
+        </ul>
+        </div>
         <input type="text" ng-model="tempPlayer.playerName" placeholder="Player Name">
         <label>System</label>
         <select ng-model="tempPlayer.systemPreference">

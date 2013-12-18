@@ -28,8 +28,8 @@
         </nav>
 
         <!-- left Off canvas mobile main navigation -->
-        <aside class="left-off-canvas-menu">
-            <div class="small-8 columns">
+        <aside class="left-off-canvas-menu" ng-controller="Login">
+            <div class="small-8 columns" ng-show="user" >
                 <img class="mobile-pic" src="{{profilePic}}">
                 <h6 class="displayName">{{displayName}}</h6>
             </div>
@@ -115,26 +115,26 @@
 		<div id="container" ng-view="">
 		</div>
 		
-        <!-- footer section -->
-        <footer>
-            <div class="row">
-                <div class="socials left">
-                    <i class="fa fa-facebook-square"></i>
-                    <i class="fa fa-google-plus-square"></i>
-                    <i class="fa fa-twitter-square"></i>
-                </div>
-                <div class="div-footer-logo right">
-                    <!--<p class="hide-for-small">&copy; 2013 Win Gaming Lounge</p>-->
-                    <a href="#/" class="footer-logo"><img src="img/logo.png"></a>
-                </div>
-            </div>
-        </footer>
+
 
         <!-- close the off-canvas menu -->
         <a class="exit-off-canvas"></a>
 
     </div><!-- end .inner-wrap -->
-</div> <!-- end .off-canvas-wrap -->
+</div> <!-- end .off-canvas-wrap --><!-- footer section -->
+<footer>
+    <div class="row">
+        <div class="socials left">
+            <i class="fa fa-facebook-square"></i>
+            <i class="fa fa-google-plus-square"></i>
+            <i class="fa fa-twitter-square"></i>
+        </div>
+        <div class="div-footer-logo right">
+            <!--<p class="hide-for-small">&copy; 2013 Win Gaming Lounge</p>-->
+            <a href="#/" class="footer-logo"><img src="img/logo.png"></a>
+        </div>
+    </div>
+</footer>
 
 <script src="js/jquery.js"></script>
 <script src="js/foundation.min.js"></script>
