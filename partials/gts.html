@@ -116,7 +116,11 @@
                     </div>
                     <div ng-show="gameChange">
                         <select ng-change="switchGame(switchedGame, activeStation)" ng-model="switchedGame">
+<<<<<<< HEAD
                             <option value="{{game}}" ng-repeat="game in games">{{game.gameTitle}}</option>
+=======
+                            <option value={{game.gameArtUrl}} ng-repeat="game in games">{{game.gameTitle}}</option>
+>>>>>>> 57770a1a050fded7c904a3b57c73e2b2563eeb38
                         </select>
                     </div>
                     <div class="station-game right" ng-hide="gameChange">
