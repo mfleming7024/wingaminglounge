@@ -1,5 +1,32 @@
 wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFireCollection', 'angularFireAuth','angularFire','$timeout','$rootScope', function mtCtrl($scope, $routeParams, $location, angularFireCollection, angularFireAuth,angularFire,$timeout,$rootScope){
-
+    
+    $rootScope.gameTitleasdf;
+    $rootScope.stationGamerasdf;
+    
+    //Testing Integrating the Auto complete functionality
+    $scope.gameTyping = false;
+    $scope.userTyping = false;
+    $scope.limit = 5;
+    
+    //Select Game from search input
+    $scope.selectGame = function(game){
+        $scope.gameInfos = angular.fromJson(angular.toJson(game));
+        $rootScope.gameTitleasdf = $scope.gameInfos.gameArtUrl;
+        $scope.gameTyping = false;
+    }
+    
+    //Filter user search and select to input
+    $scope.selectUser = function (gamer) {
+        $scope.userInfos = angular.fromJson(angular.toJson(gamer));
+        $rootScope.stationGamerasdf = $scope.userInfos.displayName;
+        $scope.userTyping = false;
+        
+    };
+    
+    //select user
+    
+    
+    
     $scope.init=function() {
         if ($rootScope.shopInit==true) return;
         $rootScope.shopInit=true;
@@ -13,17 +40,6 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
         
         $scope.games = angularFireCollection(urlGames);
         //$scope.users = angularFireCollection(urlUsers);
-        
-        //Testing Integrating the Auto complete functionality
-        $scope.typing = false;
-        //Select Game from search input
-        $scope.selectGame = function(game){
-            $scope.limit = 5;
-            $scope.gameInfos = angular.fromJson(angular.toJson(game));
-            console.log($scope.gameInfos);
-            $scope.typing = false;
-        }
-        
         
         var wrapper = function () {
             updateTimer();
@@ -67,11 +83,10 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
         //create a active station and adds it to the database
         $scope.addActiveStation = function(tempActiveStation){                
             //Select system by whatever system the chosen game supports?
-            tempActiveStation.stationGamer="Michael";
-            /*tempActiveStation.stationGamer=$scope.;*/
-            tempActiveStation.countdown = "2";
-            tempActiveStation.gameArt = "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTKa1lpNVTPQotsxG6bexIrU4Dm9jfH1oxrmC0GrOiVVu_rqwSEhA";
+            tempActiveStation.stationGamer= $rootScope.stationGamerasdf;
+            tempActiveStation.gameArt = $rootScope.gameTitleasdf;
             tempActiveStation.startTime = new Date().getTime();
+            tempActiveStation.countdown = "2";
             console.log(tempActiveStation);
             
             //Removes from empty by station number
