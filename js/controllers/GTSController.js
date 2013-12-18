@@ -169,7 +169,12 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
         
         $scope.removeFromQueue = function(playerID) {
             $scope.playerQueue.remove(playerID);
-        }        
+        }
+        
+        /*******************************************Change Game************************************************************/
+        $scope.showGameChange = function(){
+            $scope.gameChange = true;
+        }
         
     }
     $scope.init(); 
