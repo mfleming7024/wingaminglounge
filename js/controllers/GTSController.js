@@ -7,13 +7,23 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
         //Actual code    
         //************************************Active stations database***************************************************
         var urlActiveStations = new Firebase('https://wingaminglounge.firebaseio.com/wingaminglounge/activeStations'); 
-        /*
+        
         var urlGames = new Firebase("https://wingaminglounge.firebaseio.com/wingaminglounge/games");
-        var urlUsers = new Firebase("https://wingaminglounge.firebaseio.com/wingaminglounge/users");
+        //var urlUsers = new Firebase("https://wingaminglounge.firebaseio.com/wingaminglounge/users");
         
         $scope.games = angularFireCollection(urlGames);
-        $scope.users = angularFireCollection(urlUsers);
-        */
+        //$scope.users = angularFireCollection(urlUsers);
+        
+        //Testing Integrating the Auto complete functionality
+        $scope.typing = false;
+        //Select Game from search input
+        $scope.selectGame = function(game){
+            $scope.limit = 5;
+            $scope.gameInfos = angular.fromJson(angular.toJson(game));
+            console.log($scope.gameInfos);
+            $scope.typing = false;
+        }
+        
         
         var wrapper = function () {
             updateTimer();
@@ -58,6 +68,7 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
         $scope.addActiveStation = function(tempActiveStation){                
             //Select system by whatever system the chosen game supports?
             tempActiveStation.stationGamer="Michael";
+            /*tempActiveStation.stationGamer=$scope.;*/
             tempActiveStation.countdown = "2";
             tempActiveStation.gameArt = "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTKa1lpNVTPQotsxG6bexIrU4Dm9jfH1oxrmC0GrOiVVu_rqwSEhA";
             tempActiveStation.startTime = new Date().getTime();
@@ -138,7 +149,7 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
         
         $scope.removeFromQueue = function(playerID) {
             $scope.playerQueue.remove(playerID);
-        }
+        }        
         
     }
     $scope.init(); 

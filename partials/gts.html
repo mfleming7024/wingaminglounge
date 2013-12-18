@@ -22,10 +22,10 @@
                     </div>
                     <!-- Search Gamer Name -->
                     <div class="row">
-                        <div ng-controller="Login">
+                        <div>
                             <label>Search User</label>
                             <input type="text" autocomplete="off" placeholder="Search User" ng-model="userInfos.displayName" ng-change="typing=true" required>
-                            <ul ng-show="typing">
+                            <!--<ul ng-show="typing">
                                 <li ng-repeat="user in users | filter:userInfos.displayName | limitTo:limit | orderBy:'displayName'">
                                     <a ng-click="selectUser(user)">
                                         <div class="searchOutcome large-12 columns">
@@ -34,12 +34,12 @@
                                         </div>
                                     </a>
                                 </li>
-                            </ul>
+                            </ul>-->
                         </div>
                     </div>
                     <!-- Select Game to play -->
-                    <div class="row">
-                        <div ng-controller="gameController">
+                    <div class="row" ng-controller="GTS">
+                        <div>
                             <label>Select Game</label>
                             <input type="text" autocomplete="off" placeholder="Search Or Add Game" ng-model="gameInfos.gameTitle" ng-change="typing=true" required>
                             <ul ng-show="typing">
@@ -52,6 +52,7 @@
                                     </a>
                                 </li>
                             </ul>
+                            {{gameInfos}}
                         </div>
                     </div>
                     <!-- select time -->
@@ -100,15 +101,6 @@
                 </div>
 
             </div>
-            <!--<select ng-model="tempStation.stationNumber" style="margin-bottom: 10px">-->
-            <!--<option ng-repeat="emptyStation in emptyStations">{{emptyStation.stationNumber}}</option>-->
-            <!--</select>-->
-            <!--<input type="text" ng-model="tempStation.stationGamer" placeholder="Player Name" />-->
-            <!--<input type="text" ng-model="tempStation.gameArt" placeholder="Game Name (maybe filter by system from game object?)" />-->
-            <!--<select ng-model="tempStation.countdown">-->
-            <!--<option>30</option>-->
-            <!--<option>60</option>-->
-            <!--</select>-->
             <div class="gts-hr"><hr /> </div>
         </div>
         <!-- GTS -->
