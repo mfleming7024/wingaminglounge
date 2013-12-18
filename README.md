@@ -14,10 +14,6 @@ Installation Instructions:
 
 After downloading the zip file, put it in the root directory of your htdocs folder. Boot up MAMP and navigate to the wingaminglounge folder (or whatever you named the downloaded zip file). You will now arrive at the index page and have the ability to log in with facebook. Up in the top right corner you can click the facebook login which will automatically add you to our database of users but when it does it automatically adds you with "Gamer" priviledges so in order for you to access the full functionality of the site you would have to either request that an admin change your usertype in our database or if you have access to it yourself then you can change yourself
 
-Known Bugs:
-
-Every once in a while (like 1/100 times) a flaw in logic causes the usertype to be changed to "gamer" from "admin" and it ends up restricting access mid-application. You can just change yourself back to admin and it will work perfectly again.
-
 Team Members
 -------------------
 

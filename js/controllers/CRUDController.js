@@ -61,8 +61,14 @@ crudControllers.controller('stationController', ['$scope', 'angularFireCollectio
 	//collects the info from the database for use.
 	$scope.stations = angularFireCollection(urlStations);
 	$scope.emptyStations = angularFireCollection(urlEmptyStations);
-
+    
+    
     $scope.addStation = function() {
+        
+        var stationLength = $scope.stations.length;
+        $scope.stationInfos.stationNumber = stationLength;
+        console.log($scope.stationInfos);
+        /*$scope.stations.add($scope.stationInfos);
         for (var i=1;i<$scope.stations.length+1;i++) {
             console.log($scope.stations[i].stationNumber);
             if ($scope.stations[i].stationNumber != i) {
@@ -74,7 +80,7 @@ crudControllers.controller('stationController', ['$scope', 'angularFireCollectio
                 $scope.stationInfos.stationNumber = i+1;
                 $scope.stations.add($scope.stationInfos);
             }
-        }
+        }*/
     }
 
     //When save button is clicked this function will run
@@ -100,8 +106,9 @@ crudControllers.controller('stationController', ['$scope', 'angularFireCollectio
             } //end if else
         }
         else if(typeof $scope.selectStations !== 'undefined')
-        {   //If not new station, form will validate instead.
-           $scope.stations.update($scope.stationInfos.$id);
+        {   
+            //If not new station, form will validate instead.
+            $scope.stations.update($scope.stationInfos.$id);
         }
 
     }
