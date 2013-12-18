@@ -4,7 +4,7 @@ crudControllers.controller('gameController', ['$scope', 'angularFireCollection',
 	var urlGames = new Firebase("https://wingaminglounge.firebaseio.com/wingaminglounge/games");
 	//collects the info from the database for use.
 	$scope.games = angularFireCollection(urlGames);
-    
+
     var id;
     $scope.typing = false;
     //Select Game from search input

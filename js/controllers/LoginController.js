@@ -74,13 +74,20 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
 
     }
 
+    var id;
+
     $scope.typing = false;
     //Filter user search and select to input
     $scope.limit = 5;
     $scope.selectUser = function (gamer) {
-
+        id = gamer.$id;
+        ref = gamer.$ref;
         $scope.userInfos = angular.fromJson(angular.toJson(gamer));
+        $scope.userInfos.$id = id;
+        $scope.userInfos.$ref = ref;
         $scope.typing = false;
+
+        console.log(id);
 
     };
     //Filter user types for staff
@@ -91,6 +98,7 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
 
     $scope.updatePermission = function(info){
         console.log(info);
+        $scope.users.update($scope.userInfos);
 //        $scope.users.update(info);
 
 //         $rootScope.userInfos = $scope.users[info];
