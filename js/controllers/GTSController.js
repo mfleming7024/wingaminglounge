@@ -91,6 +91,7 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
             tempActiveStation.stationGamer= $rootScope.stationGamerasdf;
             tempActiveStation.gameArt = $rootScope.gameTitleasdf;
             tempActiveStation.startTime = new Date().getTime();
+            tempActiveStation.countdown = '2';
             
             //When adding to active it loops through the empty stations and finds that
             //corresponding station and removes it so it only shows in activeStations

@@ -32,7 +32,7 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
                 //sets the user object into the rootscope
                 $rootScope.user = {};
 
-                angularFire(urlUser, $rootScope, 'user').then(function(dis)
+                angularFire(urlUser, $rootScope, 'user').then(function()
                 {
                     //if nothing is returned in the object then it adds to the database with profile pictures
                     if (Object.keys($rootScope.user).length === 0) {
@@ -55,7 +55,7 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
                             $scope.desktopStatement = true_desktop_statement;
                         };//end usertype loop
                     };//end else
-                    dis();
+                    //dis();
                 });//end angularFire
             } else {
                 console.log("Login other then the facebook service");
