@@ -32,7 +32,7 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
                 //sets the user object into the rootscope
                 $rootScope.user = {};
 
-                angularFire(urlUser, $rootScope, 'user').then(function(dis)
+                angularFire(urlUser, $rootScope, 'user').then(function()
                 {
                     //if nothing is returned in the object then it adds to the database with profile pictures
                     if (Object.keys($rootScope.user).length === 0) {
@@ -41,7 +41,11 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
                         var picurl = "http://graph.facebook.com/" + theUser.username + "/picture?type=small";
                         var picurlLarge = "http://graph.facebook.com/" + theUser.username + "/picture?type=large";
 
-                        $rootScope.user = {"displayName": theUser.name, "email": theUser.email, "profilePic": picurl, "profilePicLarge": picurlLarge, "userType": "Gamer","id": theUser.id};
+                        $rootScope.user = {"displayName": theUser.name, "email": theUser.email, "profilePic": picurl, "profilePicLarge": picurlLarge, "userType": "Admin","id": theUser.id};
+                        
+                        $scope.userType = true;
+                        $scope.mobileStatement = true_mobile_statement;
+                        $scope.desktopStatement = true_desktop_statement;
                         
                         $location.path('/game_page');
 
@@ -55,7 +59,7 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
                             $scope.desktopStatement = true_desktop_statement;
                         };//end usertype loop
                     };//end else
-                    dis();
+                    //dis();
                 });//end angularFire
             } else {
                 console.log("Login other then the facebook service");
