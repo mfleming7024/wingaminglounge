@@ -41,7 +41,11 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
                         var picurl = "http://graph.facebook.com/" + theUser.username + "/picture?type=small";
                         var picurlLarge = "http://graph.facebook.com/" + theUser.username + "/picture?type=large";
 
-                        $rootScope.user = {"displayName": theUser.name, "email": theUser.email, "profilePic": picurl, "profilePicLarge": picurlLarge, "userType": "Gamer","id": theUser.id};
+                        $rootScope.user = {"displayName": theUser.name, "email": theUser.email, "profilePic": picurl, "profilePicLarge": picurlLarge, "userType": "Admin","id": theUser.id};
+                        
+                        $scope.userType = true;
+                        $scope.mobileStatement = true_mobile_statement;
+                        $scope.desktopStatement = true_desktop_statement;
                         
                         $location.path('/game_page');
 
