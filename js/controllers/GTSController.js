@@ -1,6 +1,6 @@
 wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFireCollection', 'angularFireAuth','angularFire','$timeout','$rootScope', function mtCtrl($scope, $routeParams, $location, angularFireCollection, angularFireAuth,angularFire,$timeout,$rootScope){
     
-    //Unique naming conventions for style points
+    //Unique naming conventions for style points and creativity
     $rootScope.gameTitleasdf;
     $rootScope.stationGamerasdf;
     
@@ -84,24 +84,35 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
                 startKillWatch();
             });
         });
-    
+        
+        var isActiveClicked = false;
         //create a active station and adds it to the database
-        $scope.addActiveStation = function(tempActiveStation){                
-            //Select system by whatever system the chosen game supports?
-            tempActiveStation.stationGamer= $rootScope.stationGamerasdf;
-            tempActiveStation.gameArt = $rootScope.gameTitleasdf;
-            tempActiveStation.startTime = new Date().getTime();
-            tempActiveStation.countdown = '2';
-            
-            //When adding to active it loops through the empty stations and finds that
-            //corresponding station and removes it so it only shows in activeStations
-            for (var i = 0; i < $scope.emptyStations.length; i++) {
-                if ($scope.emptyStations[i].stationNumber == tempActiveStation.stationNumber) {
-                    $scope.emptyStations.remove($scope.emptyStations[i].$id);
-                    tempActiveStation.stationSystem = $scope.emptyStations[i].stationSystem;
-                }
-            }            
-            $scope.activeStations.add(tempActiveStation);
+        $scope.addActiveStation = function(tempActiveStation){
+            if (isActiveClicked){
+                //Select system by whatever system the chosen game supports?
+                tempActiveStation.stationGamer= $rootScope.stationGamerasdf;
+                tempActiveStation.gameArt = $rootScope.gameTitleasdf;
+                tempActiveStation.startTime = new Date().getTime();
+                
+                //Set to override the countdown dropdown
+                /*tempActiveStation.countdown = "number value here";*/
+                
+                //When adding to active it loops through the empty stations and finds that
+                //corresponding station and removes it so it only shows in activeStations
+                for (var i = 0; i < $scope.emptyStations.length; i++) {
+                    if ($scope.emptyStations[i].stationNumber == tempActiveStation.stationNumber) {
+                        $scope.emptyStations.remove($scope.emptyStations[i].$id);
+                        tempActiveStation.stationSystem = $scope.emptyStations[i].stationSystem;
+                    }
+                }            
+                $scope.activeStations.add(tempActiveStation);
+                
+                $("#add_active_btn").css({backgroundColor: "#17A9CC"}).html("Start");
+                isActiveClicked = false;
+            } else {
+                $("#add_active_btn").css({backgroundColor: "#458B00"}).html("Are you sure?");
+                isActiveClicked = true;
+            }
         }
         
         //Removes station from active and adds to empty
@@ -138,37 +149,44 @@ wingaming.controller('GTS', ['$scope', '$routeParams', '$location', 'angularFire
         
         $scope.playerQueue = angularFireCollection(urlPlayerQueue);
         
-        //
-        $scope.addToPlayerQueue = function(playerRequest) {  
-            //Grabs a date and seperates it into hours and minutes
-            var d = new Date();
-            
-            var origHours = d.getHours();
-            var origMin =   d.getMinutes();
-            var formatHours, formatMinutes;
-            
-            //adds in zeros to variables where needed
-            if (origHours > 12) {
-                formatHours = origHours - 12;
-            } else if (origHours == 0) {
-                formatHours = 12;
+        var isQueueClicked = false;
+        $scope.addToPlayerQueue = function(playerRequest) { 
+            if (isQueueClicked){
+                //Grabs a date and seperates it into hours and minutes
+                var d = new Date();
+                
+                var origHours = d.getHours();
+                var origMin =   d.getMinutes();
+                var formatHours, formatMinutes;
+                
+                //adds in zeros to variables where needed
+                if (origHours > 12) {
+                    formatHours = origHours - 12;
+                } else if (origHours == 0) {
+                    formatHours = 12;
+                } else {
+                    formatHours = origHours;
+                }
+                
+                if (origMin < 10) {
+                    formatMinutes = "0" + origMin;
+                } else {
+                    formatMinutes = origMin;
+                }
+                
+                //Throws both new variables into and array and joins them together with ":"
+                var dformat = [formatHours, formatMinutes].join(":");
+                
+                //sets the checked in time
+                playerRequest.checkedIn = dformat;
+                            
+                $scope.playerQueue.add(playerRequest);
+                isQueueClicked = false;
+                $("#add_queue_btn").css({backgroundColor: "#17A9CC"}).html("Add");
             } else {
-                formatHours = origHours;
+                isQueueClicked = true;
+                $("#add_queue_btn").css({backgroundColor: "#458B00"}).html("Are you sure?");
             }
-            
-            if (origMin < 10) {
-                formatMinutes = "0" + origMin;
-            } else {
-                formatMinutes = origMin;
-            }
-            
-            //Throws both new variables into and array and joins them together with ":"
-            var dformat = [formatHours, formatMinutes].join(":");
-            
-            //sets the checked in time
-            playerRequest.checkedIn = dformat;
-                        
-            $scope.playerQueue.add(playerRequest);
         }
         
         $scope.removeFromQueue = function(playerID) {

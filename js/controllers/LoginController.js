@@ -105,8 +105,16 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
         return (staff.userType == 'Admin' || staff.userType == 'Staff');
     }
     
+    var isUserClicked = false;
     $scope.updatePermission = function(info){
-        $scope.users.update($scope.userInfos);
+        if (isUserClicked) {
+            $scope.users.update($scope.userInfos);
+            $("#add_user_btn").css({backgroundColor: "#17A9CC"}).html("Save");
+            isUserClicked = false;
+        } else {
+            $("#add_user_btn").css({backgroundColor: "#458B00"}).html("Are you sure?"); 
+            isUserClicked = true;
+        } 
     }
     //runs the init function
     $scope.init();

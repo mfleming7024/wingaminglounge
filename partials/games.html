@@ -16,7 +16,7 @@
                 <div class="row">
                     <div class="large-8 medium-5 small-12 columns medium-centered large-centered">
                         <label>Games</label>
-                        <select id="one" class="page-select" ng-model="selectGames" ng-change="selectGame(index)">
+                        <select id="one" class="page-select" ng-model="selectGames" ng-change="selectGame(game)">
                             <option value="" disabled selected>Select An Option</option>
                             <option class="one" value="New Game" selected>New</option>
                             <option ng-repeat="(index,game) in games | orderBy:'gameTitle'">{{game.gameTitle}}({{game.gameSystem}})</option>
@@ -91,8 +91,8 @@
                 <!-- Form Buttons Save/Delete -->
                 <div class="row">
                     <div class="large-8 medium-5 small-12 columns medium-centered large-centered">
-                        <button class="add-button form-buttons large-12 medium-12 small-12" ng-disabled="form.$invalid" ng-click="saveGame()">Save</button>
-                        <button class="delete-button form-buttons large-12 medium-12 small-12" ng-click="deleteGame(gameInfos)">Delete</button>
+                        <button id="add_game_btn" class="add-button form-buttons large-12 medium-12 small-12" ng-disabled="form.$invalid" ng-click="saveGame()">Save</button>
+                        <button id="delete_game_btn" class="delete-button form-buttons large-12 medium-12 small-12" ng-click="deleteGame(gameInfos)">Delete</button>
                     </div>
                 </div>
             </form>

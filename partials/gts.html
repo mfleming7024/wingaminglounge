@@ -66,7 +66,7 @@
                     </div>
                     <div class="row">
                         <div>
-                            <button class="large-12 medium-12 small-12 columns large-centered medium-centered">Start</button>
+                            <button id="add_active_btn" class="large-12 medium-12 small-12 columns large-centered medium-centered">Start</button>
                         </div>
                     </div>
                 </form>
@@ -86,7 +86,6 @@
                     <div class="row">
                         <div class="queue-list" ng-repeat="queuedPlayer in playerQueue | limitTo:limit">
                             <div class="large-12 columns">
-
                                 <h6 class="queue-name left">{{queuedPlayer.playerName}}</h6>
                                 <a class="queue-remove right" ng-click="removeFromQueue(queuedPlayer.$id)">&#215;</a>
                                 <h6 class="check-in right">{{queuedPlayer.checkedIn}}</h6>
@@ -144,15 +143,15 @@
 <!-- Add to waiting list modal -->
 <div id="add-to-waiting-list" class="reveal-modal small" data-reveal>
     <form class="large-8 small-12 large-centered columns">
-        <input type="text" ng-model="tempPlayer.playerName" placeholder="Player Name">
+        <input type="text" ng-model="tempPlayer.playerName" placeholder="Player Name" required>
         <label>System</label>
-        <select ng-model="tempPlayer.systemPreference">
+        <select ng-model="tempPlayer.systemPreference" required>
             <option>Playstation 4</option>
             <option>Playstation 3</option>
             <option>Xbox One</option>
             <option>Wii U</option>
         </select>
-        <a ng-click="addToPlayerQueue(tempPlayer)" class="button large-12 small-12 button-form">Add</a>
+        <a id="add_queue_btn" ng-click="addToPlayerQueue(tempPlayer)" class="button large-12 small-12 button-form">Add</a>
     </form>
     <a class="close-reveal-modal">&#215;</a>
 </div>
