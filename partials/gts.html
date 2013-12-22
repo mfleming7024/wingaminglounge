@@ -118,12 +118,12 @@
                             <option value={{game.gameArtUrl}} ng-repeat="game in games | orderBy:'gameTitle'">{{game.gameTitle}}</option>
                         </select>
                     </div>
+                    <div class="gamer-cancel">
+                        <a class="right" ng-click="removeActiveStation(activeStation)">X</a>
+                    </div>
                     <div class="station-game right" ng-hide="gameChange">
                         <img src="{{activeStation.gameArt}}" alt="Game Box Art">
                         <a class="right" ng-click="showGameChange()"><i class="fa fa-exchange"></i> </a>
-                    </div>
-                    <div class="gamer-cancel">
-                        <a class="right" ng-click="removeActiveStation(activeStation)">X</a>
                     </div>
                 </div>
             </div> <!-- end .gts-panel -->
