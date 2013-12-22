@@ -101,11 +101,11 @@
             </div>
             <div class="gts-hr"><hr /> </div>
         </div>
-        <!-- GTS -->
-        <div class="gts">
+
+        <div class="gts large-12 columns">
             <!-- This is the start of the GTS Panel -->
-            <div class="gts-panel" ng-repeat="activeStation in activeStations | orderBy:'stationNumber'">
-                <div class="panel small-10 medium-5 large-3 columns left collapse gts-panels">
+            <div class="gts-panel small-12 medium-6 large-4 columns left" ng-repeat="activeStation in activeStations | orderBy:'stationNumber'">
+                <div class="panel small-12 medium-12 large-12 columns left collapse gts-panels">
                     <div class="station-number left" ng-hide="gameChange">
                         <h2>{{activeStation.stationNumber}}</h2>
                     </div>
@@ -122,13 +122,15 @@
                         <img src="{{activeStation.gameArt}}" alt="Game Box Art">
                         <a class="right" ng-click="showGameChange()"><i class="fa fa-exchange"></i> </a>
                     </div>
-                    <a ng-click="removeActiveStation(activeStation)">X</a>
+                    <div class="gamer-cancel">
+                        <a class="right" ng-click="removeActiveStation(activeStation)">X</a>
+                    </div>
                 </div>
             </div> <!-- end .gts-panel -->
 
             <!-- Available Station -->
-            <div class="gts-panel" ng-repeat="emptyStation in emptyStations | orderBy:'stationNumber'">
-                <div class="panel small-10 medium-5 large-3 columns left collapse gts-panels">
+            <div class="gts-panel small-12 medium-6 large-4 columns left" ng-repeat="emptyStation in emptyStations | orderBy:'stationNumber'">
+                <div class="panel small-12 medium-12 large-12 columns left collapse empty-panels">
                     <div class="station-number left" ng-model="gamer">
                         <h2>{{emptyStation.stationNumber}}</h2>
                     </div>

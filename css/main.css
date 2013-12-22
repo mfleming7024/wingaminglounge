@@ -274,27 +274,27 @@ label{
 *****************************************/
 .gts-panels{
     height: 60px!important;
-
     border-color: #17A9CC;
     background-image: -o-linear-gradient(bottom, #17A9CC 0%, #0085A6 100%);
     background-image: -moz-linear-gradient(bottom, #17A9CC 0%, #0085A6 100%);
     background-image: -webkit-linear-gradient(bottom, #17A9CC 0%, #0085A6 100%);
     background-image: -ms-linear-gradient(bottom, #17A9CC 0%, #0085A6 100%);
     background-image: linear-gradient(to bottom, #17A9CC 0%, #0085A6 100%);
-    margin: 10px 0 10px 30px;
+    margin: 10px 0 10px 10px;
     padding: 0;
     border: 2px solid #17A9CC;
 }
-.start-panel {
-	margin-top: 10px;
-	padding: 0;
-	height: auto;
-	width: auto;
-}
-.play-panel i{
-    margin-top: 20px!important;
-    font-size: 1.5em;
-    color: #fff;
+.empty-panels{
+    height: 60px!important;
+    border-color: #17A9CC;
+    background-image: -o-linear-gradient(bottom, #2c8f10 0%, #267710 100%);
+    background-image: -moz-linear-gradient(bottom, #2c8f10 0%, #267710 100%);
+    background-image: -webkit-linear-gradient(bottom, #2c8f10 0%, #267710 100%);
+    background-image: -ms-linear-gradient(bottom, #2c8f10 0%, #267710 100%);
+    background-image: linear-gradient(to bottom, #2c8f10 0%, #267710 100%);
+    margin: 10px 0 10px 10px;
+    padding: 0;
+    border: 2px solid #2c8f10;
 }
 .station-number h2{
     color: #fff;
@@ -329,6 +329,11 @@ label{
 /* Empty Stations */
 .gts-panel .panel h3 {
     margin: 15px 0 0 30px;
+}
+.gamer-cancel a{
+    color: red;
+    opacity: 0.6;
+    margin-top: 4px;
 }
 /* STATIONS PAGE **************
 *****************************************/
