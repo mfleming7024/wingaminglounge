@@ -70,11 +70,6 @@ wingaming.config(function ($routeProvider){
                 factory: checkPermission
             }
         })
-        .when("/crud_testing", {
-            title: 'Crud Testing',
-            authRequired: true,
-            templateUrl:"partials/crud_testing.html"
-        })
         .when("/gamer_page", {
             title: 'Your a gamer!',
             authRequired: true,
