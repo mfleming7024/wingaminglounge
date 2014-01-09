@@ -1,4 +1,4 @@
-wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFireCollection', 'angularFireAuth','$rootScope','angularFire', function mtCtrl($scope, $routeParams, $location, angularFireCollection, angularFireAuth,$rootScope,angularFire){
+wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFireCollection', 'angularFireAuth','$rootScope','angularFire', '$sce', function mtCtrl($scope, $routeParams, $location, angularFireCollection, angularFireAuth,$rootScope,angularFire,$sce){
 
     var usersCollection = new Firebase("https://wingaminglounge.firebaseio.com/wingaminglounge/users/");
     $scope.users = angularFireCollection(usersCollection);
@@ -11,11 +11,11 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
         var theUser;
         
         //premade html for mobile admin nav
-        var true_desktop_statement = "<li><a href=\"#gts\"> Gamer Track System</a></li>" +
+        $scope.true_desktop_statement = "<li><a href=\"#gts\"> Gamer Track System</a></li>" +
             "<li><a href=\"#users\"> Users</a></li>" +
             "<li><a href=\"#stations\"> Stations</a></li>" +
             "<li><a href=\"#games\"> Games</a></li>";
-        var true_mobile_statement = "<a class='right-off-canvas-toggle'><i class='fa fa-bars mobile-bar'></i></a>";
+        $scope.true_mobile_statement = "<a class='right-off-canvas-toggle'><i class='fa fa-bars mobile-bar'></i></a>";
         
         //angular fire on login event
         $scope.$on("angularFireAuth:login", function(evt, user) {
@@ -23,9 +23,9 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
                 theUser = user;
                 
                 //setting a few scope variables for our user navigation
-                $scope.user = true;
-                $rootScope.displayName = user.displayName;
-                $scope.profilePic = "http://graph.facebook.com/" + user.username + "/picture?type=large";
+                $scope.user =               true;
+                $rootScope.displayName =    user.displayName;
+                $scope.profilePic =         "http://graph.facebook.com/" + user.username + "/picture?type=large";
 
                 var urlUser = new Firebase("https://wingaminglounge.firebaseio.com/wingaminglounge/users/"+theUser.id);
                 
@@ -36,33 +36,39 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
                 {
                     //if nothing is returned in the object then it adds to the database with profile pictures
                     if (Object.keys($rootScope.user).length === 0) {
+                        
                         console.log("User does not exist, adding " + theUser.email + " to the database.");
 
-                        var picurl = "http://graph.facebook.com/" + theUser.username + "/picture?type=small";
-                        var picurlLarge = "http://graph.facebook.com/" + theUser.username + "/picture?type=large";
+                        var picurl =        "http://graph.facebook.com/" + theUser.username + "/picture?type=small";
+                        var picurlLarge =   "http://graph.facebook.com/" + theUser.username + "/picture?type=large";
 
-                        $rootScope.user = {"displayName": theUser.name, "email": theUser.email, "profilePic": picurl, "profilePicLarge": picurlLarge, "userType": "Admin","id": theUser.id};
+                        $rootScope.user = {
+                            "displayName":      theUser.name, 
+                            "email":            theUser.email, 
+                            "profilePic":       picurl, 
+                            "profilePicLarge":  picurlLarge, 
+                            "userType":         "Gamer",
+                            "id":               theUser.id
+                        };
                         
-                        $scope.userType = true;
-                        $scope.mobileStatement = true_mobile_statement;
-                        $scope.desktopStatement = true_desktop_statement;
+                        /*$scope.userType = true;*/
+                        $scope.mobileNavBar =    $sce.trustAsHtml($scope.true_mobile_statement);
+                        $scope.desktopNavBar =   $sce.trustAsHtml($scope.true_desktop_statement);
                         
                         $location.path('/game_page');
 
                     } else {
                         //if user exists then it determines what to display based on userType
                         if ($rootScope.user.userType == "Gamer") {
-                            $scope.userType = false;
+                            /*$scope.userType = false;*/
                         } else if ($rootScope.user.userType == "Admin") {
-                            $scope.userType = true;
-                            $scope.mobileStatement = true_mobile_statement;
-                            $scope.desktopStatement = true_desktop_statement;
+                            /*$scope.userType = true;*/
+                            $scope.mobileNavBar =    $sce.trustAsHtml($scope.true_mobile_statement);
+                            $scope.desktopNavBar =   $sce.trustAsHtml($scope.true_desktop_statement);
                         };//end usertype loop
                     };//end else
                     //dis();
                 });//end angularFire
-            } else {
-                console.log("Login other then the facebook service");
             };//end if else
         });//end scope.on angularfirelogin
 

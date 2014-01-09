@@ -24,7 +24,7 @@
             <div class="div.mobile-logo">
                 <a href="#/home" class="mobile-logo"></a>
             </div>
-            <div class="right-nav right" ng-bind-html-unsafe="mobileStatement"></div>
+            <div class="right-nav right" ng-bind-html="mobileNavBar"></div>
         </nav>
 
         <!-- left Off canvas mobile main navigation -->
@@ -104,7 +104,7 @@
                         <li class="active" ng-hide="user"><a href="" class="main-nav" ng-click="login()"><i class="fa fa-facebook"></i> Facebook Login</a></li>
                         <li class="has-dropdown" ng-show="user">
                             <a href="" class="main-nav" ng-click="logout()">Logout</a>
-                            <ul class="dropdown" ng-bind-html-unsafe="desktopStatement"></ul>
+                            <ul class="dropdown" ng-bind-html="desktopNavBar"></ul>
                         </li>
                     </ul>
                 </div>
@@ -143,14 +143,20 @@
     $(document).foundation();
 </script>
 
-<!-- Firebase Conenctions -->
+<!-- Firebase Connections -->
 <script src="https://cdn.firebase.com/v0/firebase.js"></script>
 
 <!--simple login-->
 <script src="https://cdn.firebase.com/v0/firebase-simple-login.js"></script>
 
 <!--angular-->
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.js"></script>
+    
+<!--angular route-->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-route.js"></script>
+
+<!--angular sanitize-->   
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-sanitize.min.js"></script>
 
 <!--angularFire-->
 <script src="https://cdn.firebase.com/libs/angularfire/0.3.0/angularfire.js"></script>
@@ -162,7 +168,7 @@
 <script src="js/controllers/CRUDController.js"></script>
 
 <!-- Login Controllers -->
-<script src="js/controllers/LoginController.js"></script>
+<script src="js/controllers/Dev-LoginController.js"></script>
 
 <!-- Login Controllers -->
 <script src="js/controllers/GTSController.js"></script>
