@@ -401,3 +401,8 @@ label{
     right: 5px;
     width:53%;
 }
+
+/*Testing*/
+a i#admin_icon {
+    margin-right: 7px;
+}

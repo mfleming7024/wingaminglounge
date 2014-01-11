@@ -21,7 +21,6 @@ wingaming.config(function ($routeProvider){
     $routeProvider
         .when("/" , {
             title: 'Home',
-            controller: "Login",
             templateUrl: "partials/home.html"
         })
         .when("/about", {
@@ -38,7 +37,6 @@ wingaming.config(function ($routeProvider){
         .when("/gts", {
             title: 'Gamer Tracking System',
             authRequired: true,
-            controller: "GTS",
             templateUrl:"partials/gts.html",
             resolve: {
                 factory: checkPermission

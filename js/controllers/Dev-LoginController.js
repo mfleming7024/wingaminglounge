@@ -4,18 +4,18 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
     $scope.users = angularFireCollection(usersCollection);
     
     //init to restrict the controller from running multiple times
-    $scope.init=function() {
+/*    $scope.init=function() {
         if ($rootScope.loginInit==true) return;
-        $rootScope.loginInit=true;
+        $rootScope.loginInit=true;*/
 
         var theUser;
         
         //premade html for mobile admin nav
         $scope.true_desktop_statement = "<li><a href=\"#gts\"> Gamer Track System</a></li>" +
-            "<li><a href=\"#users\"> Users</a></li>" +
-            "<li><a href=\"#stations\"> Stations</a></li>" +
-            "<li><a href=\"#games\"> Games</a></li>";
-        $scope.true_mobile_statement = "<a class='right-off-canvas-toggle'><i class='fa fa-bars mobile-bar'></i></a>";
+                                        "<li><a href=\"#users\"> Users</a></li>" +
+                                        "<li><a href=\"#stations\"> Stations</a></li>" +
+                                        "<li><a href=\"#games\"> Games</a></li>";
+        $scope.true_mobile_statement =  "<a class='right-off-canvas-toggle'><i class='fa fa-lock mobile-bar' id='admin_icon'></i></a>";
         
         //angular fire on login event
         $scope.$on("angularFireAuth:login", function(evt, user) {
@@ -51,7 +51,6 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
                             "id":               theUser.id
                         };
                         
-                        /*$scope.userType = true;*/
                         $scope.mobileNavBar =    $sce.trustAsHtml($scope.true_mobile_statement);
                         $scope.desktopNavBar =   $sce.trustAsHtml($scope.true_desktop_statement);
                         
@@ -60,9 +59,8 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
                     } else {
                         //if user exists then it determines what to display based on userType
                         if ($rootScope.user.userType == "Gamer") {
-                            /*$scope.userType = false;*/
+                            //asdf
                         } else if ($rootScope.user.userType == "Admin") {
-                            /*$scope.userType = true;*/
                             $scope.mobileNavBar =    $sce.trustAsHtml($scope.true_mobile_statement);
                             $scope.desktopNavBar =   $sce.trustAsHtml($scope.true_desktop_statement);
                         };//end usertype loop
@@ -90,7 +88,7 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
             $scope.user = false;
         });
 
-    }
+  /*  }*/
 
     var id;
 
@@ -122,6 +120,7 @@ wingaming.controller('Login', ['$scope', '$routeParams', '$location', 'angularFi
             isUserClicked = true;
         } 
     }
+                               
     //runs the init function
-    $scope.init();
+    /*$scope.init();*/
 }]);
