@@ -145,6 +145,10 @@ nav.tab-bar div .mobile-logo{
 }
 /* INDEX **************
 *****************************************/
+body {
+    background: url(../img/office.png);
+}
+
 .top-content{
     background: url(../img/header.jpg) no-repeat;
     height: 550px;
